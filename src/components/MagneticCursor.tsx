@@ -10,7 +10,7 @@ export default function MagneticCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 30, stiffness: 250, mass: 0.5 };
+  const springConfig = { damping: 20, stiffness: 100, mass: 0.8 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -48,7 +48,7 @@ export default function MagneticCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 rounded-full pointer-events-none z-[1000] mix-blend-difference bg-white flex items-center justify-center"
+      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[1000] mix-blend-difference border border-white flex items-center justify-center backdrop-blur-sm"
       style={{
         x: cursorX,
         y: cursorY,
@@ -57,9 +57,10 @@ export default function MagneticCursor() {
         opacity: isVisible ? 1 : 0,
       }}
       animate={{
-        scale: isHovered ? 2.5 : 1,
+        scale: isHovered ? 2 : 1,
+        backgroundColor: isHovered ? "white" : "transparent",
       }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      transition={{ type: "spring", stiffness: 150, damping: 15 }}
     />
   );
 }

@@ -21,6 +21,8 @@ export default function RootLayout({
       <body className="antialiased font-sans bg-background text-foreground overflow-x-hidden selection:bg-white/20">
         <div className="noise-overlay pointer-events-none" />
         <div className="ambient-light pointer-events-none" />
+        <div className="light-leak-1" />
+        <div className="light-leak-2" />
         
         <Providers>
           <MagneticCursor />

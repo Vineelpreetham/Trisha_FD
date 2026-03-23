@@ -21,31 +21,38 @@ export default function Home() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    // Initial reveal animation
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    // Initial reveal animation - Staggered, imperfect, off-balance
+    const tl = gsap.timeline();
 
     tl.fromTo(
-      [title1Ref.current, title2Ref.current],
-      { y: 100, opacity: 0, rotationX: -20 },
-      { y: 0, opacity: 1, rotationX: 0, duration: 1.5, stagger: 0.2 }
+      title1Ref.current,
+      { x: -100, opacity: 0, rotate: -5 },
+      { x: 0, opacity: 1, rotate: 0, duration: 1.8, ease: "power4.out" }
+    ).fromTo(
+      title2Ref.current,
+      { x: 100, opacity: 0, y: 50 },
+      { x: 0, opacity: 1, y: 0, duration: 2.2, ease: "expo.out" },
+      "-=1.4"
     ).fromTo(
       subtitleRef.current,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      "-=1"
+      { opacity: 0, filter: "blur(10px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 2 },
+      "-=1.5"
     );
 
-    // Scroll animation for Hero
+    // Scroll animation for Hero - Camera movement feel
     gsap.to(heroRef.current, {
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: true,
+        scrub: 1.5,
       },
-      y: 200,
-      opacity: 0,
-      scale: 0.9,
+      y: 150,
+      scale: 1.05,
+      opacity: 0.2,
+      filter: "blur(5px)",
+      transformOrigin: "center center",
     });
   }, []);
 
@@ -58,30 +65,40 @@ export default function Home() {
       >
         <HeroScene />
         
-        <div className="z-10 flex flex-col items-center text-center mt-20 pointer-events-none perspective-[1000px]">
-          <h1
-            ref={title1Ref}
-            className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.85] mix-blend-difference"
-          >
-            Digital
-          </h1>
-          <h1
-            ref={title2Ref}
-            className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.85] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-300 to-neutral-600 mix-blend-difference"
-          >
-            Couture.
-          </h1>
-          <p
-            ref={subtitleRef}
-            className="mt-8 text-lg md:text-xl text-neutral-400 font-light tracking-widest uppercase max-w-md"
-          >
-            The intersection of high fashion & futuristic digital art.
-          </p>
-        </div>
+        <div className="z-10 w-full h-full flex flex-col justify-between pt-40 pb-20 px-6 md:px-20 pointer-events-none">
+          <div className="flex justify-start w-full">
+            <h1
+              ref={title1Ref}
+              className="text-6xl md:text-[10vw] font-black tracking-tighter uppercase leading-[0.8] mix-blend-difference"
+            >
+              Exuvia
+            </h1>
+          </div>
+          
+          <div className="flex justify-end w-full relative -mt-32 md:-mt-64">
+             <div className="absolute right-[20vw] top-0 w-64 h-[1px] bg-white/30 hidden md:block" />
+             <h1
+              ref={title2Ref}
+              className="text-6xl md:text-[8vw] font-black tracking-tighter uppercase leading-[0.85] text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-700 mix-blend-plus-lighter"
+            >
+              Collection.
+            </h1>
+          </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-[0.3em] text-neutral-500 uppercase flex flex-col items-center gap-2">
-          <span>Scroll to explore</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-500 to-transparent animate-pulse" />
+          <div className="flex justify-between items-end w-full">
+             <p
+              ref={subtitleRef}
+              className="text-sm md:text-base text-neutral-400 font-light tracking-[0.3em] uppercase max-w-xs md:max-w-md mix-blend-difference leading-relaxed text-left"
+            >
+              Fragmented identities woven into digital garments.
+            </p>
+
+            <div className="hidden md:flex flex-col items-end gap-2 text-[10px] tracking-[0.4em] text-neutral-600 uppercase">
+               <span>Fall / Winter</span>
+               <span>2026</span>
+               <div className="w-[1px] h-20 bg-gradient-to-b from-neutral-600 to-transparent mt-4" />
+            </div>
+          </div>
         </div>
       </section>
 
