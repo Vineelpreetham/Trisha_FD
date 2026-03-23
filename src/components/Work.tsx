@@ -13,40 +13,43 @@ const ProjectDetail = dynamic(() => import("./ProjectDetail"), {
 const projects = [
   {
     id: "1",
-    title: "Aethereal",
-    category: "Digital Couture",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop",
-    description: "Gravity-defying fluid simulations. The unseen forces of nature.",
-    // Styling overrides for asymmetrical layout
-    className: "col-span-12 md:col-span-7 h-[70vh] md:h-[120vh] mt-0",
-    textClass: "bottom-10 right-10 text-right",
+    title: "Le Silence",
+    category: "Haute Couture",
+    year: "2026",
+    image: "https://images.unsplash.com/photo-1549062572-544a64fb0c56?q=80&w=1200&auto=format&fit=crop",
+    description: "An exploration of negative space. Silk draping meticulously constructed around the void.",
+    className: "col-span-12 md:col-span-7 h-[80vh] md:h-[130vh]",
+    contentClass: "items-end text-right pr-8 pb-8",
   },
   {
     id: "2",
-    title: "Neon Void",
-    category: "Streetwear 3000",
-    image: "https://images.unsplash.com/photo-1550614000-4b95f463cb4e?q=80&w=1200&auto=format&fit=crop",
-    description: "Cyberpunk aesthetics merging with sustainable physical materials.",
-    className: "col-span-12 md:col-span-4 md:col-start-9 h-[50vh] md:h-[80vh] md:-mt-[40vh]",
-    textClass: "-bottom-10 left-0",
+    title: "Symphonie",
+    category: "Ready-to-Wear",
+    year: "2026",
+    image: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1200&auto=format&fit=crop",
+    description: "Fluidity and structure. Wearable architecture designed for movement.",
+    className: "col-span-12 md:col-span-4 md:col-start-9 h-[60vh] md:h-[90vh] md:mt-[30vh]",
+    contentClass: "items-start pl-8 pt-8",
   },
   {
     id: "3",
-    title: "Obsidian",
-    category: "Avant-Garde",
-    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop",
-    description: "Minimalist brutalism translated into wearable armor.",
-    className: "col-span-12 md:col-span-5 md:col-start-2 h-[60vh] md:h-[90vh] mt-20 md:mt-32",
-    textClass: "top-10 -left-10",
+    title: "L'Ombre",
+    category: "Archive Object",
+    year: "2025",
+    image: "https://images.unsplash.com/photo-1492447105260-2e947425b5cc?q=80&w=1200&auto=format&fit=crop",
+    description: "Translating brutalist shadows into deeply textured wool silhouettes.",
+    className: "col-span-12 md:col-span-5 md:col-start-2 h-[70vh] md:h-[110vh] mt-24 md:mt-40",
+    contentClass: "items-start pl-8 pt-8",
   },
   {
     id: "4",
-    title: "Lumo-Flora",
-    category: "Bio-fabrication",
-    image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200&auto=format&fit=crop",
-    description: "Synthesized biology interwoven with digital fibers.",
-    className: "col-span-12 md:col-span-8 md:col-start-5 h-[80vh] md:h-[100vh] mt-20 md:-mt-[20vh]",
-    textClass: "bottom-20 left-20",
+    title: "Éthéré",
+    category: "Digital Prototype",
+    year: "2027",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop",
+    description: "Bio-reactive materials that shift with the environment.",
+    className: "col-span-12 md:col-span-6 md:col-start-7 h-[70vh] md:h-[100vh] mt-24 md:-mt-[15vh]",
+    contentClass: "items-end text-right pr-8 pb-8",
   }
 ];
 
@@ -57,20 +60,19 @@ export default function Work() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const items = gsap.utils.toArray(".lookbook-item");
+    const items = gsap.utils.toArray(".editorial-item");
     
     items.forEach((item: any) => {
       gsap.fromTo(item, 
-        { y: 150, opacity: 0, filter: "blur(10px)" },
+        { y: 100, opacity: 0 },
         { 
           y: 0, 
           opacity: 1, 
-          filter: "blur(0px)",
-          duration: 1.5,
-          ease: "power3.out",
+          duration: 1.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: "top 85%",
+            start: "top 90%",
           }
         }
       );
@@ -78,50 +80,48 @@ export default function Work() {
   }, []);
 
   return (
-    <section ref={containerRef} id="work" className="relative w-full min-h-screen bg-background text-foreground py-40 z-10 overflow-hidden">
+    <section ref={containerRef} id="work" className="relative w-full min-h-screen bg-[#F8F6F2] py-32 z-10">
       
-      <div className="container mx-auto px-6 mb-40">
-        <h2 className="text-sm md:text-base font-mono uppercase tracking-[0.5em] text-neutral-500 mb-4">
-          [ Selected Archives ]
+      <div className="max-w-7xl mx-auto px-6 mb-32 md:mb-48 text-center flex flex-col items-center">
+        <h2 className="text-sm font-sans uppercase tracking-[0.4em] text-[#8C7B75] mb-6">
+          Selected Editorials
         </h2>
-        <h3 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mix-blend-difference">
-          The <br/> Lookbook.
+        <h3 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] leading-[0.9] max-w-2xl mx-auto">
+          The Archive.
         </h3>
       </div>
 
-      <div className="container mx-auto px-6 grid grid-cols-12 gap-x-6 gap-y-32">
+      <div className="max-w-[95vw] md:max-w-7xl mx-auto px-6 grid grid-cols-12 gap-x-6 gap-y-20">
         {projects.map((project, index) => (
           <div 
             key={project.id} 
-            className={`lookbook-item relative w-full group cursor-pointer ${project.className}`}
+            className={`editorial-item relative w-full group cursor-pointer ${project.className}`}
             onClick={() => setSelectedProject(project)}
             data-cursor="hover"
           >
             
             <motion.div 
               layoutId={`project-image-${project.id}`}
-              className="relative w-full h-full overflow-hidden rounded-none"
+              className="relative w-full h-full overflow-hidden shrink-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <motion.img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-full object-cover grayscale opacity-80 mix-blend-luminosity will-change-transform"
-                whileHover={{ scale: 1.05, filter: "blur(4px) contrast(150%)", opacity: 0.5 }}
-                transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out will-change-transform scale-100 group-hover:scale-105 opacity-90 group-hover:opacity-100"
               />
+              <div className="absolute inset-0 bg-[#D6CFC7]/10 group-hover:bg-transparent transition-colors duration-1000" />
             </motion.div>
 
             <motion.div 
               layoutId={`project-text-${project.id}`}
-              className={`absolute z-20 pointer-events-none mix-blend-difference ${project.textClass}`}
+              className={`absolute inset-0 z-20 pointer-events-none flex flex-col ${project.contentClass}`}
             >
-              <span className="text-neutral-400 font-serif italic text-lg md:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">{project.category}</span>
-              <h3 className="text-5xl md:text-8xl font-bold uppercase tracking-tighter text-white leading-[0.8]">{project.title}</h3>
+              <span className="text-white drop-shadow-md font-sans text-xs tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-700 translate-y-4 group-hover:translate-y-0 relative z-30">{project.category} — {project.year}</span>
+              <h3 className="text-4xl md:text-6xl font-serif text-white drop-shadow-md leading-[0.9] mt-2 relative z-30">{project.title}</h3>
+              {/* Soft dark gradient behind text for legibility without ruining the bright aesthetic */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[rgba(26,26,26,0.4)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-20 pointer-events-none" />
             </motion.div>
-
-            {/* Hover distortion overlay fake using CSS border/glow */}
-            <div className="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors duration-1000 pointer-events-none mix-blend-overlay" />
           </div>
         ))}
       </div>

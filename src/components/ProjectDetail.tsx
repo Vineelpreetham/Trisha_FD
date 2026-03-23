@@ -11,9 +11,8 @@ export default function ProjectDetail({ project, onClose }: { project: any, onCl
     container: containerRef,
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 2.5]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.5], [0.8, 0.2]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]); // Gentle zoom instead of 2.5x extreme zoom
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   useEffect(() => {
     document.documentElement.classList.add("lenis-stopped");
@@ -28,70 +27,76 @@ export default function ProjectDetail({ project, onClose }: { project: any, onCl
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[9000] bg-[#050505] overflow-y-auto no-scrollbar"
+      className="fixed inset-0 z-[9000] bg-[#F8F6F2] overflow-y-auto no-scrollbar"
       ref={containerRef}
     >
       <button 
         onClick={onClose}
-        className="fixed top-8 right-8 z-[10000] p-4 mix-blend-difference text-white hover:scale-90 transition-transform"
+        className="fixed top-8 right-8 z-[10000] p-4 text-[#1A1A1A] hover:opacity-50 transition-opacity bg-white/50 backdrop-blur-md rounded-full shadow-sm"
         data-cursor="hover"
       >
-        <X size={40} className="stroke-1" />
+        <X size={32} strokeWidth={1.5} />
       </button>
 
-      <div className="relative h-[150vh] w-full flex flex-col items-center justify-start pointer-events-none">
+      <div className="relative h-[120vh] w-full flex flex-col items-center justify-start pointer-events-none">
+        
         <motion.div
            layoutId={`project-image-${project.id}`}
            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-           className="fixed top-0 left-0 w-full h-screen origin-center"
-           style={{ scale: imageScale, opacity: imageOpacity }}
+           className="absolute top-0 left-0 w-full h-[80vh] origin-center overflow-hidden"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale contrast-125" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-black/20 to-transparent" />
+          <motion.img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover" 
+            style={{ scale: imageScale }}
+          />
         </motion.div>
 
         <motion.div 
           layoutId={`project-text-${project.id}`}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="relative z-10 w-full h-screen flex flex-col justify-end pb-32 px-10 md:px-20 mix-blend-difference"
+          className="relative z-10 w-full flex flex-col justify-end pt-[65vh] pb-20 px-10 md:px-20"
           style={{ y: textY }}
         >
-           <span className="text-neutral-500 font-serif italic text-2xl md:text-3xl">{project.category}</span>
-           <h1 className="text-[12vw] font-black uppercase tracking-tighter text-white leading-[0.75] -ml-2">{project.title}</h1>
+           <div className="bg-[#F8F6F2] p-12 shadow-2xl max-w-5xl">
+             <span className="text-[#8C7B75] font-sans text-xs tracking-[0.3em] uppercase block mb-4">Case Study — {project.year}</span>
+             <h1 className="text-6xl md:text-[8vw] font-serif text-[#1A1A1A] leading-[0.85] tracking-tight">{project.title}</h1>
+           </div>
         </motion.div>
       </div>
 
-      <div className="relative z-20 bg-background pt-32 pb-60 px-6 md:px-20 min-h-screen mix-blend-normal">
-        <div className="max-w-[90vw] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="relative z-20 bg-[#F8F6F2] pb-60 px-6 md:px-20 min-h-screen">
+        <div className="max-w-[80vw] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
           
-          <div className="md:col-span-5 md:col-start-2">
+          <div className="md:col-span-8 md:col-start-3 text-center md:text-left">
             <motion.p 
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="text-3xl md:text-5xl font-serif italic leading-[1.3] text-neutral-300 relative"
+              className="text-2xl md:text-4xl font-serif leading-[1.6] text-[#1A1A1A] relative"
             >
-              <span className="float-left text-9xl leading-[0.8] pr-4 font-black font-sans not-italic text-white">
+              <span className="float-left text-8xl leading-[0.8] pr-6 font-serif text-[#D6CFC7]">
                 {project.description.charAt(0)}
               </span>
               {project.description.slice(1)}
             </motion.p>
           </div>
 
-          <div className="md:col-span-12 mt-40">
+          <div className="md:col-span-10 md:col-start-2 mt-32">
              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1] }}
-                className="w-full h-[80vh] md:h-[120vh]"
+                transition={{ duration: 2, ease: "easeOut" }}
+                className="w-full h-[60vh] md:h-[90vh] shadow-xl"
              >
                {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src={project.image} className="w-full h-full object-cover grayscale contrast-150" alt="Texture Close Up" />
+               <img src={project.image} className="w-full h-full object-cover" alt="Detail View" />
              </motion.div>
-             <p className="mt-4 text-xs font-mono uppercase tracking-[0.4em] text-neutral-600 text-right">Fig 1. Texture analysis</p>
+             <p className="mt-4 text-xs font-sans uppercase tracking-[0.2em] text-[#8C7B75] text-center">Fig 1. Fabric tension and seam flow</p>
           </div>
         </div>
       </div>
