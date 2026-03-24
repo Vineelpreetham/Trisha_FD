@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import MagneticCursor from "@/components/MagneticCursor";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -25,14 +26,6 @@ export default function RootLayout({
         
         <Providers>
           <MagneticCursor />
-          <nav className="fixed top-0 left-0 w-full z-50 p-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference pointer-events-auto">
-            <div className="text-2xl font-serif tracking-tight text-white mix-blend-difference z-50">Studio.</div>
-            <div className="flex gap-8 text-sm font-sans tracking-[0.2em] uppercase text-white mix-blend-difference z-50">
-              <a href="#about" className="hover:opacity-60 transition-opacity" data-cursor="hover">Philosophy</a>
-              <a href="#work" className="hover:opacity-60 transition-opacity" data-cursor="hover">Editorials</a>
-              <a href="#contact" className="hover:opacity-60 transition-opacity" data-cursor="hover">Inquiries</a>
-            </div>
-          </nav>
           {children}
         </Providers>
       </body>
