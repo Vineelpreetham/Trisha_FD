@@ -3,163 +3,148 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
-import About from "@/components/About";
-import Work from "@/components/Work";
-import Contact from "@/components/Contact";
-import { getCldImageUrl } from "@/lib/cloudinary";
+import Link from "next/link";
 
-export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLImageElement>(null);
-  const title1Ref = useRef<HTMLHeadingElement>(null);
-  const title2Ref = useRef<HTMLHeadingElement>(null);
-  const philosophyRef = useRef<HTMLDivElement>(null);
+export default function FashionHero() {
+  const containerRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLImageElement>(null);
+  const modelRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial reveal animation - Slow, soft, elegant
-    const tl = gsap.timeline();
+    // Entrance
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.fromTo(bgRef.current,
+        { scale: 1.12, filter: "brightness(0.4) blur(14px)" },
+        { scale: 1,    filter: "brightness(1) blur(0px)", duration: 2.2 }
+      )
+      .fromTo(modelRef.current, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1.6 }, "-=1.6")
+      .fromTo(textRef.current,  { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 1.4 }, "-=1.1");
 
-    tl.fromTo(
-      heroImageRef.current,
-      { scale: 1.1, opacity: 0, filter: "brightness(0.5)" },
-      { scale: 1, opacity: 1, filter: "brightness(1)", duration: 2.5, ease: "power2.out" }
-    ).fromTo(
-      title1Ref.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" },
-      "-=1.5"
-    ).fromTo(
-      title2Ref.current,
-      { x: 50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 2, ease: "power3.out" },
-      "-=1.2"
-    );
-
-    // Subtle parallax on scroll
-    gsap.to(heroImageRef.current, {
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-      y: 100,
-      scale: 1.05,
+    // Scroll: background ZOOMS IN (scale 1 -> 1.15) — exoape style
+    gsap.to(bgRef.current, {
+      scale: 1.15,
       ease: "none",
+      scrollTrigger: { trigger: containerRef.current, start: "top top", end: "bottom top", scrub: 1.5 },
     });
 
-    // Fade in philosophy
-    gsap.fromTo(
-      philosophyRef.current,
-      { y: 100, opacity: 0 },
-      {
-        y: 0, 
-        opacity: 1, 
-        duration: 1.5, 
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: philosophyRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+    // Scroll: model drifts up slightly for depth
+    gsap.to(modelRef.current, {
+      yPercent: -4,
+      ease: "none",
+      scrollTrigger: { trigger: containerRef.current, start: "top top", end: "bottom top", scrub: 1.5 },
+    });
+
+    // Scroll: text exits fast
+    gsap.to(textRef.current, {
+      yPercent: -60, opacity: 0, ease: "none",
+      scrollTrigger: { trigger: containerRef.current, start: "top top", end: "60% top", scrub: 1 },
+    });
   }, []);
 
   return (
-    <main className="w-full relative bg-background text-foreground">
-      
-      {/* 1. HERO SECTION */}
-      <section ref={heroRef} className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
-        <div className="absolute inset-0 z-0">
-          <img 
-            ref={heroImageRef}
-            src={getCldImageUrl("https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop", { width: 2000 })} 
-            alt="Editorial Cover" 
-            className="w-full h-full object-cover origin-center opacity-90"
+    <main style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", overflowX: "hidden", background: "#f7f5f3", minHeight: "200vh" }}>
+
+      {/* Transparent NAV */}
+      <nav style={{
+        position: "absolute", top: 0, left: 0, width: "100%",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        padding: "clamp(1.2rem,3vw,2.2rem) clamp(1.5rem,5vw,4rem)",
+        zIndex: 100, mixBlendMode: "difference", color: "#fff", pointerEvents: "auto",
+      }}>
+        <Link href="/" style={{ fontFamily: "Georgia,serif", fontSize: "clamp(1rem,2vw,1.4rem)", fontWeight: 400, letterSpacing: "-0.01em" }}
+              className="hover:opacity-60 transition-opacity">
+          Trisha.
+        </Link>
+        <div style={{ display: "flex", gap: "clamp(1rem,3vw,2.5rem)", fontSize: "clamp(0.6rem,1vw,0.72rem)", letterSpacing: "0.18em", fontWeight: 500, textTransform: "uppercase" }}>
+          <Link href="/"            className="hover:opacity-60 transition-opacity">Home</Link>
+          <Link href="/collections" className="hover:opacity-60 transition-opacity">Collection</Link>
+          <Link href="/about"       className="hover:opacity-60 transition-opacity">About</Link>
+          <Link href="/contact"     className="hover:opacity-60 transition-opacity">Contact</Link>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section ref={containerRef} style={{ position: "relative", width: "100%", height: "100svh", overflow: "hidden", background: "#1a0305" }}>
+
+        {/* Layer 1: Gradient background — oversized so parallax never shows edges */}
+        <img
+          ref={bgRef}
+          src="/vertical-gradient.jpg"
+          alt="Red gradient"
+          style={{
+            position: "absolute", top: "-6%", left: "-6%",
+            width: "112%", height: "112%",
+            objectFit: "cover", objectPosition: "center center",
+            zIndex: 0, transformOrigin: "center center", willChange: "transform",
+          }}
+        />
+
+        {/* Editorial grain texture */}
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+          style={{ position: "absolute", inset:0, width:"100%", height:"100%", opacity:0.18, mixBlendMode:"overlay", pointerEvents:"none", zIndex:1 }}>
+          <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch"/></filter>
+          <rect width="100%" height="100%" filter="url(#grain)"/>
+        </svg>
+
+        {/* Layer 2: Left-side editorial text */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 10,
+          display: "flex", alignItems: "center",
+          paddingLeft: "clamp(2rem,6vw,6rem)", paddingBottom: "4vh",
+          pointerEvents: "none",
+        }}>
+          <h1 ref={textRef} style={{
+            fontFamily: "'Inter','Helvetica Neue',Arial,sans-serif",
+            fontWeight: 300,
+            fontSize: "clamp(1.1rem,2.4vw,2.6rem)",
+            lineHeight: 1.35,
+            letterSpacing: "0.02em",
+            color: "#fff",
+            maxWidth: "15ch",
+            margin: 0,
+            textShadow: "0 2px 40px rgba(0,0,0,0.55)",
+          }}>
+            Welcome to my journey as a fashion designer
+          </h1>
+        </div>
+
+        {/* Layer 3: Model cutout — EXACTLY centered with left:50% + translateX(-50%) */}
+        <div ref={modelRef} style={{
+          position: "absolute",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "clamp(260px, 55vw, 760px)",
+          height: "100%",
+          zIndex: 20,
+          pointerEvents: "none",
+          willChange: "transform",
+        }}>
+          <img
+            src="/home-hero-dress.png"
+            alt="Model in red gown"
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "contain", objectPosition: "bottom center",
+              filter: "drop-shadow(0 0 50px rgba(0,0,0,0.22))",
+              display: "block",
+            }}
           />
-          {/* Soft overlay gradient to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/70 via-transparent to-transparent" />
-        </div>
-
-        <div className="relative z-10 w-full px-6 md:px-20 pb-20 md:pb-32 flex flex-col items-start text-white mix-blend-difference">
-          <h1 
-            ref={title1Ref}
-            className="text-6xl md:text-[8vw] font-serif tracking-tight leading-[0.9] -ml-2"
-          >
-            L&apos;Éternel
-          </h1>
-          <h1 
-            ref={title2Ref}
-            className="text-6xl md:text-[8vw] font-serif tracking-tight leading-[0.9] md:ml-[15vw]"
-          >
-            Printemps.
-          </h1>
-          <p className="mt-8 text-sm md:text-base font-sans tracking-[0.2em] font-light max-w-sm uppercase opacity-80">
-            A visual anthology of impermanence and soft luxury.
-          </p>
         </div>
       </section>
 
-      {/* 2. DESIGN PHILOSOPHY */}
-      <section className="relative w-full py-40 px-6 md:px-20 bg-background flex justify-center items-center">
-        <div ref={philosophyRef} className="max-w-4xl text-center">
-          <p className="text-3xl md:text-6xl font-serif italic text-[#1A1A1A] leading-tight">
-            &quot;True luxury is not loud. It is the quiet intersection of perfect tension and absolute release.&quot;
-          </p>
-          <div className="mt-12 flex items-center justify-center gap-4 text-xs font-sans uppercase tracking-[0.3em] text-[#8C7B75]">
-             <div className="w-12 h-[1px] bg-[#8C7B75]" />
-             <span>The Manifesto</span>
-             <div className="w-12 h-[1px] bg-[#8C7B75]" />
-          </div>
-        </div>
+      {/* Below fold */}
+      <section style={{ width:"100%", padding:"10rem 2rem", display:"flex", flexDirection:"column", alignItems:"center", background:"#f7f5f3" }}>
+        <p style={{ fontSize:"0.7rem", letterSpacing:"0.3em", textTransform:"uppercase", opacity:0.4, marginBottom:"2rem" }}>
+          Scroll Down
+        </p>
+        <h2 style={{ fontFamily:"Georgia,serif", fontSize:"clamp(1.6rem,3vw,2.8rem)", maxWidth:"32rem", textAlign:"center", lineHeight:1.5, fontWeight:400 }}>
+          Explore the intersection of editorial aesthetics and luxury precision.
+        </h2>
       </section>
-
-      {/* 3. FEATURED VISUALS (About/Work Replacements) */}
-      <About />
-      <Work />
-
-      {/* 4. INSTAGRAM SNAPSHOT / COLLAGE */}
-      <section className="relative w-full py-40 px-6 md:px-20 bg-[#D6CFC7]/20 border-t border-[#D6CFC7]/50">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-           <div>
-             <h2 className="text-4xl md:text-6xl font-serif text-[#1A1A1A]">Curated Fragments</h2>
-             <p className="font-sans text-sm tracking-[0.2em] uppercase text-[#8C7B75] mt-4">@studio.eternite</p>
-           </div>
-           <button className="text-sm border-b border-[#1A1A1A] pb-1 uppercase tracking-widest hover:text-[#8C7B75] hover:border-[#8C7B75] transition-colors" data-cursor="hover">
-             Discover More
-           </button>
-        </div>
-
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {[
-            "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1550614000-4b95f463cb4e?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600&auto=format&fit=crop"
-          ].map((src, i) => {
-            const cldSrc = getCldImageUrl(src, { width: 600 });
-            return (
-             <motion.a 
-               href="#"
-               key={i}
-               className={`relative overflow-hidden group block ${i === 1 || i === 3 ? 'mt-12 md:mt-24' : ''}`}
-               whileHover={{ scale: 0.98 }}
-               transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-             >
-               <img src={cldSrc} alt="Instagram Snapshot" className="w-full h-[40vh] md:h-[60vh] object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-[2px]" />
-               <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
-                 <span className="text-white font-sans text-xs tracking-[0.3em] uppercase mix-blend-overlay">View</span>
-               </div>
-             </motion.a>
-          );
-          })}
-        </div>
-      </section>
-
-      <Contact />
     </main>
   );
 }
