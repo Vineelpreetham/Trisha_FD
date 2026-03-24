@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import About from "@/components/About";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
+import { getCldImageUrl } from "@/lib/cloudinary";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -75,7 +76,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img 
             ref={heroImageRef}
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop" 
+            src={getCldImageUrl("https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop", { width: 2000 })} 
             alt="Editorial Cover" 
             className="w-full h-full object-cover origin-center opacity-90"
           />
@@ -88,7 +89,7 @@ export default function Home() {
             ref={title1Ref}
             className="text-6xl md:text-[8vw] font-serif tracking-tight leading-[0.9] -ml-2"
           >
-            L'Éternel
+            L&apos;Éternel
           </h1>
           <h1 
             ref={title2Ref}
@@ -106,7 +107,7 @@ export default function Home() {
       <section className="relative w-full py-40 px-6 md:px-20 bg-background flex justify-center items-center">
         <div ref={philosophyRef} className="max-w-4xl text-center">
           <p className="text-3xl md:text-6xl font-serif italic text-[#1A1A1A] leading-tight">
-            "True luxury is not loud. It is the quiet intersection of perfect tension and absolute release."
+            &quot;True luxury is not loud. It is the quiet intersection of perfect tension and absolute release.&quot;
           </p>
           <div className="mt-12 flex items-center justify-center gap-4 text-xs font-sans uppercase tracking-[0.3em] text-[#8C7B75]">
              <div className="w-12 h-[1px] bg-[#8C7B75]" />
@@ -138,7 +139,9 @@ export default function Home() {
             "https://images.unsplash.com/photo-1550614000-4b95f463cb4e?q=80&w=600&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600&auto=format&fit=crop"
-          ].map((src, i) => (
+          ].map((src, i) => {
+            const cldSrc = getCldImageUrl(src, { width: 600 });
+            return (
              <motion.a 
                href="#"
                key={i}
@@ -146,12 +149,13 @@ export default function Home() {
                whileHover={{ scale: 0.98 }}
                transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
              >
-               <img src={src} alt="Instagram Snapshot" className="w-full h-[40vh] md:h-[60vh] object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-[2px]" />
+               <img src={cldSrc} alt="Instagram Snapshot" className="w-full h-[40vh] md:h-[60vh] object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-[2px]" />
                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
                  <span className="text-white font-sans text-xs tracking-[0.3em] uppercase mix-blend-overlay">View</span>
                </div>
              </motion.a>
-          ))}
+          );
+          })}
         </div>
       </section>
 

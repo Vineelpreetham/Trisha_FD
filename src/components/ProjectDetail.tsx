@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
+import { getCldImageUrl } from "@/lib/cloudinary";
 
 export default function ProjectDetail({ project, onClose }: { project: any, onClose: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ export default function ProjectDetail({ project, onClose }: { project: any, onCl
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <motion.img 
-            src={project.image} 
+            src={getCldImageUrl(project.image, { width: 1920 })} 
             alt={project.title} 
             className="w-full h-full object-cover" 
             style={{ scale: imageScale }}
@@ -94,7 +95,7 @@ export default function ProjectDetail({ project, onClose }: { project: any, onCl
                 className="w-full h-[60vh] md:h-[90vh] shadow-xl"
              >
                {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src={project.image} className="w-full h-full object-cover" alt="Detail View" />
+               <img src={getCldImageUrl(project.image, { width: 1920 })} className="w-full h-full object-cover" alt="Detail View" />
              </motion.div>
              <p className="mt-4 text-xs font-sans uppercase tracking-[0.2em] text-[#8C7B75] text-center">Fig 1. Fabric tension and seam flow</p>
           </div>

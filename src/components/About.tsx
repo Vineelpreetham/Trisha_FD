@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getCldImageUrl } from "@/lib/cloudinary";
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export default function About() {
         <div className="md:col-span-6 md:col-start-2 relative h-[60vh] md:h-[90vh] overflow-hidden drop-shadow-2xl">
           <img 
             ref={imageRef}
-            src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1200&auto=format&fit=crop" 
+            src={getCldImageUrl("https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1200&auto=format&fit=crop", { width: 1200 })} 
             alt="Editorial Detail" 
             className="w-full h-[120%] -mt-[10%] object-cover scale-105"
           />
