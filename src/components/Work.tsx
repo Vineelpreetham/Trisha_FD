@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+
+
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -180,7 +183,7 @@ export default function Work() {
   const ctaOpacity = useTransform(smoothProgress, [0.85, 1], [0, 1]);
 
   return (
-    <section ref={containerRef} id="work" className="relative w-full h-[200vh] bg-[#F8F6F2]">
+    <section ref={containerRef} id="work" className="relative w-full h-[200vh] bg-white">
       <div className="sticky top-0 w-full h-screen overflow-hidden">
         
         <Canvas
@@ -207,14 +210,12 @@ export default function Work() {
         {/* View Collection Title perfectly overlaid in the middle of the moodboard */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
           <motion.div style={{ opacity: ctaOpacity }} className="pointer-events-auto">
-            <button 
-              className="text-sm font-sans uppercase tracking-[0.3em] px-10 py-5 bg-[#1A1A1A] text-white hover:bg-white hover:text-[#1A1A1A] border border-[#1A1A1A] hover:scale-105 transition-all duration-500 rounded-sm shadow-2xl"
-              onClick={() => {
-                alert("Navigating to Collection...");
-              }}
+            <Link 
+              href="/collections"
+              className="text-sm font-sans uppercase tracking-[0.3em] px-10 py-5 bg-[#1A1A1A] text-white hover:bg-white hover:text-[#1A1A1A] border border-[#1A1A1A] hover:scale-105 transition-all duration-500 rounded-sm shadow-2xl inline-block no-underline"
             >
               View Collection
-            </button>
+            </Link>
           </motion.div>
         </div>
 
