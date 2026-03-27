@@ -76,3 +76,122 @@
     text-shadow: 0 0 20px rgba(255,255,255,0.3);
   }
 }
+
+/* ═══════════════════════════════════════════
+   Hero Section — Floating 3D Lady
+   ═══════════════════════════════════════════ */
+
+/* Animated gradient background — solid base + floating color orbs (in JSX) */
+.hero-gradient {
+  background: linear-gradient(180deg, #1a0305 0%, #2a0508 40%, #3d0a10 70%, #1a0305 100%);
+}
+
+/* Floating color orbs that create an animated gradient effect */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-orb-1 {
+  width: 60vw;
+  height: 60vw;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(90,16,24,0.6) 0%, transparent 70%);
+  animation: orbFloat1 14s ease-in-out infinite alternate;
+}
+
+.hero-orb-2 {
+  width: 50vw;
+  height: 50vw;
+  bottom: -15%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(139,37,53,0.5) 0%, transparent 70%);
+  animation: orbFloat2 12s ease-in-out infinite alternate;
+}
+
+.hero-orb-3 {
+  width: 35vw;
+  height: 35vw;
+  top: 30%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(107,21,32,0.4) 0%, transparent 70%);
+  animation: orbFloat3 16s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(8vw, 5vh) scale(1.15); }
+}
+@keyframes orbFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-6vw, -4vh) scale(1.1); }
+}
+@keyframes orbFloat3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5vw, 6vh) scale(1.2); }
+}
+
+/* Radial mask — dissolves model edges seamlessly into background */
+.hero-model-mask {
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 85% at 50% 45%,
+    black 30%,
+    rgba(0,0,0,0.8) 50%,
+    rgba(0,0,0,0.3) 70%,
+    transparent 90%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 85% at 50% 45%,
+    black 30%,
+    rgba(0,0,0,0.8) 50%,
+    rgba(0,0,0,0.3) 70%,
+    transparent 90%
+  );
+}
+
+/* Floating animation keyframes (CSS fallback, GSAP preferred) */
+@keyframes heroFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg) scale(1); }
+  25%      { transform: translateX(-50%) translateY(-12px) rotate(0.5deg) scale(1.008); }
+  50%      { transform: translateX(-50%) translateY(-6px) rotate(-0.3deg) scale(1.015); }
+  75%      { transform: translateX(-50%) translateY(-14px) rotate(0.4deg) scale(1.005); }
+}
+
+.hero-float {
+  animation: heroFloat 8s ease-in-out infinite;
+}
+
+/* Pulsing glow/shadow beneath the model */
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleX(1) scaleY(1); }
+  50%      { opacity: 0.6; transform: translateX(-50%) scaleX(1.05) scaleY(1.1); }
+}
+
+.hero-glow {
+  position: absolute;
+  bottom: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 25%;
+  background: radial-gradient(ellipse at center, rgba(139,37,53,0.5) 0%, rgba(90,16,24,0.25) 40%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: heroGlow 6s ease-in-out infinite;
+}
+
+/* Bottom transition gradient — hero dark → page light */
+.hero-transition {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(to bottom, transparent 0%, #F8F6F2 100%);
+  pointer-events: none;
+  z-index: 30;
+}

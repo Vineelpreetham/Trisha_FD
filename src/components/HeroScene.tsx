@@ -21,8 +21,8 @@ function AbstractShape() {
         <torusKnotGeometry args={[1, 0.3, 200, 32]} />
         <MeshTransmissionMaterial
           backside
-          samples={3}
-          resolution={128}
+          samples={4}
+          resolution={1024}
           thickness={0.5}
           chromaticAberration={0.025}
           anisotropy={0.1}
@@ -43,9 +43,9 @@ export default function HeroScene() {
   return (
     <div className="absolute inset-0 w-full h-full -z-10 bg-transparent opacity-80 mix-blend-screen pointer-events-none">
       <Canvas 
-        dpr={[1, 1.5]} 
+        dpr={[1, 2]} 
         camera={{ position: [0, 0, 6], fov: 45 }}
-        gl={{ powerPreference: "high-performance", alpha: true, antialias: false, stencil: false }}
+        gl={{ powerPreference: "high-performance", alpha: true, antialias: true, stencil: false }}
       >
         <ambientLight intensity={1} />
         <directionalLight position={[10, 10, 10]} intensity={2} color="#ffffff" />

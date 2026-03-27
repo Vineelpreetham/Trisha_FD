@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="antialiased font-sans bg-background text-foreground overflow-x-hidden selection:bg-[#8C7B75] selection:text-white">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+      <body className="antialiased font-sans bg-background text-foreground overflow-x-clip selection:bg-[#8C7B75] selection:text-white" suppressHydrationWarning>
         <div className="noise-overlay pointer-events-none" />
         <div className="ambient-light pointer-events-none" />
         

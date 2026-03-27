@@ -51,7 +51,7 @@ export default function RegaliaPage() {
       
       {/* Absolute Transparent Nav */}
       <nav style={{ position: "absolute", top: 0, left: 0, width: "100%", zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "2rem 4rem", mixBlendMode: "difference" }}>
-        <Link href="/trial-home" style={{ fontFamily: "Georgia, serif", fontSize: "1.2rem", color: "#fff", textDecoration: "none" }}>← Back to Portfolio</Link>
+        <Link href="/" style={{ fontFamily: "Georgia, serif", fontSize: "1.2rem", color: "#fff", textDecoration: "none" }}>← Back to Portfolio</Link>
       </nav>
 
       {/* Cinematic Hero - Pure Video Experience */}
