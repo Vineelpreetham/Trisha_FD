@@ -9,19 +9,19 @@ import { useScroll, useSpring, motion, useTransform, MotionValue } from "framer-
 import { getCldUploadUrl } from "@/lib/cloudinary";
 
 const IMAGES = [
-  getCldUploadUrl("IMG_6428_hwtohb.png"),
-  getCldUploadUrl("IMG_6430_tz56ya.jpg"),
-  getCldUploadUrl("IMG_6432_ou6nog.jpg"),
-  getCldUploadUrl("IMG_6424_gmrwui.jpg"),
-  getCldUploadUrl("IMG_6425_yv9x9s.jpg"),
-  getCldUploadUrl("IMG_6422_ztzuzs.jpg"),
-  getCldUploadUrl("IMG_6417_kta8nm.jpg"),
-  getCldUploadUrl("IMG_6416_ewj0o2.jpg"),
-  getCldUploadUrl("IMG_6414_ovfxye.jpg"),
+  getCldUploadUrl("IMG_6428_hwtohb.png", { width: 800 }),
+  getCldUploadUrl("IMG_6430_tz56ya.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6424_gmrwui.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6422_ztzuzs.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6417_kta8nm.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6414_ovfxye.jpg", { width: 800 }),
   // Re-using a few to fill the 12-image moodboard grid! 
-  getCldUploadUrl("IMG_6432_ou6nog.jpg"),
-  getCldUploadUrl("IMG_6425_yv9x9s.jpg"),
-  getCldUploadUrl("IMG_6416_ewj0o2.jpg"),
+  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 800 }),
 ];
 
 const PRNG = (seed: number) => {
@@ -155,14 +155,24 @@ function PortfolioScene({ scrollProgress }: { scrollProgress: MotionValue<number
 function DesktopWork() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Directly utilize scrollYProgress. Since the root layout uses ReactLenis, 
-  // the raw scroll values are already beautifully smoothed. Adding useSpring here
-  // would cause a "double-spring" lag effect.
-  const sceneProgress = useTransform(scrollYProgress, [0, 0.75], [0, 1]);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const ctaOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
-  const ctaY = useTransform(scrollYProgress, [0.65, 0.75], [30, 0]);
+  // Apply an ultra-stiff, nearly mass-less spring filter. This mathematically strips out the 1-frame
+  // RequestAnimationFrame jitter vibrating between ReactLenis and Framer Motion, while remaining completely lag-free.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 400, damping: 90, mass: 0.1, restDelta: 0.0001
+  });
+
+  // Remap scroll so the animation fully completes by 75% of the section.
+  // The remaining 25% provides a solid visual "pause" before the next section enters.
+  const sceneProgress = useTransform(smoothProgress, [0, 0.75], [0, 1]);
+
+  const titleOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
+  const ctaOpacity = useTransform(smoothProgress, [0.65, 0.75], [0, 1]);
+  const ctaY = useTransform(smoothProgress, [0.65, 0.75], [30, 0]);
 
   return (
     <section ref={containerRef} id="work" className="relative w-full h-[400vh] bg-[#F8F6F2]">
@@ -217,12 +227,16 @@ function MobileWork() {
     offset: ["start start", "end end"]
   });
 
-  // Utilizing pure scrollYProgress to prevent Lenis double-spring conflict on Mobile.
-  const sceneProgress = useTransform(scrollYProgress, [0, 0.75], [0, 1]);
+  // Identical micro-spring filter for Mobile Work
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 400, damping: 90, mass: 0.1, restDelta: 0.0001
+  });
 
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const ctaOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
-  const ctaY = useTransform(scrollYProgress, [0.65, 0.75], [20, 0]);
+  const sceneProgress = useTransform(smoothProgress, [0, 0.75], [0, 1]);
+
+  const titleOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
+  const ctaOpacity = useTransform(smoothProgress, [0.65, 0.75], [0, 1]);
+  const ctaY = useTransform(smoothProgress, [0.65, 0.75], [20, 0]);
 
   const scatterData = useMemo(() => {
     return IMAGES.map((_, i) => {
