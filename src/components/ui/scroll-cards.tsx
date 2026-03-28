@@ -27,18 +27,16 @@ const Card: FC<iCardProps> = ({
 	src,
 }) => {
 	return (
-		<div className="h-screen flex flex-col items-center justify-center sticky top-0 md:p-0 px-4 bg-black">
+		<div className="h-[100vh] flex flex-col items-center justify-center sticky top-0 md:p-0 px-4 bg-transparent pt-16">
 			<div
-				className="relative flex flex-col h-[85vh] w-[95vw] md:h-[90vh] md:w-[90vw] items-center justify-center mx-auto shadow-2xl overflow-hidden rounded-2xl"
+				className="relative flex flex-col h-[75vh] md:h-[85vh] w-auto max-w-[95vw] items-center justify-center mx-auto shadow-2xl overflow-hidden rounded-md"
 				style={{backgroundColor: color}}
 			>
-				<div className="absolute inset-0 z-0">
-					<img
-						className="w-full h-full object-cover"
-						src={src}
-						alt="Bloom Collection"
-					/>
-				</div>
+				<img
+					className="w-auto h-full object-contain mix-blend-normal"
+					src={src}
+					alt="Bloom Collection"
+				/>
 			</div>
 		</div>
 	);
@@ -50,7 +48,7 @@ interface iCardSlideProps {
 
 const CardsParallax: FC<iCardSlideProps> = ({items}) => {
 	return (
-		<div className="min-h-screen bg-black w-full pb-32">
+		<div className="min-h-screen bg-transparent w-full pb-32">
 			{items.map((project, i) => {
 				return <Card key={`p_${i}`} {...project} i={i} />;
 			})}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CardsParallax, type iCardItem } from "@/components/ui/scroll-cards";
+import ContactFooter from "@/components/ContactFooter";
 
 const cardItems: iCardItem[] = [
   { title: "Look 01", description: "In Bloom Collection", tag: "bloom", link: "#", color: "#1a1a1a", textColor: "white", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638002/in_bloom_1_2_qwqaqp.png" },
@@ -20,7 +21,13 @@ const cardItems: iCardItem[] = [
 
 export default function BloomPage() {
   return (
-    <main className="w-full min-h-screen bg-black text-[#1a2530] font-sans relative selection:bg-[#fff] selection:text-black">
+    <main className="w-full min-h-screen bg-[#1A1C1B] text-[#F2EBE5] font-sans relative selection:bg-[#F2EBE5] selection:text-black">
+      
+      {/* Top Ambient Gradient Blend */}
+      <div 
+        className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
+        style={{ background: "linear-gradient(to bottom, #3E3836 0%, rgba(62,56,54,0) 100%)" }}
+      />
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white">
@@ -30,14 +37,11 @@ export default function BloomPage() {
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
       </nav>
 
-      <CardsParallax items={cardItems} />
+      <div className="relative z-10 w-full bg-transparent">
+        <CardsParallax items={cardItems} />
+      </div>
 
-      {/* Footer minimal */}
-      <footer className="w-full py-8 border-t border-gray-800 text-center relative z-10 bg-black">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500">
-          © {new Date().getFullYear()} Trisha Vanam. All rights reserved.
-        </p>
-      </footer>
+      <ContactFooter />
 
     </main>
   );

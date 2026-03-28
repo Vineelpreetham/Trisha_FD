@@ -121,7 +121,7 @@ void main(){gl_Position=position;}`;
     gl.useProgram(program);
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.uniform2f(gl.getUniformLocation(program, "resolution"), canvas.width, canvas.height);
-    gl.uniform1f(gl.getUniformLocation(program, "time"), now * 1e-3);
+    gl.uniform1f(gl.getUniformLocation(program, "time"), now * 2.2e-3);
     gl.uniform3fv(gl.getUniformLocation(program, "u_color"), this.color);
     gl.uniform3fv(gl.getUniformLocation(program, "u_back_color"), this.backColor);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

@@ -45,66 +45,75 @@ export default function About() {
   }, []);
 
   return (
-    <>
-      <section ref={containerRef} id="about" className="relative w-full py-32 md:py-64 bg-[#F8F6F2] z-10 overflow-hidden">
-        <div className="container mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0 items-center">
+    <main className="w-full relative" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #C41E3A 55%, #8B0000 100%)" }}>
+      <section ref={containerRef} id="about" className="relative w-full min-h-screen z-10 flex flex-col items-center pt-24 pb-32 overflow-hidden">
+        
+        {/* Absolute Top Left Logo */}
+        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-30">
+          <Link href="/" className="font-serif text-xl tracking-widest text-[#1A1A1A] uppercase font-medium">
+            TRISHA VANAM.
+          </Link>
+        </div>
+
+        {/* Absolute Left Vertical Nav (Desktop only) */}
+        <div className="hidden md:flex absolute left-4 md:left-[1rem] top-1/2 -translate-y-1/2 origin-center -rotate-90 gap-16 z-30">
+          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">Shop</span>
+          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">Collections</span>
+          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">About</span>
+        </div>
+
+        {/* Absolute Bottom Left Language text */}
+        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-30">
+          <span className="text-[#F2EBE5] text-[11px] tracking-wider font-sans font-medium">Language</span>
+        </div>
+
+        {/* Central Layout Wrapper */}
+        <div className="relative w-full max-w-[800px] flex flex-col items-center mt-16 md:mt-24 px-6 md:px-0">
           
-          {/* Editorial Image container */}
-          <div className="md:col-span-6 md:col-start-2 relative h-[60vh] md:h-[90vh] overflow-hidden drop-shadow-2xl">
+          {/* Central Portrait */}
+          <div className="w-full md:w-[450px] lg:w-[500px] h-[55vh] md:h-[65vh] relative z-20 shadow-2xl">
             <img 
               ref={imageRef}
-              src={getCldImageUrl("https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=100&w=2400&auto=format&fit=crop", { width: 2400 })} 
-              alt="Editorial Detail" 
-              className="w-full h-[120%] -mt-[10%] object-cover scale-105"
+              src="https://images.unsplash.com/photo-1618244972963-dbee1a7edc95?q=80&w=1974&auto=format&fit=crop" 
+              alt="Dear Friends Portrait" 
+              className="w-full h-full object-cover object-top"
             />
           </div>
 
-          {/* Floating Text Block overlapping the image */}
+          {/* Top Right Overlapping Text ("Dear Friends,") */}
           <div 
-            ref={textRef} 
-            className="md:col-span-5 md:col-start-7 bg-[#F8F6F2] p-8 md:p-16 md:-ml-20 relative z-20"
+            ref={textRef}
+            className="absolute top-[-5%] md:top-[-2%] right-[5%] md:right-[-10%] lg:right-[-15%] z-30 flex flex-col items-end text-[#1A1A1A] drop-shadow-sm"
           >
-            <h2 className="text-4xl md:text-6xl font-serif text-[#1A1A1A] leading-tight mb-8">
-              The Art of <br/> Unseen Details.
-            </h2>
-            <div className="w-12 h-[1px] bg-[#8C7B75] mb-8" />
-            <p className="text-base text-[#1A1A1A]/80 font-sans font-light leading-relaxed mb-6">
-              We approach design not as decoration, but as a deliberate interplay between form and void. Every seam, every texture, every moment of whitespace is curated to elevate the subject.
+            <p className="text-[10px] md:text-xs font-bold font-sans tracking-wide mb-2 md:mb-4">
+              To the Eshop
             </p>
-            <p className="text-base text-[#1A1A1A]/80 font-sans font-light leading-relaxed mb-12">
-              Inspired by the golden age of haute couture editorials, our digital garments merge physical craftsmanship with algorithmic precision.
-            </p>
+            <h1 className="text-6xl md:text-[7rem] lg:text-[8rem] font-serif leading-[0.95] tracking-tight text-right drop-shadow-none">
+              Dear<br/>Friends,
+            </h1>
+          </div>
 
-            <button className="group relative flex items-center gap-4 text-xs font-sans uppercase tracking-[0.3em] text-[#1A1A1A] overflow-hidden" data-cursor="hover">
-              <span>Read the Story</span>
-              <div className="w-8 h-[1px] bg-[#1A1A1A] group-hover:w-16 transition-all duration-500" />
-            </button>
+          {/* Bottom Left Paragraph (aligned to left of the image) */}
+          <div className="w-full md:w-[450px] lg:w-[500px] mt-6 z-20 flex justify-start">
+            <p className="text-[#F2EBE5] font-sans text-xs md:text-sm font-light leading-relaxed max-w-[280px]">
+              Our brand was founded and has<br/>grown in Milan. In our small way, we<br/>would like to support our beautiful<br/>hometown overcome this<br/>emergency. From now until the end<br/>of April, 20% of proceeds from full-<br/>price sales will be donated to the<br/>"Policlinico di Milano".
+            </p>
           </div>
           
         </div>
       </section>
 
-      {/* --- VIEW PROJECTS SECTION with Smoke Background --- */}
-      <section className="relative w-full h-[70vh] overflow-hidden flex items-center justify-center">
-        {/* Smoke WebGL canvas as background */}
-        <SmokeBackground smokeColor="#FFFFFF" backColor="#BE1020" />
-
-        {/* Content on top */}
-        <div className="relative z-10 flex flex-col items-center gap-8 text-center px-6">
-          <p className="text-white/60 font-mono text-xs uppercase tracking-[0.4em]">
-            Explore the work
-          </p>
-          <h2 className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-black text-white leading-none tracking-tight">
-            View Projects
-          </h2>
-          <Link 
-            href="/" 
-            className="mt-4 border border-white/40 text-white text-xs uppercase tracking-[0.3em] px-10 py-4 hover:bg-white hover:text-black transition-all duration-500 font-sans"
-          >
-            See All Collections →
-          </Link>
+      {/* VIEW PROJECTS - About Page Only */}
+      <section className="relative w-full h-[55vh] overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 mix-blend-screen opacity-80">
+          <SmokeBackground smokeColor="#F0BABA" backColor="#C41830" />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_#C41830_90%)] pointer-events-none" />
+        <div className="relative z-10 flex flex-col items-center gap-6 text-center px-6">
+          <p className="text-white/60 font-mono text-xs uppercase tracking-[0.4em]">Explore the work</p>
+          <h2 className="text-5xl md:text-7xl font-serif font-black text-white leading-none tracking-tight">View Projects</h2>
         </div>
       </section>
-    </>
+    </main>
   );
 }

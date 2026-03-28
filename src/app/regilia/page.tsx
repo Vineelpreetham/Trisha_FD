@@ -3,12 +3,8 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import dynamic from 'next/dynamic';
-
-const CatalogFlip = dynamic(() => import('./CatalogFlip'), {
-  ssr: false,
-  loading: () => <div style={{ height: "700px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>Loading Catalog...</div>
-});
+import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
+import ContactFooter from "@/components/ContactFooter";
 
 const CATALOG_IMAGES = [
   "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/2_o6af7u.png",
@@ -50,8 +46,9 @@ export default function RegaliaPage() {
     <main style={{ backgroundColor: "#0A0A0A", color: "#F2EBE5", fontFamily: "Inter, sans-serif", minHeight: "150vh", overflowX: "hidden" }}>
       
       {/* Absolute Transparent Nav */}
-      <nav style={{ position: "absolute", top: 0, left: 0, width: "100%", zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "2rem 4rem", mixBlendMode: "difference" }}>
-        <Link href="/" style={{ fontFamily: "Georgia, serif", fontSize: "1.2rem", color: "#fff", textDecoration: "none" }}>← Back to Portfolio</Link>
+      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "2rem 4rem", mixBlendMode: "difference" }}>
+        <Link href="/" style={{ fontFamily: "Georgia, serif", fontSize: "1.2rem", color: "#fff", textDecoration: "none" }}>← Back</Link>
+        <div style={{ fontFamily: "Georgia, serif", fontSize: "0.8rem", color: "#fff", letterSpacing: "0.2em" }}>TRISHA VANAM.</div>
       </nav>
 
       {/* Cinematic Hero - Pure Video Experience */}
@@ -71,10 +68,11 @@ export default function RegaliaPage() {
         </p>
       </section>
 
-      {/* 3D Catalog Flipbook with spacing */}
-      <section style={{ padding: "4rem 10% 10rem 10%", width: "100%", overflow: "hidden" }}>
-         <CatalogFlip images={CATALOG_IMAGES} />
+      {/* Infinite Auto-Scrolling Gallery */}
+      <section style={{ width: "100%", overflow: "hidden", paddingBottom: "10rem" }}>
+         <ImageAutoSlider images={CATALOG_IMAGES} />
       </section>
+      <ContactFooter />
 
     </main>
   );

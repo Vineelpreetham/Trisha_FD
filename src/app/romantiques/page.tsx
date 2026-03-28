@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ContactFooter from "@/components/ContactFooter";
 
 export default function RomantiquesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,11 +38,21 @@ export default function RomantiquesPage() {
   }, []);
 
   return (
-    <main ref={containerRef} className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden selection:bg-white selection:text-black">
+    <main ref={containerRef} className="w-full min-h-screen bg-[#3E3430] text-white font-sans relative overflow-x-hidden selection:bg-[#D4C3B3] selection:text-black">
       
+      {/* Home Page Gradient Blends (Top & Bottom) */}
+      <div 
+        className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
+        style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
+      />
+      <div 
+        className="absolute bottom-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
+        style={{ background: "linear-gradient(to top, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
+      />
+
       {/* Background subtle dark blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#2a1a1a_0%,_transparent_60%)]"></div>
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
       {/* Navigation */}
@@ -172,20 +183,15 @@ export default function RomantiquesPage() {
                className="w-full h-auto object-cover"
             />
             {/* Small text label mimicking sketches */}
-            <div className="absolute top-[-2%] left-[5%] font-serif font-black text-[#1C2E4A] text-2xl tracking-tighter mix-blend-difference opacity-80">
-               Flat Sketches
+            <div className="absolute top-[-2%] left-[5%] font-serif font-black text-[#D4C3B3] text-2xl tracking-wider opacity-90">
+               Sketch
             </div>
           </div>
         </section>
         
       </div>
       
-      {/* Footer minimal */}
-      <footer className="w-full py-8 border-t border-gray-800 text-center relative z-10">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500">
-          © {new Date().getFullYear()} Trisha Vanam. All rights reserved.
-        </p>
-      </footer>
+      <ContactFooter />
 
     </main>
   );
