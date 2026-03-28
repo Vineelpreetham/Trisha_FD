@@ -27,6 +27,22 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* FLUID MASTER SCALER 
+     This guarantees the site looks identically proportioned on ALL desktop monitors.
+     Any Tailwind utility or CSS class using 'rem' (padding, typography, widths) 
+     will organically swell or shrink identically to an SVG viewport. */
+  html {
+    font-size: 16px; 
+  }
+  
+  @media (min-width: 1024px) {
+    html {
+      /* Scales proportionally up to 24px and down to 11.3px 
+         based exactly on a 1440px design reference */
+      font-size: clamp(11px, calc(100vw / 1440 * 16), 24px); 
+    }
+  }
+
   /* Lenis recommended styles */
   html.lenis, html.lenis body {
     height: auto;

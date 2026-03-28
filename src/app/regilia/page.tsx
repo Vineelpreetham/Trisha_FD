@@ -45,9 +45,11 @@ export default function RegaliaPage() {
   return (
     <main style={{ backgroundColor: "#0A0A0A", color: "#F2EBE5", fontFamily: "Inter, sans-serif", minHeight: "150vh", overflowX: "hidden" }}>
       
-      {/* Absolute Transparent Nav */}
-      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "2rem 4rem", mixBlendMode: "difference" }}>
-        <Link href="/" style={{ fontFamily: "Georgia, serif", fontSize: "1.2rem", color: "#fff", textDecoration: "none" }}>← Back</Link>
+      {/* Minimal Navigation */}
+      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white">
+        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+          ← Back
+        </Link>
         <div style={{ fontFamily: "Georgia, serif", fontSize: "0.8rem", color: "#fff", letterSpacing: "0.2em" }}>TRISHA VANAM.</div>
       </nav>
 
