@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 // --- FRAGMENT SHADER ---
 const fragmentShaderSource = `#version 300 es
@@ -8,7 +7,8 @@ precision highp float;
 out vec4 O;
 uniform float time;
 uniform vec2 resolution;
-uniform vec3 u_color; 
+uniform vec3 u_color;
+uniform vec3 u_back_color;
 
 #define FC gl_FragCoord.xy
 #define R resolution
@@ -33,12 +33,11 @@ void main(){
 
   col=mix(col, u_color, dot(col,vec3(.21,.71,.07)));
 
-  col=mix(vec3(.08),col,min(time*.1,1.));
-  col=clamp(col,.08,1.);
+  col=mix(u_back_color,col,min(time*.1,1.));
+  col=clamp(col,0.,1.);
   O=vec4(col,1);
 }`;
 
-// --- RENDERER CLASS ---
 class Renderer {
   private readonly vertexSrc = `#version 300 es
 precision highp float;
@@ -52,7 +51,8 @@ void main(){gl_Position=position;}`;
   private vs: WebGLShader | null = null;
   private fs: WebGLShader | null = null;
   private buffer: WebGLBuffer | null = null;
-  private color: [number, number, number] = [0.5, 0.5, 0.5]; 
+  private color: [number, number, number] = [1, 1, 1];
+  private backColor: [number, number, number] = [0.08, 0.08, 0.08];
 
   constructor(canvas: HTMLCanvasElement, fragmentSource: string) {
     this.canvas = canvas;
@@ -61,14 +61,15 @@ void main(){gl_Position=position;}`;
     this.init();
   }
   
-  updateColor(newColor: [number, number, number]) {
+  updateColors(newColor: [number, number, number], newBackColor: [number, number, number]) {
     this.color = newColor;
+    this.backColor = newBackColor;
   }
 
   updateScale() {
-    // Cap the pixel ratio to vastly improve performance on Retina screens
-    const dpr = Math.min(1.25, window.devicePixelRatio);
-    const { innerWidth: width, innerHeight: height } = window;
+    const dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    const width = this.canvas.offsetWidth || window.innerWidth;
+    const height = this.canvas.offsetHeight || 500;
     this.canvas.width = width * dpr;
     this.canvas.height = height * dpr;
     this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
@@ -112,32 +113,22 @@ void main(){gl_Position=position;}`;
     const position = gl.getAttribLocation(program, "position");
     gl.enableVertexAttribArray(position);
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-    Object.assign(program, {
-      resolution: gl.getUniformLocation(program, "resolution"),
-      time: gl.getUniformLocation(program, "time"),
-      u_color: gl.getUniformLocation(program, "u_color"), 
-    });
   }
 
   render(now = 0) {
     const { gl, program, buffer, canvas } = this;
     if (!program || !gl.isProgram(program)) return;
-    gl.clearColor(0, 0, 0, 1);
-    gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(program);
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    // @ts-ignore
-    gl.uniform2f(program.resolution, canvas.width, canvas.height);
-    // @ts-ignore
-    gl.uniform1f(program.time, now * 1e-3);
-    // @ts-ignore
-    gl.uniform3fv(program.u_color, this.color); 
+    gl.uniform2f(gl.getUniformLocation(program, "resolution"), canvas.width, canvas.height);
+    gl.uniform1f(gl.getUniformLocation(program, "time"), now * 1e-3);
+    gl.uniform3fv(gl.getUniformLocation(program, "u_color"), this.color);
+    gl.uniform3fv(gl.getUniformLocation(program, "u_back_color"), this.backColor);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 }
 
-// --- UTILITY FUNCTION ---
-const hexToRgb = (hex: string): [number, number, number] | null => {
+const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? [
@@ -145,55 +136,50 @@ const hexToRgb = (hex: string): [number, number, number] | null => {
           parseInt(result[2], 16) / 255,
           parseInt(result[3], 16) / 255,
         ]
-      : null;
+      : [1, 1, 1];
 };
 
-// --- REACT COMPONENT ---
 interface SmokeBackgroundProps {
-  smokeColor?: string; 
+  smokeColor?: string;
+  backColor?: string;
 }
 
 export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({ 
-  smokeColor = "#808080" 
+  smokeColor = "#FFFFFF",
+  backColor = "#BE1020"
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<Renderer | null>(null);
 
     useEffect(() => {
         if (!canvasRef.current) return;
-        const canvas = canvasRef.current;
-        const renderer = new Renderer(canvas, fragmentShaderSource);
+        const renderer = new Renderer(canvasRef.current, fragmentShaderSource);
         rendererRef.current = renderer;
         
         const handleResize = () => renderer.updateScale();
-        handleResize(); 
+        handleResize();
         window.addEventListener('resize', handleResize);
         
-        let animationFrameId: number;
+        let animId: number;
         const loop = (now: number) => {
             renderer.render(now);
-            animationFrameId = requestAnimationFrame(loop);
+            animId = requestAnimationFrame(loop);
         };
         loop(performance.now());
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
+            cancelAnimationFrame(animId);
             renderer.reset(); 
         };
     }, []);
     
     useEffect(() => {
-        const renderer = rendererRef.current;
-        if (renderer) {
-            const rgbColor = hexToRgb(smokeColor);
-            if (rgbColor) {
-                renderer.updateColor(rgbColor);
-            }
+        if (rendererRef.current) {
+            rendererRef.current.updateColors(hexToRgb(smokeColor), hexToRgb(backColor));
         }
-    }, [smokeColor]);
+    }, [smokeColor, backColor]);
 
-    return (
-        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
-    );
+    return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />;
 };
+

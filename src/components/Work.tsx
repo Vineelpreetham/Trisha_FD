@@ -160,14 +160,12 @@ function DesktopWork() {
     offset: ["start start", "end end"]
   });
 
-  // Apply an ultra-stiff, nearly mass-less spring filter. This mathematically strips out the 1-frame
-  // RequestAnimationFrame jitter vibrating between ReactLenis and Framer Motion, while remaining completely lag-free.
+  // Apply an ultra-stiff, nearly mass-less spring filter.
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 400, damping: 90, mass: 0.1, restDelta: 0.0001
   });
 
   // Remap scroll so the animation fully completes by 75% of the section.
-  // The remaining 25% provides a solid visual "pause" before the next section enters.
   const sceneProgress = useTransform(smoothProgress, [0, 0.75], [0, 1]);
 
   const titleOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
@@ -193,19 +191,16 @@ function DesktopWork() {
           className="absolute top-[20vh] w-full text-center mix-blend-difference pointer-events-none z-10"
           style={{ opacity: titleOpacity }}
         >
-          <h2 className="text-sm font-sans uppercase tracking-[0.4em] text-[#8C7B75]/80 mb-6">
-            Selected Editorials
-          </h2>
           <h3 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] leading-[0.9] max-w-2xl mx-auto opacity-80">
-            The Archive.
+            Portfolio.
           </h3>
         </motion.div>
 
-        {/* View Collection Button perfectly overlaid in the middle of the moodboard */}
+        {/* View Collection Button */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
           <motion.div style={{ opacity: ctaOpacity, y: ctaY }} className="pointer-events-auto">
             <Link 
-              href="/collections"
+              href="/romantiques"
               className="text-sm font-sans uppercase tracking-[0.3em] px-10 py-5 bg-[#1A1A1A] text-white hover:bg-white hover:text-[#1A1A1A] border border-[#1A1A1A] hover:scale-105 transition-all duration-500 rounded-sm shadow-2xl inline-block no-underline"
             >
               View Collection
@@ -260,11 +255,8 @@ function MobileWork() {
           className="absolute z-10 text-center pointer-events-none w-full px-6"
           style={{ opacity: titleOpacity, top: "15vh" }}
         >
-          <h2 className="text-[0.6rem] font-sans uppercase tracking-[0.4em] text-[#8C7B75]/80 mb-4">
-            Selected Editorials
-          </h2>
           <h3 className="text-4xl font-serif text-[#1A1A1A] leading-[1.1] opacity-90">
-            The Archive.
+            Portfolio.
           </h3>
         </motion.div>
 

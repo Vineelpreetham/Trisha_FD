@@ -7,12 +7,15 @@
   --color-accent: #8C7B75;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-script: var(--font-caveat), cursive;
 }
 
 @layer base {
   :root {
     --background: #F8F6F2;
     --foreground: #1A1A1A;
+    --text-navy: #373151;
+    --text-taupe: #6B6661;
   }
 
   body {
@@ -71,6 +74,11 @@
 @layer utilities {
   .glassmorphism {
     @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .bg-dot-pattern {
+    background-color: var(--background);
+    background-image: radial-gradient(#D0C8B6 1px, transparent 1px);
+    background-size: 20px 20px;
   }
   .text-glow {
     text-shadow: 0 0 20px rgba(255,255,255,0.3);

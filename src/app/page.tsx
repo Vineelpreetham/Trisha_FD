@@ -3,12 +3,13 @@ import Link from "next/link";
 import Work from "@/components/Work";
 
 const GR = [
-  "radial-gradient(ellipse 70% 60% at 20% 10%, #E8D3CD 0%, transparent 60%)",
-  "radial-gradient(ellipse 60% 50% at 80% 90%, #F5EAE8 0%, transparent 60%)",
-  "linear-gradient(150deg, #EAE0DD 0%, #FAEFED 50%, #FFFFFF 100%)",
+  "linear-gradient(to bottom, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
+  "linear-gradient(to top, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
+  "#FBFBFB"
 ].join(", ");
 
 const W = "clamp(340px, 45vw, 820px)";
+
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
       ` }} />
       {/* NAV */}
       <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff" }}>
-        <Link href="/" style={{ fontFamily: "Georgia,serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha.</Link>
+        <Link href="/" style={{ fontFamily: "Georgia,serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha Vanam.</Link>
                 <div style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
           <Link href="/about" style={{ textDecoration: "none", color: "inherit" }}>About</Link>
@@ -96,60 +97,40 @@ export default function Home() {
 
         {/* ── UNIFIED SCROLLING TYPOGRAPHY OVERLAY (200vh) ── */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "200vh", zIndex: 20, pointerEvents: "none" }}>
-            {/* Top Text Block (Fold 1) */}
-            <div style={{ position: "absolute", top: "35vh", left: "6%", width: "clamp(300px, 35vw, 600px)" }}>
-                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.8rem)", color: "#1E0406", lineHeight: 1.4, fontWeight: 300, margin: 0 }}>
-                    Global digital design studio partnering with brands and businesses that create exceptional experiences where people live, work, and unwind.
-                </p>
+            {/* Top Link Block (Fold 1) */}
+            <div style={{ position: "absolute", top: "35vh", left: "6%", pointerEvents: "auto", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <span style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.8rem)", fontFamily: "Caveat, cursive", fontWeight: 500, color: "#6A5A55", letterSpacing: "0.02em" }}>
+                    Welcome to my journey as a fashion designer,
+                </span>
+                <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(2rem, 4.5vw, 4.5rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none" }}>
+                    About me...
+                </Link>
             </div>
-            {/* Giant Center Typography */}
-            <div style={{ position: "absolute", top: "75vh", left: "0", width: "100%", paddingLeft: "4%" }}>
-                <h1 style={{ fontSize: "19vw", fontWeight: 800, lineHeight: 0.85, letterSpacing: "-0.04em", color: "#1E0406", margin: 0, textTransform: "uppercase" }}>
-                    Digital<br/>Design<br/>Experience
-                </h1>
-            </div>
-            {/* Bottom Left Label */}
-            <div style={{ position: "absolute", top: "185vh", left: "6%", color: "#1E0406", fontSize: "1rem", fontWeight: 600 }}>The Studio</div>
-            {/* Bottom Right Links */}
-            <div style={{ position: "absolute", top: "175vh", right: "6%", display: "flex", gap: "4rem", color: "#1E0406" }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "1rem", opacity: 0.9 }}>
-                    <span style={{ cursor: "pointer", pointerEvents: "auto" }}>Work</span>
-                    <span style={{ cursor: "pointer", pointerEvents: "auto" }}>Studio</span>
-                    <span style={{ cursor: "pointer", pointerEvents: "auto" }}>News</span>
-                    <span style={{ cursor: "pointer", pointerEvents: "auto" }}>Contact</span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "1rem", opacity: 0.9 }}>
-                    <span>hello@exoape.com</span>
-                    <span>+31 772 086 200</span>
-                </div>
-            </div>
+            {/* Giant Center Typography removed per user request */}
+
         </div>
       </div>
 
-      {/* ── ORGANIC PARALLAX CURTAIN REVEAL OVER HERO ── */}
+      {/* ── SEAMLESS HERO-TO-WORK BLEND ── */}
       <div style={{ position: "relative", zIndex: 40 }}>
-        {/* Leading wave with soft atmospheric drop shadow */}
-        <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", filter: "drop-shadow(0 -15px 25px rgba(0,0,0,0.06))" }}>
-          <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(80px, 10vw, 150px)" }}>
-             <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#F8F6F2"></path>
-          </svg>
-        </div>
+        {/* Soft gradient fade from hero tones into Work background */}
+        <div style={{ width: "100%", height: "clamp(80px, 12vw, 180px)", background: "linear-gradient(to bottom, #FBFBFB 0%, #F8F6F2 100%)", position: "relative" }} />
         
-        {/* Work section structurally tied with seamless negative margin */}
-        <div style={{ marginTop: "-2px", position: "relative", zIndex: 40 }}>
+        {/* Work section seamlessly continues */}
+        <div style={{ position: "relative", zIndex: 40 }}>
            <Work />
         </div>
       </div>
 
-      {/* Identical Smooth Srujana Top Wave - Blended Seam */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", marginTop: "-80px", marginBottom: "-2px", position: "relative", zIndex: 30 }}>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(120px, 12vw, 240px)" }}>
-           <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#70000e"></path>
+      {/* Seamless wave curve into Design Philosophy */}
+      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#F8F6F2", position: "relative", zIndex: 50, marginTop: "-2px" }}>
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 14vw, 280px)" }}>
+           <path d="M0,80 C360,200 1080,-20 1440,80 L1440,200 L0,200 Z" fill="#EB9394" />
         </svg>
       </div>
 
-      {/* ── DESIGN PHILOSOPHY SECTION (Dark Ruby) ── */}
-      <section style={{ background: "#70000E", padding: "6rem 8% 12rem 8%", color: "#FDF8F7", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "clamp(3rem, 6vw, 6rem)", position: "relative", zIndex: 40, marginBottom: "-2px" }}>
+      {/* ── DESIGN PHILOSOPHY SECTION (Deep Red Gradient) ── */}
+      <section style={{ background: "linear-gradient(to bottom, #EB9394 0%, #BE3536 40%, #8B191A 100%)", padding: "6rem 8% 12rem 8%", color: "#FDF8F7", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "clamp(3rem, 6vw, 6rem)", position: "relative", zIndex: 50, marginTop: "-2px" }}>
          {/* Left Side: Editorial Image */}
          <div style={{ flex: "1 1 450px", position: "relative" }}>
              <img src="/home-in-bloom.jpg" alt="Design Philosophy" style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "2px", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.3))" }} />
@@ -172,7 +153,7 @@ export default function Home() {
       {/* Identical Smooth Srujana Bottom Wave */}
       <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FAFAFA", position: "relative", zIndex: 30 }}>
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(60px, 8vw, 150px)", transform: "rotate(180deg)" }}>
-           <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#70000e"></path>
+           <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#8B191A"></path>
         </svg>
       </div>
 
