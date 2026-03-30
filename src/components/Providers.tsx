@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import { usePathname } from "next/navigation";
 
@@ -22,10 +22,22 @@ function RouteScrollReset() {
 }
 
 export default function Providers({ children }: { children: ReactNode }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  // Desktop: smooth lerp scroll. Mobile: native feel with a touch multiplier.
+  const lenisOptions = isMobile
+    ? { lerp: 0.1, duration: 1.2, smoothWheel: true, smoothTouch: false, touchMultiplier: 2 }
+    : { lerp: 0.05, duration: 1.5, smoothWheel: true };
+
   return (
-    <ReactLenis root options={{ lerp: 0.05, duration: 1.5, smoothWheel: true }}>
+    <ReactLenis root options={lenisOptions}>
       <RouteScrollReset />
       {children as any}
     </ReactLenis>
   );
 }
+

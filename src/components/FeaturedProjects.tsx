@@ -33,8 +33,8 @@ export default function FeaturedProjects() {
   return (
     <section ref={sectionRef} className="relative w-full py-24 md:py-32 bg-dot-pattern overflow-hidden border-t border-[var(--text-taupe)]/10">
       
-      {/* Decorative Spiral Binding on the Left Edge */}
-      <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 flex flex-col justify-start pt-10 gap-12 z-20 pointer-events-none drop-shadow-md">
+      {/* Decorative Spiral Binding on the Left Edge - Hidden on Mobile to preserve reading width */}
+      <div className="hidden md:flex absolute left-0 top-0 bottom-0 w-8 md:w-16 flex-col justify-start pt-10 gap-12 z-20 pointer-events-none drop-shadow-md">
         {[...Array(20)].map((_, i) => (
           <div key={i} className="flex flex-row items-center relative -left-[2px] md:-left-1">
             <div className="w-4 h-4 md:w-6 md:h-6 rounded-r-md bg-[#2A2A2A] shadow-inner" />

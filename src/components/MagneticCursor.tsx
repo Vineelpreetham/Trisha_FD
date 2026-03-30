@@ -6,6 +6,7 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 export default function MagneticCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // default hidden to prevent flash
   
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -14,7 +15,16 @@ export default function MagneticCursor() {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
+  // Detect mobile — skip all listeners and rendering on touch devices
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const handleMouseMove = (e: MouseEvent) => {
       if (!isVisible) setIsVisible(true);
       mouseX.set(e.clientX);
@@ -26,9 +36,10 @@ export default function MagneticCursor() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY, isVisible, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return;
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
@@ -44,7 +55,9 @@ export default function MagneticCursor() {
 
     window.addEventListener("mouseover", handleMouseOver);
     return () => window.removeEventListener("mouseover", handleMouseOver);
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <motion.div

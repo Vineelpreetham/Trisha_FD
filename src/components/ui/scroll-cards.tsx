@@ -27,9 +27,9 @@ const Card: FC<iCardProps> = ({
 	src,
 }) => {
 	return (
-		<div className="h-[100vh] flex flex-col items-center justify-center sticky top-0 md:p-0 px-4 bg-transparent pt-16">
+		<div className="h-[80vh] md:h-[100vh] flex flex-col items-center justify-center sticky top-0 md:p-0 px-3 bg-transparent pt-12 md:pt-16">
 			<div
-				className="relative flex flex-col h-[75vh] md:h-[85vh] w-auto max-w-[95vw] items-center justify-center mx-auto shadow-2xl overflow-hidden rounded-md"
+				className="relative flex flex-col h-[68vh] md:h-[85vh] w-auto max-w-[95vw] items-center justify-center mx-auto shadow-2xl overflow-hidden rounded-md"
 				style={{backgroundColor: color}}
 			>
 				<img
