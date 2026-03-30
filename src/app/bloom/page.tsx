@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { CardsParallax, type iCardItem } from "@/components/ui/scroll-cards";
 import ContactFooter from "@/components/ContactFooter";
 
@@ -20,18 +21,36 @@ const cardItems: iCardItem[] = [
 ];
 
 export default function BloomPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <main className="w-full min-h-screen bg-[#1A1C1B] text-[#F2EBE5] font-sans relative selection:bg-[#F2EBE5] selection:text-black">
       
       {/* Top Ambient Gradient Blend */}
       <div 
-        className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
+        className={isMobile
+          ? "absolute top-0 left-0 w-full h-[30vh] pointer-events-none z-0"
+          : "absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
+        }
         style={{ background: "linear-gradient(to bottom, #3E3836 0%, rgba(62,56,54,0) 100%)" }}
       />
       
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white">
-        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+      <nav
+        className={isMobile
+          ? "fixed top-0 left-0 w-full z-50 flex justify-between items-center mix-blend-difference text-white"
+          : "fixed top-0 left-0 w-full z-50 pt-12 pb-6 px-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white"
+        }
+        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
+      >
+        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>

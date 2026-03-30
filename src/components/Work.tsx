@@ -213,97 +213,105 @@ function DesktopWork() {
   );
 }
 
-// ─── MOBILE MOODBOARD ───
-// Kept DOM-based for Mobile to avoid VRAM crashes on lower devices.
+// ─── MOBILE PORTFOLIO — Single Image CTA ───
+// Replaces DOM scatter & 3D WebGL with an editorial image button.
+// Only rendered on screens < 768px (via the isMobile check in Work).
 function MobileWork() {
-  const containerRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+    target: sectionRef,
+    offset: ["start end", "end start"]
   });
 
-  // Identical micro-spring filter for Mobile Work
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 400, damping: 90, mass: 0.1, restDelta: 0.0001
-  });
-
-  const sceneProgress = useTransform(smoothProgress, [0, 0.75], [0, 1]);
-
-  const titleOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
-  const ctaOpacity = useTransform(smoothProgress, [0.65, 0.75], [0, 1]);
-  const ctaY = useTransform(smoothProgress, [0.65, 0.75], [20, 0]);
-
-  const scatterData = useMemo(() => {
-    return IMAGES.map((_, i) => {
-      const angle = (i / IMAGES.length) * Math.PI * 2;
-      const radiusX = 25 + PRNG(i + 10) * 15;
-      const radiusY = 30 + PRNG(i + 20) * 15;
-      return {
-        x: Math.sin(angle) * radiusX,
-        y: Math.cos(angle) * radiusY,
-        rot: (PRNG(i + 30) - 0.5) * 30,
-        delay: i * (0.3 / IMAGES.length)
-      };
-    });
-  }, []);
+  // Subtle parallax scale on scroll
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 1.02]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.5], [40, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.45], [0, 1]);
 
   return (
-    <section ref={containerRef} id="work-mobile" className="relative w-full h-[500vh] bg-[#F8F6F2]">
-      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center">
-        
-        <motion.div 
-          className="absolute z-10 text-center pointer-events-none w-full px-6"
-          style={{ opacity: titleOpacity, top: "15vh" }}
+    <section
+      ref={sectionRef}
+      id="work-mobile"
+      className="relative w-full bg-[#F8F6F2]"
+      style={{ padding: "3rem 1.25rem 4rem" }}
+    >
+      {/* Section title */}
+      <motion.div
+        className="text-center mb-8"
+        style={{ opacity: imageOpacity }}
+      >
+        <h3
+          className="font-serif text-[#1A1A1A] leading-[1.1]"
+          style={{ fontSize: "2rem", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.85 }}
         >
-          <h3 className="text-4xl font-serif text-[#1A1A1A] leading-[1.1] opacity-90">
-            Portfolio.
-          </h3>
-        </motion.div>
+          Portfolio.
+        </h3>
+      </motion.div>
 
-        <div className="absolute inset-0 z-20 pointer-events-none">
-          {IMAGES.map((url, i) => {
-            const data = scatterData[i];
-            
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const x = useTransform(sceneProgress, [0.1 + data.delay, 0.45], ["0%", `${data.x}%`]);
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const y = useTransform(sceneProgress, [0.1 + data.delay, 0.45], ["0%", `${data.y}%`]);
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const rotate = useTransform(sceneProgress, [0.15, 0.5], [0, data.rot]);
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const scale = useTransform(sceneProgress, [data.delay, 0.2 + data.delay], [0.4, 0.8]);
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const opacity = useTransform(sceneProgress, [0, 0.1, 0.55, 0.7], [0, 1, 1, 0]);
-
-            return (
-              <motion.div
-                key={`mobile-img-${i}`}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{
-                  width: "clamp(80px, 30vw, 160px)",
-                  x, y, rotate, scale, opacity,
-                  zIndex: 20 + i
-                }}
-              >
-                <img src={url} alt="Editorial" className="w-full h-auto object-cover rounded-sm shadow-xl" />
-              </motion.div>
-            );
-          })}
-        </div>
-
-        <motion.div 
-          className="absolute z-40 pointer-events-auto"
-          style={{ opacity: ctaOpacity, y: ctaY }}
+      {/* Hero image as a link button */}
+      <Link href="/collections" className="block">
+        <motion.div
+          className="relative w-full overflow-hidden rounded-lg"
+          style={{
+            scale: imageScale,
+            opacity: imageOpacity,
+            boxShadow: "0 20px 60px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.1)",
+          }}
         >
-          <Link 
-            href="/collections"
-            className="text-[0.65rem] font-sans uppercase tracking-[0.3em] px-8 py-4 bg-[#1A1A1A] text-white hover:bg-white hover:text-[#1A1A1A] border border-[#1A1A1A] rounded-sm shadow-2xl inline-block no-underline"
+          <img
+            src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774372610/2_u6w78z.png"
+            alt="View Collection"
+            className="w-full h-auto object-cover"
+            style={{ display: "block" }}
+          />
+
+          {/* Gradient overlay with CTA text */}
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-end"
+            style={{
+              background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 35%, transparent 60%)",
+              padding: "2rem 1.5rem",
+            }}
           >
-            View Collection
-          </Link>
+            <span
+              style={{
+                fontSize: "0.7rem",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase" as const,
+                color: "#fff",
+                fontWeight: 500,
+                fontFamily: "Inter, sans-serif",
+                padding: "0.7rem 2rem",
+                border: "1px solid rgba(255,255,255,0.6)",
+                borderRadius: "50px",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                background: "rgba(255,255,255,0.1)",
+              }}
+            >
+              View Collection
+            </span>
+          </div>
         </motion.div>
+      </Link>
 
-      </div>
+      {/* Subtle descriptive text below */}
+      <motion.p
+        className="text-center font-sans"
+        style={{
+          y: textY,
+          opacity: textOpacity,
+          fontSize: "0.8rem",
+          color: "#8C7B75",
+          letterSpacing: "0.15em",
+          textTransform: "uppercase" as const,
+          marginTop: "1.5rem",
+          fontWeight: 400,
+        }}
+      >
+        Tap to explore
+      </motion.p>
     </section>
   );
 }
