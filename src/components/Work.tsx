@@ -22,6 +22,10 @@ const IMAGES = [
   getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 800 }),
   getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 800 }),
   getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 800 }),
+  // ── 3 NEW IMAGES ADDED TO FILL GAPS ──
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638002/in_bloom_6_asc7dq.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638003/in_bloom_7_ji0kbd.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638082/romantiques_4_wbjszd.jpg",
 ];
 
 const PRNG = (seed: number) => {
@@ -115,6 +119,10 @@ function PortfolioScene({ scrollProgress }: { scrollProgress: MotionValue<number
       { x: 0.25, y: 0.05, rotZ: 0.09, w: 0.14, h: 0.11, z: 0.10 },
       { x: -0.05, y: -0.25, rotZ: -0.08, w: 0.11, h: 0.14, z: 0.11 },
       { x: 0.12, y: 0.22, rotZ: 0.06, w: 0.10, h: 0.18, z: 0.12 },
+      // ── NEW LAYOUT POSITIONS TO PLUG WHITE SPACES (Rendered behind main layers) ──
+      { x: -0.10, y: 0.15, rotZ: -0.02, w: 0.20, h: 0.25, z: -0.01 },  // Behind Center-Left
+      { x: 0.15, y: -0.15, rotZ: -0.05, w: 0.20, h: 0.25, z: -0.02 },  // Behind Center-Right
+      { x: -0.20, y: -0.05, rotZ: 0.04, w: 0.20, h: 0.25, z: -0.03 },  // Behind Mid-Left
     ];
     
     const scaleFactor = 1.0; 

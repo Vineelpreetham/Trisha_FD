@@ -253,7 +253,7 @@ export default function Home() {
 
       {/* Seamless wave curve into Design Philosophy */}
       <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#F8F6F2", position: "relative", zIndex: 50, marginTop: "-2px" }}>
-        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: isMobile ? "60px" : "clamp(100px, 14vw, 280px)" }}>
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: isMobile ? "60px" : "clamp(100px, 14vw, 280px)", transform: "scale(1.02)" }}>
            <path d="M0,80 C360,200 1080,-20 1440,80 L1440,200 L0,200 Z" fill="#EB9394" />
         </svg>
       </div>
@@ -280,8 +280,8 @@ export default function Home() {
       </section>
 
       {/* Identical Smooth Srujana Bottom Wave */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FAFAFA", position: "relative", zIndex: 30 }}>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: isMobile ? "40px" : "clamp(60px, 8vw, 150px)", transform: "rotate(180deg)" }}>
+      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FAFAFA", position: "relative", zIndex: 30, marginTop: "-2px" }}>
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: isMobile ? "40px" : "clamp(60px, 8vw, 150px)", transform: "scaleX(1.02) rotate(180deg) translateY(-2px)" }}>
            <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#8B191A"></path>
         </svg>
       </div>
