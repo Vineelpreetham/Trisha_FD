@@ -7,53 +7,15 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 
 const collections = [
   {
-    altTitle: "Fashion Narratives",
-    subtitle: "From concept to collection:-",
-    description: "Exploring storytelling through silhouettes, where each collection translates emotion, memory or inspiration into cohesive fashion outcomes.",
-    link: "/fashion-narratives",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7059_mrkxjf.jpg",
+    altTitle: "Rosy Revival",
+    subtitle: "Constructed elegance:-",
+    description: "An exploration of structural craft beautifully intersecting with romantic, rosy hues.",
+    link: "/rosy-revival",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122968/rosy_revival_cover_photo_nxwzfw.png",
     textColor: "text-white",
     align: "top"
-  },
-  {
-    altTitle: "Brand Worlds",
-    subtitle: "Creative direction & Identity:-",
-    description: "Developing distinct fashion identities through branding, visual language & concept-driven creative direction.",
-    link: "/bloom",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861012/IMG_7055_gqrncr.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Conscious Design",
-    subtitle: "From Fabric to form:-",
-    description: "Focusing on garment construction, detailing and craftsmanship, bringing designs to life through technical precision and material understanding.",
-    link: "/regilia",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7057_oyajvq.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Digital Fashion",
-    subtitle: "Designing in virtual spaces:-",
-    description: "Experimenting with CLO3D and AI driven tools to explore fashion beyond physical boundaries and envision future-ready design processes.",
-    link: "/",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7058_zhznnc.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Constructed Craft",
-    subtitle: "Design with purpose & Responsibility:-",
-    description: "Investigating diversity, cultural awareness, and sustainable materials to create thoughtful, responsible and forward-thinking fashion solutions.",
-    link: "/constructed-craft",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861012/IMG_7054_wgridz.jpg",
-    textColor: "text-white",
-    align: "bottom"
   }
 ];
-
-
 
 const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   <motion.div 
@@ -79,7 +41,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
 
       {/* Category title overlapping the boundary with mix-blend-difference for dual-tone inversion */}
       <div className="absolute top-16 left-[-10%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
-        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-5xl xl:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
           {data.altTitle.split(' ').map((word: string, i: number) => (
              <span key={i} className="block">{word}</span>
           ))}
@@ -96,7 +58,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   </motion.div>
 );
 
-export default function CollectionsPage() {
+export default function ConstructedCraftPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
@@ -130,34 +92,15 @@ export default function CollectionsPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-20"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Collections</h1>
-           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The Anthology of Form</p>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Constructed Craft</h1>
+           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The Visual Story</p>
          </motion.div>
 
-         {/* 2-2-1 Grid Layout - Expanded Gaps for Editorial Whitespace */}
-         <div className="w-full max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 lg:gap-x-48 gap-y-32 lg:gap-y-64 relative px-4 md:px-0 mt-12 lg:mt-24">
+         {/* Center Grid Layout for single category */}
+         <div className="w-full max-w-[1300px] mx-auto flex flex-col items-center justify-center relative px-4 md:px-0 mt-12 lg:mt-24 pb-32">
             
-            {/* Row 1: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50">
+            <div className="w-full md:w-[60%] lg:w-[50%] relative z-10 transition-transform duration-700 hover:z-50">
                {collections[0] && <CollectionCard data={collections[0]} index={0} />}
-            </div>
-            <div className="md:col-span-1 lg:translate-y-48 relative z-20 transition-transform duration-700 hover:z-50">
-               {collections[1] && <CollectionCard data={collections[1]} index={1} />}
-            </div>
-            
-            {/* Row 2: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
-               {collections[2] && <CollectionCard data={collections[2]} index={2} />}
-            </div>
-            <div className="md:col-span-1 lg:translate-y-48 relative z-20 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
-               {collections[3] && <CollectionCard data={collections[3]} index={3} />}
-            </div>
-            
-            {/* Row 3: 1 Item (Perfectly Centered) */}
-            <div className="md:col-span-2 flex justify-center lg:translate-y-32 relative z-30 transition-transform duration-700 hover:z-50 mt-20 md:mt-0 pb-32">
-               <div className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]">
-                  {collections[4] && <CollectionCard data={collections[4]} index={4} />}
-               </div>
             </div>
 
          </div>

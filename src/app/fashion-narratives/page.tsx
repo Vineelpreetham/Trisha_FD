@@ -7,47 +7,20 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 
 const collections = [
   {
-    altTitle: "Fashion Narratives",
-    subtitle: "From concept to collection:-",
-    description: "Exploring storytelling through silhouettes, where each collection translates emotion, memory or inspiration into cohesive fashion outcomes.",
-    link: "/fashion-narratives",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7059_mrkxjf.jpg",
+    altTitle: "Chaos",
+    subtitle: "Embracing the disorder:-",
+    description: "An exploration into the beauty of disarray and raw emotion translated into form.",
+    link: "/chaos",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/Chaos_cover_photo_o6qqho.png",
     textColor: "text-white",
     align: "top"
   },
   {
-    altTitle: "Brand Worlds",
-    subtitle: "Creative direction & Identity:-",
-    description: "Developing distinct fashion identities through branding, visual language & concept-driven creative direction.",
-    link: "/bloom",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861012/IMG_7055_gqrncr.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Conscious Design",
-    subtitle: "From Fabric to form:-",
-    description: "Focusing on garment construction, detailing and craftsmanship, bringing designs to life through technical precision and material understanding.",
-    link: "/regilia",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7057_oyajvq.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Digital Fashion",
-    subtitle: "Designing in virtual spaces:-",
-    description: "Experimenting with CLO3D and AI driven tools to explore fashion beyond physical boundaries and envision future-ready design processes.",
-    link: "/",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861013/IMG_7058_zhznnc.jpg",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Constructed Craft",
-    subtitle: "Design with purpose & Responsibility:-",
-    description: "Investigating diversity, cultural awareness, and sustainable materials to create thoughtful, responsible and forward-thinking fashion solutions.",
-    link: "/constructed-craft",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774861012/IMG_7054_wgridz.jpg",
+    altTitle: "Tha Game of Night",
+    subtitle: "After hours allure:-",
+    description: "A sartorial journey capturing the mysterious, sophisticated energy of the twilight hours.",
+    link: "/the-game-of-night",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122895/WhatsApp_Image_2026-03-31_at_4.04.04_AM_kismao.jpg",
     textColor: "text-white",
     align: "bottom"
   }
@@ -96,7 +69,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   </motion.div>
 );
 
-export default function CollectionsPage() {
+export default function FashionNarrativesPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
@@ -130,34 +103,21 @@ export default function CollectionsPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-20"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Collections</h1>
-           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The Anthology of Form</p>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Fashion Narratives</h1>
+           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The Visual Story</p>
          </motion.div>
 
-         {/* 2-2-1 Grid Layout - Expanded Gaps for Editorial Whitespace */}
-         <div className="w-full max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 lg:gap-x-48 gap-y-32 lg:gap-y-64 relative px-4 md:px-0 mt-12 lg:mt-24">
+         {/* 2 Grid Layout - Expanded Gaps for Editorial Whitespace */}
+         <div className="w-full max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-center gap-x-8 md:gap-x-20 lg:gap-x-32 gap-y-32 relative px-4 md:px-0 mt-12 lg:mt-24 pb-32">
             
-            {/* Row 1: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50">
+            {/* Column 1 */}
+            <div className="w-full md:w-[45%] lg:w-[40%] relative z-10 transition-transform duration-700 hover:z-50">
                {collections[0] && <CollectionCard data={collections[0]} index={0} />}
             </div>
-            <div className="md:col-span-1 lg:translate-y-48 relative z-20 transition-transform duration-700 hover:z-50">
+            
+            {/* Column 2 */}
+            <div className="w-full md:w-[45%] lg:w-[40%] relative z-20 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
                {collections[1] && <CollectionCard data={collections[1]} index={1} />}
-            </div>
-            
-            {/* Row 2: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
-               {collections[2] && <CollectionCard data={collections[2]} index={2} />}
-            </div>
-            <div className="md:col-span-1 lg:translate-y-48 relative z-20 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
-               {collections[3] && <CollectionCard data={collections[3]} index={3} />}
-            </div>
-            
-            {/* Row 3: 1 Item (Perfectly Centered) */}
-            <div className="md:col-span-2 flex justify-center lg:translate-y-32 relative z-30 transition-transform duration-700 hover:z-50 mt-20 md:mt-0 pb-32">
-               <div className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]">
-                  {collections[4] && <CollectionCard data={collections[4]} index={4} />}
-               </div>
             </div>
 
          </div>

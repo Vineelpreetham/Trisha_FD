@@ -45,7 +45,7 @@ export default function About() {
   }, []);
 
   return (
-    <main className="w-full relative" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #C41E3A 55%, #8B0000 100%)" }}>
+    <main className="w-full relative bg-[#1A0404]" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #C41E3A 35%, #5A0000 65%, #1A0404 100%)" }}>
       <section ref={containerRef} id="about" className="relative w-full min-h-screen z-10 flex flex-col items-center pt-24 pb-32 overflow-hidden">
         
         {/* Absolute Top Left Logo */}
@@ -57,15 +57,12 @@ export default function About() {
 
         {/* Absolute Left Vertical Nav (Desktop only) */}
         <div className="hidden md:flex absolute left-4 md:left-[1rem] top-1/2 -translate-y-1/2 origin-center -rotate-90 gap-16 z-30">
-          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">Shop</span>
-          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">Collections</span>
-          <span className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium">About</span>
+          <Link href="/" className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium hover:opacity-50 transition-opacity uppercase">Home</Link>
+          <Link href="/collections" className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium hover:opacity-50 transition-opacity uppercase">Collections</Link>
+          <Link href="/contact" className="text-[#1A1A1A] text-[10px] tracking-widest font-sans font-medium hover:opacity-50 transition-opacity uppercase">Contact</Link>
         </div>
 
-        {/* Absolute Bottom Left Language text */}
-        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-30">
-          <span className="text-[#F2EBE5] text-[11px] tracking-wider font-sans font-medium">Language</span>
-        </div>
+        {/* Absolute Bottom Left block removed as requested */}
 
         {/* Central Layout Wrapper */}
         <div className="relative w-full max-w-[800px] flex flex-col items-center mt-16 md:mt-24 px-6 md:px-0">
@@ -74,8 +71,8 @@ export default function About() {
           <div className="w-full md:w-[450px] lg:w-[500px] h-[55vh] md:h-[65vh] relative z-20 shadow-2xl">
             <img 
               ref={imageRef}
-              src="https://images.unsplash.com/photo-1618244972963-dbee1a7edc95?q=80&w=1974&auto=format&fit=crop" 
-              alt="Dear Friends Portrait" 
+              src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1775119601/IMG_7061_rrz8db.jpg" 
+              alt="Portrait" 
               className="w-full h-full object-cover object-top"
             />
           </div>
@@ -103,15 +100,30 @@ export default function About() {
         </div>
       </section>
 
-      {/* VIEW PROJECTS - About Page Only */}
-      <section className="relative w-full h-[55vh] overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 mix-blend-screen opacity-80">
-          <SmokeBackground smokeColor="#F0BABA" backColor="#C41830" />
+      {/* SEAMLESS TRANSITION - View Projects Footer Section */}
+      <section className="relative w-full min-h-[65vh] flex items-center justify-center">
+        {/* Mask the top of the smoke canvas completely so it fades infinitely into the background gradient above */}
+        <div 
+          className="absolute inset-0 opacity-90" 
+          style={{ 
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)"
+          }}
+        >
+          <SmokeBackground smokeColor="#F28482" backColor="#1A0404" />
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_#C41830_90%)] pointer-events-none" />
-        <div className="relative z-10 flex flex-col items-center gap-6 text-center px-6">
-          <p className="text-white/60 font-mono text-xs uppercase tracking-[0.4em]">Explore the work</p>
-          <h2 className="text-5xl md:text-7xl font-serif font-black text-white leading-none tracking-tight">View Projects</h2>
+        
+        {/* Soft vignette to blend edges inward into the darkness */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#1A0404_100%)] pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col items-center gap-10 text-center px-6">
+          <p className="text-[#FFB5A7] font-sans text-xs md:text-sm uppercase tracking-[0.5em] opacity-80">Explore the work</p>
+          <Link href="/collections" className="group relative block cursor-pointer">
+            <h2 className="text-6xl md:text-[7rem] lg:text-[9rem] font-serif font-black text-white leading-none tracking-tighter drop-shadow-2xl transition-transform duration-1000 ease-out group-hover:scale-[1.03]">
+              View Projects
+            </h2>
+            <div className="absolute -bottom-4 md:-bottom-8 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#FFB5A7] transition-all duration-700 ease-out group-hover:w-[45%] opacity-80"></div>
+          </Link>
         </div>
       </section>
     </main>

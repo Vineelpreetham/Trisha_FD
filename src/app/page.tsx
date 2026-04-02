@@ -42,7 +42,7 @@ export default function Home() {
                 <div style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
           <Link href="/about" style={{ textDecoration: "none", color: "inherit" }}>About</Link>
-          <Link href="/collections" style={{ textDecoration: "none", color: "inherit" }}>Design Collections</Link>
+          <Link href="/collections" style={{ textDecoration: "none", color: "inherit" }}>Collections</Link>
           <Link href="/contact" style={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
         </div>
       </nav>
@@ -99,12 +99,9 @@ export default function Home() {
         {/* ── UNIFIED SCROLLING TYPOGRAPHY OVERLAY (200vh) ── */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "200vh", zIndex: 20, pointerEvents: "none" }}>
             {/* Top Link Block (Fold 1) */}
-            <div style={{ position: "absolute", top: "35vh", left: "6%", pointerEvents: "auto", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-                <span style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.8rem)", fontFamily: "Caveat, cursive", fontWeight: 500, color: "#6A5A55", letterSpacing: "0.02em" }}>
-                    Welcome to my journey as a fashion designer,
-                </span>
-                <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(2rem, 4.5vw, 4.5rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none" }}>
-                    About me...
+            <div style={{ position: "absolute", top: "42vh", left: "8%", pointerEvents: "auto" }}>
+                <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(3.5rem, 7vw, 7rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.9 }}>
+                    About me
                 </Link>
             </div>
             {/* Giant Center Typography removed per user request */}
@@ -130,24 +127,21 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* ── DESIGN PHILOSOPHY SECTION (Deep Red Gradient) ── */}
-      <section style={{ background: "linear-gradient(to bottom, #EB9394 0%, #BE3536 40%, #8B191A 100%)", padding: "6rem 8% 12rem 8%", color: "#FDF8F7", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "clamp(3rem, 6vw, 6rem)", position: "relative", zIndex: 50, marginTop: "-2px" }}>
-         {/* Left Side: Editorial Image */}
-         <div style={{ flex: "1 1 450px", position: "relative" }}>
-             <img src="/home-in-bloom.jpg" alt="Design Philosophy" style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "2px", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.3))" }} />
+      {/* ── CREATIVE VISION SECTION (Deep Red Gradient) ── */}
+      <section style={{ background: "linear-gradient(to bottom, #EB9394 0%, #BE3536 40%, #8B191A 100%)", padding: "6rem 8% 12rem 8%", color: "#FDF8F7", display: "flex", flexDirection: "column", alignItems: "center", gap: "clamp(3rem, 6vw, 5rem)", position: "relative", zIndex: 50, marginTop: "-2px" }}>
+         {/* Top Side: Landscape Editorial Image */}
+         <div style={{ width: "90%", maxWidth: "900px", position: "relative" }}>
+             <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1775143980/8_rbkynb.png" alt="Creative Vision" style={{ width: "100%", height: "auto", aspectRatio: "16/9", objectFit: "cover", borderRadius: "8px", filter: "drop-shadow(0 25px 40px rgba(50,5,10,0.35))" }} />
          </div>
-         {/* Right Side: Typography & Button */}
-         <div style={{ flex: "1 1 450px", display: "flex", flexDirection: "column", gap: "2.5rem", alignItems: "center", textAlign: "center", paddingTop: "2rem" }}>
-             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontWeight: 400, letterSpacing: "0.02em", margin: 0 }}>Design Philosophy</h2>
-             <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1rem)", lineHeight: 1.85, opacity: 0.9, maxWidth: "42ch", fontWeight: 300, letterSpacing: "0.02em", margin: 0 }}>
-                 I like drawing inspiration from things I'm constantly surrounded by, an amusing story, a landscape, and mostly, emotion. I want my customer to feel empowered, happy, and beautiful in my designs.
+         
+         {/* Bottom Side: Typography */}
+         <div style={{ width: "100%", maxWidth: "800px", display: "flex", flexDirection: "column", gap: "1.5rem", alignItems: "center", textAlign: "center" }}>
+             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 400, letterSpacing: "0.02em", margin: 0 }}>Creative Vision</h2>
+             <p style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)", lineHeight: 1.8, opacity: 0.95, maxWidth: "65ch", fontWeight: 300, letterSpacing: "0.03em", margin: 0 }}>
+                 My design process is driven by storytelling and experimentation. I enjoy exploring forms, textures, prints, and silhouettes to create garments that feel expressive and distinctive.
+                 <br/><br/>
+                 Every piece I design is an opportunity to translate an idea or emotion into something tangible. Through thoughtful details and bold visual elements, I aim to create designs that are memorable, artistic, and deeply personal.
              </p>
-             <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1rem)", lineHeight: 1.85, opacity: 0.9, maxWidth: "48ch", fontWeight: 300, letterSpacing: "0.02em", margin: 0 }}>
-                 Explore my collections/projects to look deeper into my mind and my creations! Let me take you on a rollercoaster ride through my journey in fashion design.
-             </p>
-             <Link href="/collections" style={{ marginTop: "1rem", padding: "1.2rem 3rem", background: "#FDF8F7", color: "#70000E", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 600, borderRadius: "50px", textDecoration: "none", transition: "transform 0.3s ease", display: "inline-block" }}>
-                 Explore Recent Collection
-             </Link>
          </div>
       </section>
 

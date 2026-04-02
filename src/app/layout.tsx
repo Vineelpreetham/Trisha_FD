@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import MagneticCursor from "@/components/MagneticCursor";
+import ScrollToTop from "@/components/ScrollToTop";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -26,6 +27,7 @@ export default function RootLayout({
         <div className="ambient-light pointer-events-none" />
         
         <Providers>
+          <ScrollToTop />
           <MagneticCursor />
           {children}
         </Providers>
