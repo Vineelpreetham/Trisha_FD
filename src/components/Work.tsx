@@ -208,10 +208,10 @@ function DesktopWork() {
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
           <motion.div style={{ opacity: ctaOpacity, y: ctaY }} className="pointer-events-auto">
             <Link 
-              href="/romantiques"
+              href="/collections"
               className="text-sm font-sans uppercase tracking-[0.3em] px-10 py-5 bg-[#1A1A1A] text-white hover:bg-white hover:text-[#1A1A1A] border border-[#1A1A1A] hover:scale-105 transition-all duration-500 rounded-sm shadow-2xl inline-block no-underline"
             >
-              View Collection
+              View Design
             </Link>
           </motion.div>
         </div>
@@ -269,7 +269,7 @@ function MobileWork() {
         >
           <img
             src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774372610/2_u6w78z.png"
-            alt="View Collection"
+            alt="View Design"
             className="w-full h-auto object-cover"
             style={{ display: "block" }}
           />
@@ -298,7 +298,7 @@ function MobileWork() {
                 background: "rgba(255,255,255,0.1)",
               }}
             >
-              View Collection
+              View Design
             </span>
           </div>
         </motion.div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import MagneticCursor from "@/components/MagneticCursor";
 import ScrollToTop from "@/components/ScrollToTop";
+import ContactFooter from "@/components/ContactFooter";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -30,6 +31,7 @@ export default function RootLayout({
           <ScrollToTop />
           <MagneticCursor />
           {children}
+          <ContactFooter />
         </Providers>
       </body>
     </html>

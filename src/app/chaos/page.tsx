@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ContactFooter from "@/components/ContactFooter";
+
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
@@ -50,7 +50,7 @@ export default function ChaosCollectionPage() {
          
       </div>
 
-      <ContactFooter />
+      
     </main>
   );
 }

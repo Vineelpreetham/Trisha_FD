@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ContactFooter from "@/components/ContactFooter";
+
 
 export default function RomantiquesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -78,7 +78,7 @@ export default function RomantiquesPage() {
         }
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
-        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
+        <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -113,11 +113,11 @@ export default function RomantiquesPage() {
                 : "relative w-full max-w-[1400px] aspect-[16/10] md:aspect-[16/9] rotate-[1deg] hover:rotate-0 transition-transform duration-700 ease-out shadow-2xl"
               }
             >
-              <div className="absolute inset-0 bg-gray-900 shadow-2xl transform translate-x-3 translate-y-3 rounded-sm" />
+              <div className="absolute inset-0 bg-[#251D1A] shadow-2xl transform translate-x-3 translate-y-3 rounded-sm" />
               <img 
                 src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638081/romantiques_1_mtpnit.png" 
                 alt="Romantiques Hero" 
-                className="relative w-full h-full object-cover border-[8px] md:border-[16px] border-gray-900 shadow-lg z-10 rounded-sm"
+                className="relative w-full h-full object-cover border-[8px] md:border-[16px] border-[#251D1A] shadow-lg z-10 rounded-sm"
               />
             </div>
           </div>
@@ -126,11 +126,11 @@ export default function RomantiquesPage() {
         {/* --- SECTION 2: MOOD BOARD --- */}
         <section className={isMobile
           ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-center"
-          : "reveal-section relative w-full py-24 md:py-32 mb-16 flex flex-col items-center"
+          : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col items-center"
         }>
           <h2 className={isMobile
             ? "text-3xl font-serif font-black text-white tracking-tight mb-8 text-center"
-            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-16 text-center"
+            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-12 text-center"
           }>
             Mood Board
           </h2>
@@ -149,12 +149,12 @@ export default function RomantiquesPage() {
         {/* --- SECTION 3: COLOUR SWATCH BOARD --- */}
         <section className={isMobile
           ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-center gap-8"
-          : "reveal-section relative w-full py-24 md:py-32 mb-16 flex flex-col md:flex-row items-center gap-12"
+          : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col md:flex-row items-center gap-12"
         }>
           
           <div className={isMobile
-            ? "w-full order-1 relative p-2 bg-gray-900 shadow-2xl"
-            : "w-full md:w-[70%] order-2 md:order-1 relative p-2 bg-gray-900 shadow-2xl rotate-[1.5deg]"
+            ? "w-full order-1 relative p-2 bg-[#251D1A] shadow-2xl"
+            : "w-full md:w-[70%] order-2 md:order-1 relative p-2 bg-[#251D1A] shadow-2xl rotate-[1.5deg]"
           }>
             <img 
               src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638083/romantiques_2_pthfbt.jpg" 
@@ -208,16 +208,16 @@ export default function RomantiquesPage() {
         {/* --- SECTION 4: SILHOUETTE BOARD --- */}
         <section className={isMobile
           ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-start"
-          : "reveal-section relative w-full py-24 md:py-32 mb-16 flex flex-col items-start"
+          : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col items-start"
         }>
           <h2 className={isMobile
             ? "text-3xl font-serif font-black text-white tracking-tight mb-6"
-            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-12"
+            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-10"
           }>
             Silhouette Board
           </h2>
           
-          <div className="w-full relative shadow-2xl p-2 bg-gray-900">
+          <div className="w-full relative shadow-2xl p-2 bg-[#251D1A]">
             <img 
                src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638083/romantiques_5_upncur.jpg" 
                alt="Silhouette Board" 
@@ -229,34 +229,30 @@ export default function RomantiquesPage() {
         {/* --- SECTION 5: RANGE BOARD & FLAT SKETCHES --- */}
         <section className={isMobile
           ? "reveal-section relative w-full py-12 pb-24 flex flex-col items-end"
-          : "reveal-section relative w-full py-24 md:py-32 pb-48 flex flex-col items-end"
+          : "reveal-section relative w-full py-16 md:py-20 pb-32 flex flex-col items-end"
         }>
           <h2 className={isMobile
             ? "text-3xl font-serif font-black text-white tracking-tight mb-6 text-right"
-            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-12 text-right"
+            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-10 text-right"
           }>
             Range Board
           </h2>
           
           <div className={isMobile
-            ? "w-full relative shadow-2xl p-2 bg-gray-900"
-            : "w-full max-w-[1200px] relative shadow-2xl rotate-[-0.5deg] p-2 bg-gray-900"
+            ? "w-full relative shadow-2xl p-2 bg-[#251D1A]"
+            : "w-full max-w-[1200px] relative shadow-2xl rotate-[-0.5deg] p-2 bg-[#251D1A]"
           }>
             <img 
                src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638082/romantiques_4_wbjszd.jpg" 
                alt="Range Board & Flat Sketches" 
                className="w-full h-auto object-cover"
             />
-            {/* Small text label mimicking sketches */}
-            <div className="absolute top-[-2%] left-[5%] font-serif font-black text-[#D4C3B3] text-2xl tracking-wider opacity-90">
-               Sketch
-            </div>
           </div>
         </section>
         
       </div>
       
-      <ContactFooter />
+      
 
     </main>
   );

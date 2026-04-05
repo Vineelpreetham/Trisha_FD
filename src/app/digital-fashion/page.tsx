@@ -7,26 +7,15 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 
 const collections = [
   {
-    altTitle: "The Chaos Within",
-    subtitle: "Where luxury meets the shoreline —",
-    description: "The Chaos Within fills Loewe's last untouched category, translating the house's sculptural DNA into monochrome swim silhouettes with optical tension, strategic cut-outs, and red that feels less like color and more like emotion.",
-    link: "/chaos",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372626/Screenshot_2026-04-04_at_11.48.17_PM_f5r479.png",
+    altTitle: "Woven City",
+    subtitle: "Woven city —",
+    description: "Where traditional textile craft meets urban street energy",
+    link: "/woven-city",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372683/woven_city_7_tzhzgr.png",
     textColor: "text-white",
     align: "top"
-  },
-  {
-    altTitle: "The Game of Time",
-    subtitle: "The Game of Time —",
-    description: "Valentino in sharp tailoring and chess-born geometry. Every silhouette a calculated move, every layer an act of power.",
-    link: "/the-game-of-night",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372625/Screenshot_2026-04-05_at_12.01.04_AM_j5wklt.png",
-    textColor: "text-white",
-    align: "bottom"
   }
 ];
-
-
 
 const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   <motion.div 
@@ -52,7 +41,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
 
       {/* Category title overlapping the boundary with mix-blend-difference for dual-tone inversion */}
       <div className="absolute top-16 left-[-10%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
-        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-5xl xl:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
           {data.altTitle.split(' ').map((word: string, i: number) => (
              <span key={i} className="block">{word}</span>
           ))}
@@ -69,7 +58,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   </motion.div>
 );
 
-export default function FashionNarrativesPage() {
+export default function DigitalFashionPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
@@ -103,20 +92,14 @@ export default function FashionNarrativesPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-20"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Fashion Narratives</h1>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Digital Fashion</h1>
          </motion.div>
 
-         {/* 2 Grid Layout - Expanded Gaps for Editorial Whitespace */}
-         <div className="w-full max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-center gap-x-8 md:gap-x-20 lg:gap-x-32 gap-y-32 relative px-4 md:px-0 mt-12 lg:mt-24 pb-32">
+         {/* Center Grid Layout for single category */}
+         <div className="w-full max-w-[1300px] mx-auto flex flex-col items-center justify-center relative px-4 md:px-0 mt-12 lg:mt-24 pb-32">
             
-            {/* Column 1 */}
-            <div className="w-full md:w-[45%] lg:w-[40%] relative z-10 transition-transform duration-700 hover:z-50">
+            <div className="w-full md:w-[60%] lg:w-[50%] relative z-10 transition-transform duration-700 hover:z-50">
                {collections[0] && <CollectionCard data={collections[0]} index={0} />}
-            </div>
-            
-            {/* Column 2 */}
-            <div className="w-full md:w-[45%] lg:w-[40%] relative z-20 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
-               {collections[1] && <CollectionCard data={collections[1]} index={1} />}
             </div>
 
          </div>

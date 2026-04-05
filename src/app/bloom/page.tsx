@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { CardsParallax, type iCardItem } from "@/components/ui/scroll-cards";
-import ContactFooter from "@/components/ContactFooter";
+
 
 const cardItems: iCardItem[] = [
   { title: "Look 01", description: "In Bloom Collection", tag: "bloom", link: "#", color: "#1a1a1a", textColor: "white", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638002/in_bloom_1_2_qwqaqp.png" },
@@ -50,7 +50,7 @@ export default function BloomPage() {
         }
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
-        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
+        <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -60,7 +60,30 @@ export default function BloomPage() {
         <CardsParallax items={cardItems} />
       </div>
 
-      <ContactFooter />
+      {/* Seamless Scroll Indicator (Fixed at bottom right) */}
+      <div className="fixed bottom-6 md:bottom-12 right-6 md:right-10 z-50 flex flex-col items-center gap-4 pointer-events-none mix-blend-difference text-white">
+        <span 
+          className="font-sans text-[9px] md:text-[10px] uppercase tracking-[0.3em] rotate-90 origin-right translate-y-[-30px] md:translate-y-[-40px] opacity-70 whitespace-nowrap"
+        >
+          Scroll to explore
+        </span>
+        <div className="w-[1px] h-16 md:h-24 bg-white/20 relative overflow-hidden rounded-full mt-10 md:mt-16">
+          <div 
+            className="absolute top-0 left-0 w-full h-[50%] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+            style={{ animation: "scroll-drop 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite" }}
+          />
+        </div>
+      </div>
+
+      {/* Inline styles for custom scroll animation */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes scroll-drop {
+          0% { transform: translateY(-100%); opacity: 0; }
+          10% { opacity: 1; }
+          80% { transform: translateY(250%); opacity: 1; }
+          100% { transform: translateY(300%); opacity: 0; }
+        }
+      `}} />
 
     </main>
   );

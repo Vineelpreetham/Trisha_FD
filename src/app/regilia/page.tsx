@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
-import ContactFooter from "@/components/ContactFooter";
+
 
 const CATALOG_IMAGES = [
   "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/2_o6af7u.png",
@@ -159,7 +159,7 @@ export default function RegaliaPage() {
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
         <Link
-          href="/"
+          href="/collections"
           className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity"
           style={{ minHeight: "44px", minWidth: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}
         >
@@ -200,7 +200,7 @@ export default function RegaliaPage() {
       {/* Collection Quote */}
       <section style={{ padding: isMobile ? "2.5rem 8% 2rem" : "10rem 10%", display: "flex", justifyContent: "center", textAlign: "center" }}>
         <p style={{ fontFamily: "Georgia, serif", fontSize: isMobile ? "1.05rem" : "clamp(1.5rem, 3vw, 2.5rem)", lineHeight: 1.6, maxWidth: "34ch", fontWeight: 300, fontStyle: "italic", color: "#D4C7BE" }}>
-           "Drawing from the colossal interior arches of historical palaces, Regalia is a study in structure, weight, and the uncompromising silhouette."
+           "baroque grandeur and opera glamour reborn. A modern tribute to the timeless power and poise of royal femininity."
         </p>
       </section>
 
@@ -213,7 +213,7 @@ export default function RegaliaPage() {
         )}
       </section>
 
-      <ContactFooter />
+      
     </main>
   );
 }

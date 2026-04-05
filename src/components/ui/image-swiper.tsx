@@ -239,6 +239,27 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
         '--card-swap-duration': '0.6s', // doubled the transition speed for elegance
       } as React.CSSProperties}
     >
+      {/* Visual Navigation Arrows */}
+      <button 
+        onClick={(e) => { e.stopPropagation(); triggerSwipeBack(); }}
+        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-[100] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/30 border border-white/10 text-white backdrop-blur-sm hover:bg-white/10 hover:scale-105 transition-all outline-none cursor-pointer"
+        aria-label="Previous Image"
+      >
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-6 h-6 object-contain">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button 
+        onClick={(e) => { e.stopPropagation(); triggerSwipe('right'); }}
+        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-[100] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/30 border border-white/10 text-white backdrop-blur-sm hover:bg-white/10 hover:scale-105 transition-all outline-none cursor-pointer"
+        aria-label="Next Image"
+      >
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-6 h-6 object-contain">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
       {cardOrder.map((originalIndex, displayIndex) => (
         <article
           key={`${imageList[originalIndex]}-${originalIndex}`}

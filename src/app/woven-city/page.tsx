@@ -5,9 +5,9 @@ import Link from "next/link";
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const rosyPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122969/rosy_revival_1_ulhpbn.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_2_cmd9il.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_3_ntiioj.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_4_zl3iwb.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_5_fzl6jp.png";
+const wovenCityPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372687/woven_city_1_krqowo.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372692/woven_city_2_fatwjv.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372684/woven_city_3_ajcstr.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372682/woven_city_4_dcukrl.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372679/woven_city_5_kmfv5f.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372690/woven_city_6_wtygkm.png";
 
-export default function RosyRevivalCollectionPage() {
+export default function WovenCityCollectionPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
@@ -27,7 +27,7 @@ export default function RosyRevivalCollectionPage() {
       </div>
 
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
-        <Link href="/constructed-craft" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+        <Link href="/digital-fashion" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -41,12 +41,12 @@ export default function RosyRevivalCollectionPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-16"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Rosy Revival</h1>
-           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The Collection</p>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Woven City</h1>
+           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The 2026 Collection</p>
          </motion.div>
 
          {/* Image Swiper Component */}
-         <ImageSwiper images={rosyPhotos} />
+         <ImageSwiper images={wovenCityPhotos} />
          
       </div>
 

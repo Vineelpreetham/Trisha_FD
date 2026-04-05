@@ -2,16 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import ContactFooter from "@/components/ContactFooter";
+
 import { GlowCard } from "@/components/ui/spotlight-card";
 
 const collections = [
   {
     altTitle: "Rosy Revival",
-    subtitle: "Constructed elegance:-",
-    description: "An exploration of structural craft beautifully intersecting with romantic, rosy hues.",
+    subtitle: "Rosy Revival —",
+    description: "bioplastic innovation meets radical self-expression. Wear it, transform it, begin again.",
     link: "/rosy-revival",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122968/rosy_revival_cover_photo_nxwzfw.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372627/Screenshot_2026-04-05_at_12.00.54_AM_pxrb18.png",
     textColor: "text-white",
     align: "top"
   }
@@ -78,7 +78,7 @@ export default function ConstructedCraftPage() {
       </div>
 
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
-        <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+        <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -106,7 +106,7 @@ export default function ConstructedCraftPage() {
          </div>
       </div>
 
-      <ContactFooter />
+      
     </main>
   );
 }
