@@ -21,7 +21,7 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
   const currentX = useRef(0);
   const animationFrameId = useRef<number | null>(null);
 
-  const imageList = images.split(',').map(img => img.trim()).filter(img => img);
+  const imageList = images.split(/,(?=https:\/\/)/).map(img => img.trim()).filter(img => img);
   const [cardOrder, setCardOrder] = useState<number[]>(() =>
     Array.from({ length: imageList.length }, (_, i) => i)
   );
