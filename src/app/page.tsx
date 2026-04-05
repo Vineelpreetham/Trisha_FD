@@ -3,6 +3,8 @@ import Link from "next/link";
 import Work from "@/components/Work";
 
 
+import MobileNav from "@/components/MobileNav";
+
 const GR = [
   "linear-gradient(to bottom, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
   "linear-gradient(to top, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
@@ -39,12 +41,13 @@ export default function Home() {
       {/* NAV */}
       <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff" }}>
         <Link href="/" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha Vanam.</Link>
-                <div style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
+        <div className="nav-desktop-links" style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
           <Link href="/about" style={{ textDecoration: "none", color: "inherit" }}>About</Link>
           <Link href="/collections" style={{ textDecoration: "none", color: "inherit" }}>Design Diary</Link>
           <Link href="/contact" style={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
         </div>
+        <MobileNav />
       </nav>
 
       {/* CONTINUOUS 200VH GRADIENT WRAPPER to mathematically eliminate any background seam */}

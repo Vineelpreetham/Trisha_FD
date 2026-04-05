@@ -308,4 +308,14 @@
     max-width: 100%;
     height: auto;
   }
+
+  .nav-desktop-links {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-mobile-burger-container {
+    display: none !important;
+  }
 }
