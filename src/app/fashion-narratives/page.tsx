@@ -11,7 +11,7 @@ const collections = [
     subtitle: "Where luxury meets the shoreline —",
     description: "The Chaos Within fills Loewe's last untouched category, translating the house's sculptural DNA into monochrome swim silhouettes with optical tension, strategic cut-outs, and red that feels less like color and more like emotion.",
     link: "/chaos",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372626/Screenshot_2026-04-04_at_11.48.17_PM_f5r479.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372626/Screenshot_2026-04-04_at_11.48.17_PM_f5r479.png",
     textColor: "text-white",
     align: "top"
   },
@@ -20,7 +20,7 @@ const collections = [
     subtitle: "The Game of Time —",
     description: "Valentino in sharp tailoring and chess-born geometry. Every silhouette a calculated move, every layer an act of power.",
     link: "/the-game-of-night",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372625/Screenshot_2026-04-05_at_12.01.04_AM_j5wklt.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372625/Screenshot_2026-04-05_at_12.01.04_AM_j5wklt.png",
     textColor: "text-white",
     align: "bottom"
   }

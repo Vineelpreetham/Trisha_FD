@@ -11,19 +11,19 @@ const InteractiveSelector = () => {
   const [animatedOptions, setAnimatedOptions] = useState<number[]>([]);
   
   const options = [
-    { title: "Look 01", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_1_wc56t3.png", icon: <Asterisk size={18} className="text-white" /> },
-    { title: "Look 02", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_2_ijqewg.png", icon: <Blend size={18} className="text-white" /> },
-    { title: "Look 03", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_3_fvnj8k.png", icon: <Camera size={18} className="text-white" /> },
-    { title: "Look 04", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_4_ph7mc5.png", icon: <CircleDot size={18} className="text-white" /> },
-    { title: "Look 05", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122833/chaos_5_fngufv.png", icon: <Compass size={18} className="text-white" /> },
-    { title: "Look 06", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122830/chaos_6_grjmra.png", icon: <Crosshair size={18} className="text-white" /> },
-    { title: "Look 07", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122830/chaos_7_m2kdxe.png", icon: <Droplet size={18} className="text-white" /> },
-    { title: "Look 08", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_8_vpkxie.png", icon: <Eye size={18} className="text-white" /> },
-    { title: "Look 09", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_9_rl0n7z.png", icon: <Focus size={18} className="text-white" /> },
-    { title: "Look 10", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_10_i39imq.png", icon: <Gem size={18} className="text-white" /> },
-    { title: "Look 11", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_11_cjhmf9.png", icon: <Hexagon size={18} className="text-white" /> },
-    { title: "Look 12", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122833/chaos_12_ipv1qo.png", icon: <Layers size={18} className="text-white" /> },
-    { title: "Look 13", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122835/chaos_13_czaea9.png", icon: <Moon size={18} className="text-white" /> }
+    { title: "Look 01", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_1_wc56t3.png", icon: <Asterisk size={18} className="text-white" /> },
+    { title: "Look 02", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_2_ijqewg.png", icon: <Blend size={18} className="text-white" /> },
+    { title: "Look 03", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_3_fvnj8k.png", icon: <Camera size={18} className="text-white" /> },
+    { title: "Look 04", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_4_ph7mc5.png", icon: <CircleDot size={18} className="text-white" /> },
+    { title: "Look 05", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122833/chaos_5_fngufv.png", icon: <Compass size={18} className="text-white" /> },
+    { title: "Look 06", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122830/chaos_6_grjmra.png", icon: <Crosshair size={18} className="text-white" /> },
+    { title: "Look 07", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122830/chaos_7_m2kdxe.png", icon: <Droplet size={18} className="text-white" /> },
+    { title: "Look 08", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_8_vpkxie.png", icon: <Eye size={18} className="text-white" /> },
+    { title: "Look 09", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_9_rl0n7z.png", icon: <Focus size={18} className="text-white" /> },
+    { title: "Look 10", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_10_i39imq.png", icon: <Gem size={18} className="text-white" /> },
+    { title: "Look 11", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_11_cjhmf9.png", icon: <Hexagon size={18} className="text-white" /> },
+    { title: "Look 12", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122833/chaos_12_ipv1qo.png", icon: <Layers size={18} className="text-white" /> },
+    { title: "Look 13", description: "Chaos collection piece", image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122835/chaos_13_czaea9.png", icon: <Moon size={18} className="text-white" /> }
   ];
 
   const handleOptionClick = (index: number) => {

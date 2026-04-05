@@ -11,7 +11,7 @@ const collections = [
     subtitle: "Woven city —",
     description: "Where traditional textile craft meets urban street energy",
     link: "/woven-city",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372683/woven_city_7_tzhzgr.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372683/woven_city_7_tzhzgr.png",
     textColor: "text-white",
     align: "top"
   }

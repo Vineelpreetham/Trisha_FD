@@ -7,17 +7,17 @@ import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
 
 
 const CATALOG_IMAGES = [
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/2_o6af7u.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463612/3_vupqad.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/4_iyyzln.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/5_bl8h8i.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/6_b46vmp.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463609/7_keslqd.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463611/8_beihk6.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463613/10_qxuj1p.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463611/9_qxtvwx.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463611/11_ckajdv.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1774463611/13_ntx0zv.png"
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463609/2_o6af7u.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463612/3_vupqad.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463609/4_iyyzln.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463609/5_bl8h8i.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463609/6_b46vmp.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463609/7_keslqd.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463611/8_beihk6.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463613/10_qxuj1p.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463611/9_qxtvwx.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463611/11_ckajdv.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774463611/13_ntx0zv.png"
 ];
 
 // ── Mobile Swipeable Gallery ──

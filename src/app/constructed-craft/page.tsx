@@ -11,7 +11,7 @@ const collections = [
     subtitle: "Rosy Revival —",
     description: "bioplastic innovation meets radical self-expression. Wear it, transform it, begin again.",
     link: "/rosy-revival",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372627/Screenshot_2026-04-05_at_12.00.54_AM_pxrb18.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372627/Screenshot_2026-04-05_at_12.00.54_AM_pxrb18.png",
     textColor: "text-white",
     align: "top"
   }

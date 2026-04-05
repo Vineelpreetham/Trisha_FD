@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const rosyPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122969/rosy_revival_1_ulhpbn.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_2_cmd9il.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_3_ntiioj.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_4_zl3iwb.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122972/rosy_revival_5_fzl6jp.png";
+const rosyPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122969/rosy_revival_1_ulhpbn.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122972/rosy_revival_2_cmd9il.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122972/rosy_revival_3_ntiioj.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122972/rosy_revival_4_zl3iwb.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122972/rosy_revival_5_fzl6jp.png";
 
 export default function RosyRevivalCollectionPage() {
   return (

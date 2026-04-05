@@ -115,7 +115,7 @@ export default function RomantiquesPage() {
             >
               <div className="absolute inset-0 bg-[#251D1A] shadow-2xl transform translate-x-3 translate-y-3 rounded-sm" />
               <img 
-                src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638081/romantiques_1_mtpnit.png" 
+                src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638081/romantiques_1_mtpnit.png" 
                 alt="Romantiques Hero" 
                 className="relative w-full h-full object-cover border-[8px] md:border-[16px] border-[#251D1A] shadow-lg z-10 rounded-sm"
               />
@@ -138,7 +138,7 @@ export default function RomantiquesPage() {
           <div className="relative w-full max-w-[1400px] flex justify-center items-center px-4">
              <div className="w-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-transform duration-700 hover:scale-[1.01]">
                <img 
-                 src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638084/romantiques_3_ktmf8x.jpg" 
+                 src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638084/romantiques_3_ktmf8x.jpg" 
                  alt="Mood Board" 
                  className="w-full h-auto object-cover rounded-sm"
                />
@@ -157,7 +157,7 @@ export default function RomantiquesPage() {
             : "w-full md:w-[70%] order-2 md:order-1 relative p-2 bg-[#251D1A] shadow-2xl rotate-[1.5deg]"
           }>
             <img 
-              src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638083/romantiques_2_pthfbt.jpg" 
+              src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638083/romantiques_2_pthfbt.jpg" 
               alt="Colour Swatch Board" 
               className="w-full h-auto object-cover"
             />
@@ -219,7 +219,7 @@ export default function RomantiquesPage() {
           
           <div className="w-full relative shadow-2xl p-2 bg-[#251D1A]">
             <img 
-               src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638083/romantiques_5_upncur.jpg" 
+               src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638083/romantiques_5_upncur.jpg" 
                alt="Silhouette Board" 
                className="w-full h-auto object-cover"
             />
@@ -243,7 +243,7 @@ export default function RomantiquesPage() {
             : "w-full max-w-[1200px] relative shadow-2xl rotate-[-0.5deg] p-2 bg-[#251D1A]"
           }>
             <img 
-               src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1774638082/romantiques_4_wbjszd.jpg" 
+               src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638082/romantiques_4_wbjszd.jpg" 
                alt="Range Board & Flat Sketches" 
                className="w-full h-auto object-cover"
             />

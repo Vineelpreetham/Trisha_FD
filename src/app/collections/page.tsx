@@ -11,7 +11,7 @@ const collections = [
     subtitle: "From concept to collection:-",
     description: "Exploring storytelling through silhouettes, where each collection translates emotion, memory or inspiration into cohesive fashion outcomes.",
     link: "/fashion-narratives",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7330_mjsogj.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7330_mjsogj.jpg",
     textColor: "text-white",
     align: "top"
   },
@@ -20,7 +20,7 @@ const collections = [
     subtitle: "Creative direction & Identity:-",
     description: "Developing distinct fashion identities through branding, visual language & concept-driven creative direction.",
     link: "/bloom",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301407/IMG_7334_cjcfai.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301407/IMG_7334_cjcfai.jpg",
     textColor: "text-white",
     align: "bottom"
   },
@@ -29,7 +29,7 @@ const collections = [
     subtitle: "From Fabric to form:-",
     description: "Focusing on garment construction, detailing and craftsmanship, bringing designs to life through technical precision and material understanding.",
     link: "/regilia",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7331_zurmar.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7331_zurmar.jpg",
     textColor: "text-white",
     align: "bottom"
   },
@@ -38,7 +38,7 @@ const collections = [
     subtitle: "Designing in virtual spaces:-",
     description: "Experimenting with CLO3D and AI driven tools to explore fashion beyond physical boundaries and envision future-ready design processes.",
     link: "/digital-fashion",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301407/IMG_7335_zaxi1c.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301407/IMG_7335_zaxi1c.jpg",
     textColor: "text-white",
     align: "bottom"
   },
@@ -47,7 +47,7 @@ const collections = [
     subtitle: "Design with purpose & Responsibility:-",
     description: "Investigating diversity, cultural awareness, and sustainable materials to create thoughtful, responsible and forward-thinking fashion solutions.",
     link: "/constructed-craft",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7332_cslkhk.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7332_cslkhk.jpg",
     textColor: "text-white",
     align: "bottom"
   }

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const wovenCityPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372687/woven_city_1_krqowo.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372692/woven_city_2_fatwjv.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372684/woven_city_3_ajcstr.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372682/woven_city_4_dcukrl.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372679/woven_city_5_kmfv5f.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372690/woven_city_6_wtygkm.png";
+const wovenCityPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372687/woven_city_1_krqowo.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372692/woven_city_2_fatwjv.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372684/woven_city_3_ajcstr.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372682/woven_city_4_dcukrl.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372679/woven_city_5_kmfv5f.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372690/woven_city_6_wtygkm.png";
 
 export default function WovenCityCollectionPage() {
   return (

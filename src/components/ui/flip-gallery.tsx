@@ -4,19 +4,19 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  { title: 'Look 01', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_1_wc56t3.png' },
-  { title: 'Look 02', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_2_ijqewg.png' },
-  { title: 'Look 03', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_3_fvnj8k.png' },
-  { title: 'Look 04', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122831/chaos_4_ph7mc5.png' },
-  { title: 'Look 05', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122833/chaos_5_fngufv.png' },
-  { title: 'Look 06', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122830/chaos_6_grjmra.png' },
-  { title: 'Look 07', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122830/chaos_7_m2kdxe.png' },
-  { title: 'Look 08', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_8_vpkxie.png' },
-  { title: 'Look 09', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_9_rl0n7z.png' },
-  { title: 'Look 10', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_10_i39imq.png' },
-  { title: 'Look 11', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122832/chaos_11_cjhmf9.png' },
-  { title: 'Look 12', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122833/chaos_12_ipv1qo.png' },
-  { title: 'Look 13', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/v1775122835/chaos_13_czaea9.png' }
+  { title: 'Look 01', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_1_wc56t3.png' },
+  { title: 'Look 02', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_2_ijqewg.png' },
+  { title: 'Look 03', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_3_fvnj8k.png' },
+  { title: 'Look 04', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122831/chaos_4_ph7mc5.png' },
+  { title: 'Look 05', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122833/chaos_5_fngufv.png' },
+  { title: 'Look 06', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122830/chaos_6_grjmra.png' },
+  { title: 'Look 07', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122830/chaos_7_m2kdxe.png' },
+  { title: 'Look 08', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_8_vpkxie.png' },
+  { title: 'Look 09', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_9_rl0n7z.png' },
+  { title: 'Look 10', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_10_i39imq.png' },
+  { title: 'Look 11', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122832/chaos_11_cjhmf9.png' },
+  { title: 'Look 12', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122833/chaos_12_ipv1qo.png' },
+  { title: 'Look 13', url: 'https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775122835/chaos_13_czaea9.png' }
 ];
 
 const FLIP_SPEED = 750;
