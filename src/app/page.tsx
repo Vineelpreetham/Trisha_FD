@@ -66,14 +66,16 @@ export default function Home() {
 {/* ── FOLD 1: TOP HALF IMAGE ── */}
         <section style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, right: "10%", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
-            <img src="/latest-model-cutout.png" alt="model top"
+            <img src="/latest-model-cutout.webp" alt="model top"
+              fetchPriority="high"
+              decoding="async"
               style={{ 
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
                 objectPosition: "top center",   
                 display: "block", 
                 mixBlendMode: "normal",
-                filter: "drop-shadow(0 0 25px rgba(234, 224, 221, 0.85)) drop-shadow(0 10px 40px rgba(100,20,30,0.15)) contrast(1.02) saturate(1.05)" 
+                filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))" 
               }} 
             />
           </div>
@@ -82,7 +84,9 @@ export default function Home() {
         {/* ── FOLD 2: BOTTOM HALF IMAGE ── */}
         <section style={{ position: "absolute", top: "100vh", left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, right: "10%", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
-            <img src="/latest-model-cutout.png" alt="model bottom"
+            <img src="/latest-model-cutout.webp" alt="model bottom"
+              loading="eager"
+              decoding="async"
               style={{ 
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
@@ -90,7 +94,7 @@ export default function Home() {
                 transform: "translateY(-50%)",  
                 display: "block",
                 mixBlendMode: "normal",
-                filter: "drop-shadow(0 0 25px rgba(234, 224, 221, 0.85)) drop-shadow(0 10px 40px rgba(100,20,30,0.15)) contrast(1.02) saturate(1.05)"
+                filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))"
               }} 
             />
           </div>

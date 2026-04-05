@@ -12,7 +12,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
 
 export const metadata: Metadata = {
-  title: "Vogue Editorial Portfolio",
+  title: "Trisha Vanam",
   description: "A premium fashion editorial experience.",
 };
 
@@ -23,10 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${caveat.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/latest-model-cutout.webp" as="image" type="image/webp" />
+      </head>
       <body className="antialiased font-sans bg-background text-foreground overflow-x-clip selection:bg-[#8C7B75] selection:text-white" suppressHydrationWarning>
         <div className="noise-overlay pointer-events-none" />
         <div className="ambient-light pointer-events-none" />
-        
+
         <Providers>
           <ScrollToTop />
           <MagneticCursor />
