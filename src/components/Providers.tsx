@@ -22,16 +22,13 @@ function RouteScrollReset() {
 }
 
 export default function Providers({ children }: { children: ReactNode }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
-
-  // Desktop: smooth lerp scroll. Mobile: native feel with a touch multiplier.
-  const lenisOptions = isMobile
-    ? { lerp: 0.1, duration: 1.2, smoothWheel: true, smoothTouch: false, touchMultiplier: 2 }
-    : { lerp: 0.05, duration: 1.5, smoothWheel: true };
+  // Use a slightly faster lerp and syncTouch for absolute smoothness globally without lag
+  const lenisOptions = { 
+    lerp: 0.08, 
+    duration: 1.2, 
+    smoothWheel: true,
+    syncTouch: true 
+  };
 
   return (
     <ReactLenis root options={lenisOptions}>

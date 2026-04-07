@@ -64,11 +64,7 @@ export default function Home() {
       <div style={{ position: "sticky", bottom: 0, width: "100%", height: "200vh", background: GR, zIndex: 10 }}>
         
         {/* Editorial grain texture overlay for the rich painted gradient vibe */}
-        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
-          style={{ position: "absolute", inset:0, width:"100%", height:"100%", opacity:0.35, mixBlendMode:"overlay", pointerEvents:"none", zIndex:1 }}>
-          <filter id="hero-grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch"/></filter>
-          <rect width="100%" height="100%" filter="url(#hero-grain)"/>
-        </svg>
+        <div className="noise-overlay" style={{ position: "absolute", inset:0, width:"100%", height:"100%", zIndex:1 }}></div>
 
                 {/* Cinematic Background Marquee (Animated) */}
         <div style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 5, pointerEvents: "none", transform: "translateY(-50%)" }}>
@@ -86,9 +82,11 @@ export default function Home() {
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
                 objectPosition: "top center",   
+                transform: "translateZ(0)",
+                willChange: "transform",
                 display: "block", 
                 mixBlendMode: "normal",
-                filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))" 
+                filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))"
               }} 
             />
           </div>
@@ -104,7 +102,8 @@ export default function Home() {
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
                 objectPosition: "top center",
-                transform: "translateY(-50%)",  
+                transform: "translateY(-50%) translateZ(0)",  
+                willChange: "transform",
                 display: "block",
                 mixBlendMode: "normal",
                 filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))"
