@@ -93,7 +93,7 @@ export default function Home() {
         <div className="noise-overlay" style={{ position: "absolute", inset:0, width:"100%", height:"100%", zIndex:1 }}></div>
 
                 {/* Cinematic Background Marquee (Animated) */}
-        <div className="marquee-container" style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 5, pointerEvents: "none", transform: "translateY(-50%)" }}>
+        <div className="marquee-container" style={{ position: "absolute", top: "176vh", left: 0, width: "100%", overflow: "hidden", zIndex: 5, pointerEvents: "none", transform: "translateY(-50%)" }}>
           <div className="marquee-text" style={{ whiteSpace: "nowrap", fontSize: "clamp(4rem, 10vw, 8rem)" }}>
             TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp;
           </div>
@@ -218,7 +218,7 @@ export default function Home() {
       </section>
 
       {/* Identical Smooth Srujana Bottom Wave */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FAFAFA", position: "relative", zIndex: 30 }}>
+      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FAFAFA", position: "relative", zIndex: 30, marginTop: "-2px" }}>
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(60px, 8vw, 150px)", transform: "rotate(180deg)" }}>
            <path d="M0,60 C420,160 1020,-40 1440,60 L1440,120 L0,120 Z" fill="#3d0a10"></path>
         </svg>
