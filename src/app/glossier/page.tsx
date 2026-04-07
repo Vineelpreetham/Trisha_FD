@@ -1,17 +1,27 @@
 "use client";
 
 import Link from "next/link";
-
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const wovenCityPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372687/woven_city_1_krqowo.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372692/woven_city_2_fatwjv.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372684/woven_city_3_ajcstr.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372682/woven_city_4_dcukrl.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372679/woven_city_5_kmfv5f.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372690/woven_city_6_wtygkm.png";
+const glossierAssets = [
+  "https://res.cloudinary.com/dbeh0eisn/video/upload/v1775496811/WhatsApp_Video_2026-04-06_at_10.25.48_AM_xs8qv5.mp4",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496769/WhatsApp_Image_2026-04-06_at_10.25.48_AM_vc7bco.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496767/WhatsApp_Image_2026-04-06_at_10.25.48_AM_1_xuno3a.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496766/WhatsApp_Image_2026-04-06_at_10.25.48_AM_2_eg7vqx.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496779/WhatsApp_Image_2026-04-06_at_10.25.49_AM_efbwwj.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_1_fyaeun.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_2_bxnost.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_2_bxnost.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496773/WhatsApp_Image_2026-04-06_at_10.25.49_AM_4_f2fc8i.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496776/WhatsApp_Image_2026-04-06_at_10.25.49_AM_5_w7jwgj.jpg"
+].join(",");
 
-export default function WovenCityCollectionPage() {
+export default function GlossierPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
-      {/* Background Gradient Blends (Top & Bottom) identical to Collections */}
+      {/* Background Gradient Blends */}
       <div 
         className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
         style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
@@ -27,7 +37,7 @@ export default function WovenCityCollectionPage() {
       </div>
 
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
-        <Link href="/digital-fashion" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+        <Link href="/brand-worlds" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -41,15 +51,14 @@ export default function WovenCityCollectionPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-16"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Woven City</h1>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Glossier</h1>
          </motion.div>
 
-         {/* Image Swiper Component */}
-         <ImageSwiper images={wovenCityPhotos} />
+         {/* Image Swiper Component (Supports mixed media) */}
+         <ImageSwiper images={glossierAssets} />
          
       </div>
 
-      
     </main>
   );
 }

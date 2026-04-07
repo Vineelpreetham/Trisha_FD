@@ -36,8 +36,7 @@ export default function GameOfNightPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-16"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Tha Game of Night</h1>
-           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">After hours allure</p>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">The Game of Night</h1>
          </motion.div>
 
          {/* Image Swiper Component reusing the seamless layout established in Chaos */}

@@ -159,7 +159,7 @@ export default function RegaliaPage() {
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
         <Link
-          href="/collections"
+          href="/digital-fashion"
           className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity"
           style={{ minHeight: "44px", minWidth: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}
         >
@@ -187,7 +187,7 @@ export default function RegaliaPage() {
           }}>
             <h1 style={{
               fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 300,
-              letterSpacing: "0.15em", textTransform: "uppercase", color: "#F2EBE5",
+              letterSpacing: "0.15em", color: "#F2EBE5",
               margin: 0,
             }}>
               Regalia

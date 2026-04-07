@@ -42,7 +42,6 @@ export default function ChaosCollectionPage() {
            className="text-center w-full mb-16"
          >
            <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Chaos</h1>
-           <p className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-gray-400">The 2026 Collection</p>
          </motion.div>
 
          {/* Image Swiper Component */}

@@ -33,7 +33,7 @@ export default function ContactFooter() {
         }
         style={isMobile ? { padding: "2.5rem 1.5rem 5rem" } : undefined}
       >
-        
+
         <div
           className={isMobile
             ? "font-serif tracking-wide font-light lowercase"
@@ -46,7 +46,7 @@ export default function ContactFooter() {
 
         {/* Right: Info Grid */}
         <div className={isMobile ? "flex flex-col gap-8 text-center" : "flex flex-col sm:flex-row gap-16 md:gap-32 text-center sm:text-left"}>
-          
+
           <div className="flex flex-col gap-2">
             <h3 className="font-serif text-xl md:text-[1.35rem] text-[#332A2D]">Location</h3>
             <p className="font-sans font-normal text-[#605055] text-sm md:text-[0.95rem] opacity-80">
@@ -56,8 +56,8 @@ export default function ContactFooter() {
 
           <div className="flex flex-col gap-2">
             <h3 className="font-serif text-xl md:text-[1.35rem] text-[#332A2D]">Contact</h3>
-            <a 
-              href="mailto:trishavanam@gmail.com" 
+            <a
+              href="mailto:trishavanam@gmail.com"
               className="font-sans font-normal text-[#605055] text-sm md:text-[0.95rem] opacity-80 hover:opacity-100 transition-opacity underline underline-offset-[3px] decoration-[0.5px]"
               style={{ minHeight: isMobile ? "44px" : undefined, display: isMobile ? "flex" : undefined, alignItems: isMobile ? "center" : undefined, justifyContent: isMobile ? "center" : undefined }}
             >
@@ -68,7 +68,7 @@ export default function ContactFooter() {
         </div>
 
       </div>
-      
+
     </section>
   );
 }

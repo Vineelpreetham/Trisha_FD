@@ -22,6 +22,14 @@ export default function Home() {
         .hover-scale:hover .view-btn-overlay { background: rgba(0,0,0,0.2) !important; }
         .hover-scale:hover .view-btn-overlay span { opacity: 1 !important; }
 
+        /* Navigation Responsive Logic */
+        @media (max-width: 768px) {
+          .nav-desktop-links { display: none !important; }
+        }
+        @media (min-width: 769px) {
+          .nav-mobile-burger-container { display: none !important; }
+        }
+
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -47,7 +55,9 @@ export default function Home() {
           <Link href="/collections" style={{ textDecoration: "none", color: "inherit" }}>Design Diary</Link>
           <Link href="/contact" style={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
         </div>
-        <MobileNav />
+        <div className="nav-mobile-burger-container">
+          <MobileNav />
+        </div>
       </nav>
 
       {/* CONTINUOUS 200VH GRADIENT WRAPPER to mathematically eliminate any background seam */}
@@ -201,7 +211,7 @@ export default function Home() {
                 </div>
              </Link>
              {/* Card 2: Regalia */}
-             <Link href="/regilia" className="hover-scale" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
+             <Link href="/regalia" className="hover-scale" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
                 <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523651/IMG_4938_2_pjueyo.png" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>

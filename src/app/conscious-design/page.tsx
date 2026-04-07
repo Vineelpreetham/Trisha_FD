@@ -7,44 +7,24 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 
 const collections = [
   {
-    altTitle: "The Chaos Within",
-    subtitle: "Where luxury meets the shoreline —",
-    description: "The Chaos Within fills Loewe's last untouched category, translating the house's sculptural DNA into monochrome swim silhouettes with optical tension, strategic cut-outs, and red that feels less like color and more like emotion.",
-    link: "/chaos",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372626/Screenshot_2026-04-04_at_11.48.17_PM_f5r479.png",
+    altTitle: "Adaptive Fashion",
+    subtitle: "Adaptive Fashion —",
+    description: "Fashion was never meant to have a guest list — yet for too long, it did. Adaptive design rewrites that rule. Clothing that fits the person, not the other way around.",
+    link: "/adaptive-design",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775490189/Screenshot_2026-04-05_at_2.33.34_PM_cgejd5.png",
     textColor: "text-white",
     align: "top"
   },
   {
-    altTitle: "The Game of Time",
-    subtitle: "The Game of Time —",
-    description: "Valentino in sharp tailoring and chess-born geometry. Every silhouette a calculated move, every layer an act of power.",
-    link: "/the-game-of-night",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372625/Screenshot_2026-04-05_at_12.01.04_AM_j5wklt.png",
-    textColor: "text-white",
-    align: "bottom"
-  },
-  {
-    altTitle: "Romantiques",
-    subtitle: "Born to Be Free —",
-    description: "Colours borrowed from candlelight and quiet longing — the secret worlds women built when the outside world wouldn't let them in.",
-    link: "/romantiques",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7328_vgjiux.jpg",
-    textColor: "text-white",
-    align: "top"
-  },
-  {
-    altTitle: "In Bloom",
-    subtitle: "As the Season Turns —",
-    description: "Inspired by Keukenhof Gardens — a three-month journey from soft spring pastels to bold tulip brights and the quiet blush of late-season roses.",
-    link: "/bloom",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7333_dz4lp4.jpg",
+    altTitle: "Rosy Revival",
+    subtitle: "Rosy Revival —",
+    description: "bioplastic innovation meets radical self-expression. Wear it, transform it, begin again.",
+    link: "/rosy-revival",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372627/Screenshot_2026-04-05_at_12.00.54_AM_pxrb18.png",
     textColor: "text-white",
     align: "bottom"
   }
 ];
-
-
 
 const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   <motion.div 
@@ -77,7 +57,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
         </h2>
       </div>
 
-      {/* Clean block below the image */}
+      {/* Clean block below the image - No vertical line for a more minimal editorial look */}
       <div className="relative w-[95%] md:w-[90%] z-30 pointer-events-none text-left mt-10">
         {data.subtitle && <h3 className="italic font-serif text-[#F3D5B5] text-lg md:text-xl xl:text-2xl font-medium tracking-wide mb-4 drop-shadow-sm">{data.subtitle}</h3>}
         {data.description && <p className="font-sans text-[#F2EBE5] text-sm md:text-[15px] font-light leading-[1.8] tracking-wider opacity-90 drop-shadow-sm">{data.description}</p>}
@@ -87,11 +67,11 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
   </motion.div>
 );
 
-export default function FashionNarrativesPage() {
+export default function ConsciousDesignPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
-      {/* Home Page Gradient Blends (Top & Bottom) */}
+      {/* Background Gradients */}
       <div 
         className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
         style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
@@ -101,7 +81,7 @@ export default function FashionNarrativesPage() {
         style={{ background: "linear-gradient(to top, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
       />
 
-      {/* Background subtle dark blobs */}
+      {/* Background blobs */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
@@ -113,7 +93,6 @@ export default function FashionNarrativesPage() {
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
       </nav>
 
-      {/* Increased padding safely bounds the text overhang without clipping */}
       <div className="w-full max-w-[1200px] mx-auto px-8 md:px-20 lg:px-32 mb-32 flex flex-col items-center">
          <motion.div 
            initial={{ opacity: 0, y: 20 }}
@@ -121,10 +100,10 @@ export default function FashionNarrativesPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-20"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Fashion Narratives</h1>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter">Conscious Design</h1>
          </motion.div>
 
-         {/* Staggered Grid Layout - Tighter Gaps for a Seamless Look */}
+         {/* Staggered Grid Layout */}
          <div className="w-full max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 lg:gap-x-24 gap-y-16 lg:gap-y-20 relative px-4 md:px-0 mt-12 lg:mt-24 pb-32">
             
             {collections.map((item, idx) => (
@@ -138,7 +117,6 @@ export default function FashionNarrativesPage() {
 
          </div>
       </div>
-
     </main>
   );
 }

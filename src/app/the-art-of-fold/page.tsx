@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
-
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const wovenCityPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372687/woven_city_1_krqowo.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372692/woven_city_2_fatwjv.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372684/woven_city_3_ajcstr.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372682/woven_city_4_dcukrl.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372679/woven_city_5_kmfv5f.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372690/woven_city_6_wtygkm.png";
+const foldPhotos = [
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775556211/the_art_of_fold_1_grisxx.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775556213/the_art_of_fold_2_hbxgzj.png"
+].join(",");
 
-export default function WovenCityCollectionPage() {
+export default function TheArtOfFoldPage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
-      {/* Background Gradient Blends (Top & Bottom) identical to Collections */}
+      {/* Background Gradient Blends (Top & Bottom) identical to Hubs */}
       <div 
         className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
         style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
@@ -27,7 +29,7 @@ export default function WovenCityCollectionPage() {
       </div>
 
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
-        <Link href="/digital-fashion" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+        <Link href="/constructed-craft" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -41,15 +43,14 @@ export default function WovenCityCollectionPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-16"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Woven City</h1>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">The Art of Fold</h1>
          </motion.div>
 
          {/* Image Swiper Component */}
-         <ImageSwiper images={wovenCityPhotos} />
+         <ImageSwiper images={foldPhotos} />
          
       </div>
 
-      
     </main>
   );
 }

@@ -14,6 +14,15 @@ const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
 export const metadata: Metadata = {
   title: "Trisha Vanam",
   description: "A premium fashion editorial experience.",
+  icons: {
+    icon: [
+      { url: "/favicon-v2.png", type: "image/png" },
+      { url: "/favicon-v2.ico", type: "image/x-icon" },
+    ],
+    apple: [
+      { url: "/favicon-v2.png" },
+    ],
+  },
 };
 
 export default function RootLayout({

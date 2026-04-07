@@ -19,17 +19,17 @@ const collections = [
     altTitle: "Brand Worlds",
     subtitle: "Creative direction & Identity:-",
     description: "Developing distinct fashion identities through branding, visual language & concept-driven creative direction.",
-    link: "/bloom",
+    link: "/brand-worlds",
     image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301407/IMG_7334_cjcfai.jpg",
     textColor: "text-white",
     align: "bottom"
   },
   {
     altTitle: "Conscious Design",
-    subtitle: "From Fabric to form:-",
-    description: "Focusing on garment construction, detailing and craftsmanship, bringing designs to life through technical precision and material understanding.",
-    link: "/regilia",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7331_zurmar.jpg",
+    subtitle: "Innovation with Purpose:-",
+    description: "Adaptive fashion and bioplastic innovation, exploring clothing that fits the person and the planet through radical self-expression.",
+    link: "/conscious-design",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7331_zurmar.jpg",
     textColor: "text-white",
     align: "bottom"
   },
@@ -86,9 +86,9 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
         </h2>
       </div>
 
-      {/* Clean, perfectly separated paragraph block stationed below the image to eliminate broken boundaries */}
-      <div className="relative w-[95%] md:w-[90%] z-30 pointer-events-none text-left mt-8 pl-4 lg:pl-6 border-lborder-[#F3D5B5]/30">
-        {data.subtitle && <h3 className="italic font-serif text-[#F3D5B5] text-lg md:text-xl xl:text-2xl font-medium tracking-wide mb-3 drop-shadow-sm">{data.subtitle}</h3>}
+      {/* Clean block below the image */}
+      <div className="relative w-[95%] md:w-[90%] z-30 pointer-events-none text-left mt-10">
+        {data.subtitle && <h3 className="italic font-serif text-[#F3D5B5] text-lg md:text-xl xl:text-2xl font-medium tracking-wide mb-4 drop-shadow-sm">{data.subtitle}</h3>}
         {data.description && <p className="font-sans text-[#F2EBE5] text-sm md:text-[15px] font-light leading-[1.8] tracking-wider opacity-90 drop-shadow-sm">{data.description}</p>}
       </div>
 

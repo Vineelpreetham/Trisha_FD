@@ -279,12 +279,23 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
                        rotateY(var(--swipe-rotate, 0deg))`
           } as React.CSSProperties}
         >
-          <img
-            src={imageList[originalIndex]}
-            alt={`Chaos Look ${originalIndex + 1}`}
-            className="w-full h-full object-contain select-none pointer-events-none" 
-            draggable={false}
-          />
+          {imageList[originalIndex].toLowerCase().endsWith('.mov') || imageList[originalIndex].toLowerCase().endsWith('.mp4') ? (
+            <video
+              src={imageList[originalIndex]}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain select-none pointer-events-none"
+            />
+          ) : (
+            <img
+              src={imageList[originalIndex]}
+              alt={`Collection Look ${originalIndex + 1}`}
+              className="w-full h-full object-contain select-none pointer-events-none" 
+              draggable={false}
+            />
+          )}
         </article>
       ))}
     </section>
