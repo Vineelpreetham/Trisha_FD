@@ -34,6 +34,19 @@ export default function Home() {
         @media (max-width: 768px) {
           .marquee-container {
             top: 118vh !important; /* Moved down below the model's feet */
+            z-index: 15 !important;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.0) 100%) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01) !important;
+            padding: 1.5rem 0 !important;
+          }
+          .marquee-text {
+            font-size: clamp(3.5rem, 8vw, 6rem) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2) !important;
           }
           .hero-to-work-blend {
             margin-top: -76vh !important; /* Snapped perfectly right after the marquee with no gap */
@@ -80,8 +93,8 @@ export default function Home() {
         <div className="noise-overlay" style={{ position: "absolute", inset:0, width:"100%", height:"100%", zIndex:1 }}></div>
 
                 {/* Cinematic Background Marquee (Animated) */}
-        <div className="marquee-container" style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 15, pointerEvents: "none", transform: "translateY(-50%)", background: "linear-gradient(180deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.0) 100%)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(255, 255, 255, 0.1)", borderBottom: "1px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.01)", padding: "1.5rem 0" }}>
-          <div className="marquee-text" style={{ whiteSpace: "nowrap", fontSize: "clamp(3.5rem, 8vw, 6rem)", color: "rgba(255, 255, 255, 0.9)", textShadow: "0 2px 10px rgba(255, 255, 255, 0.2)" }}>
+        <div className="marquee-container" style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 5, pointerEvents: "none", transform: "translateY(-50%)" }}>
+          <div className="marquee-text" style={{ whiteSpace: "nowrap", fontSize: "clamp(4rem, 10vw, 8rem)" }}>
             TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp;
           </div>
         </div>
@@ -128,7 +141,7 @@ export default function Home() {
         {/* ── UNIFIED SCROLLING TYPOGRAPHY OVERLAY (200vh) ── */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "200vh", zIndex: 20, pointerEvents: "none" }}>
             {/* Top Link Block (Fold 1) */}
-            <div className="about-link-container" style={{ position: "absolute", top: "68vh", right: "8%", left: "auto", pointerEvents: "auto", textAlign: "right" }}>
+            <div className="about-link-container" style={{ position: "absolute", top: "42vh", left: "8%", pointerEvents: "auto" }}>
                 <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(3.5rem, 7vw, 7rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.9 }}>
                     About me
                 </Link>
