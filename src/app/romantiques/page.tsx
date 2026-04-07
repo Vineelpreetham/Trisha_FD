@@ -177,7 +177,7 @@ export default function RomantiquesPage() {
             {/* Custom CSS Pantone Chips */}
             <div className="flex gap-2 sm:gap-4">
                {/* Swatch 1: Sage Green */}
-               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-[-4deg]">
+               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-0 md:rotate-[-4deg]">
                   <div className="w-full flex-1 bg-[#8A9A86]"></div>
                   <div className="h-6 sm:h-8 flex flex-col justify-end pt-1">
                      <span className="text-[5px] sm:text-[7px] font-bold text-black uppercase leading-none">Pantone®</span>
@@ -185,7 +185,7 @@ export default function RomantiquesPage() {
                   </div>
                </div>
                {/* Swatch 2: Dusty Pink */}
-               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-[2deg] translate-y-4 sm:translate-y-8">
+               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-0 md:rotate-[2deg] translate-y-4 sm:translate-y-8">
                   <div className="w-full flex-1 bg-[#D4A5A8]"></div>
                   <div className="h-6 sm:h-8 flex flex-col justify-end pt-1">
                      <span className="text-[5px] sm:text-[7px] font-bold text-black uppercase leading-none">Pantone®</span>
@@ -193,7 +193,7 @@ export default function RomantiquesPage() {
                   </div>
                </div>
                {/* Swatch 3: Beige/Gold */}
-               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-[-1deg]">
+               <div className="w-[28vw] max-w-[6rem] aspect-[3/4] bg-white shadow-lg p-1 sm:p-2 flex flex-col rotate-0 md:rotate-[-1deg]">
                   <div className="w-full flex-1 bg-[#CBB69E]"></div>
                   <div className="h-6 sm:h-8 flex flex-col justify-end pt-1">
                      <span className="text-[5px] sm:text-[7px] font-bold text-black uppercase leading-none">Pantone®</span>

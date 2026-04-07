@@ -78,8 +78,8 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
       </GlowCard>
 
       {/* Category title overlapping the boundary with mix-blend-difference for dual-tone inversion */}
-      <div className="absolute top-16 left-[-10%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
-        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute top-16 left-[4%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
+        <h2 className="font-serif font-black text-5xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
           {data.altTitle.split(' ').map((word: string, i: number) => (
              <span key={i} className="block">{word}</span>
           ))}

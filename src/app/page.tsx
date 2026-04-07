@@ -30,6 +30,19 @@ export default function Home() {
           .nav-mobile-burger-container { display: none !important; }
         }
 
+        /* Mobile Adjustments for Spacing */
+        @media (max-width: 768px) {
+          .marquee-container {
+            top: 118vh !important; /* Moved down below the model's feet */
+          }
+          .hero-to-work-blend {
+            margin-top: -76vh !important; /* Snapped perfectly right after the marquee with no gap */
+          }
+          .about-link-container {
+            display: none !important;
+          }
+        }
+
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -50,12 +63,12 @@ export default function Home() {
       <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff" }}>
         <Link href="/" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha Vanam.</Link>
         <div className="nav-desktop-links" style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
-          <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
-          <Link href="/about" style={{ textDecoration: "none", color: "inherit" }}>About</Link>
-          <Link href="/collections" style={{ textDecoration: "none", color: "inherit" }}>Design Diary</Link>
-          <Link href="/contact" style={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
+          <Link href="/" className="touch-target" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
+          <Link href="/about" className="touch-target" style={{ textDecoration: "none", color: "inherit" }}>About</Link>
+          <Link href="/collections" className="touch-target" style={{ textDecoration: "none", color: "inherit" }}>Design Diary</Link>
+          <Link href="/contact" className="touch-target" style={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
         </div>
-        <div className="nav-mobile-burger-container">
+        <div className="nav-mobile-burger-container touch-target">
           <MobileNav />
         </div>
       </nav>
@@ -67,8 +80,8 @@ export default function Home() {
         <div className="noise-overlay" style={{ position: "absolute", inset:0, width:"100%", height:"100%", zIndex:1 }}></div>
 
                 {/* Cinematic Background Marquee (Animated) */}
-        <div style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 5, pointerEvents: "none", transform: "translateY(-50%)" }}>
-          <div className="marquee-text" style={{ whiteSpace: "nowrap" }}>
+        <div className="marquee-container" style={{ position: "absolute", top: "182vh", left: 0, width: "100%", overflow: "hidden", zIndex: 15, pointerEvents: "none", transform: "translateY(-50%)", background: "linear-gradient(180deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.0) 100%)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(255, 255, 255, 0.1)", borderBottom: "1px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.01)", padding: "1.5rem 0" }}>
+          <div className="marquee-text" style={{ whiteSpace: "nowrap", fontSize: "clamp(3.5rem, 8vw, 6rem)", color: "rgba(255, 255, 255, 0.9)", textShadow: "0 2px 10px rgba(255, 255, 255, 0.2)" }}>
             TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp;
           </div>
         </div>
@@ -115,7 +128,7 @@ export default function Home() {
         {/* ── UNIFIED SCROLLING TYPOGRAPHY OVERLAY (200vh) ── */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "200vh", zIndex: 20, pointerEvents: "none" }}>
             {/* Top Link Block (Fold 1) */}
-            <div style={{ position: "absolute", top: "42vh", left: "8%", pointerEvents: "auto" }}>
+            <div className="about-link-container" style={{ position: "absolute", top: "68vh", right: "8%", left: "auto", pointerEvents: "auto", textAlign: "right" }}>
                 <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(3.5rem, 7vw, 7rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.9 }}>
                     About me
                 </Link>
@@ -126,7 +139,7 @@ export default function Home() {
       </div>
 
       {/* ── SEAMLESS HERO-TO-WORK BLEND ── */}
-      <div style={{ position: "relative", zIndex: 40 }}>
+      <div className="hero-to-work-blend" style={{ position: "relative", zIndex: 40, marginTop: "-12vh" }}>
         {/* Soft gradient fade from hero tones into Work background */}
         <div style={{ width: "100%", height: "clamp(80px, 12vw, 180px)", background: "linear-gradient(to bottom, #FBFBFB 0%, #F8F6F2 100%)", position: "relative" }} />
         
@@ -137,9 +150,9 @@ export default function Home() {
       </div>
 
       {/* Seamless wave curve into Design Philosophy (Pulled up closer to Work) */}
-      <div className="md:-mt-24 lg:-mt-32" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 50 }}>
+      <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 50 }}>
         {/* A trick to keep background solid without breaking the Work layout if they overlap */}
-        <div className="absolute inset-0 bg-[#F8F6F2] -z-10 mt-20 md:mt-32"></div>
+        <div className="absolute inset-0 bg-[#F8F6F2] -z-10 -top-[2px] md:mt-32"></div>
         <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 14vw, 240px)" }}>
            <path d="M0,80 C360,200 1080,-20 1440,80 L1440,200 L0,200 Z" fill="#EB9394" />
         </svg>
@@ -199,27 +212,28 @@ export default function Home() {
       </div>
 
       {/* ── CURATED FRAGMENTS SECTION ── */}
-      <section style={{ background: "#FAFAFA", padding: "2rem 8% 8rem 8%", fontFamily: "Inter, sans-serif" }}>
-          <h3 style={{ fontSize: "1.2rem", letterSpacing: "0.1em", fontWeight: 400, marginBottom: "4rem", color: "#111", textAlign: "left" }}>CURATED FRAGMENTS</h3>
-          <div style={{ display: "flex", gap: "2%", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+      <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif" }}>
+          <h3 style={{ fontSize: "1.2rem", letterSpacing: "0.1em", fontWeight: 400, marginBottom: "4rem", color: "#111", textAlign: "left", padding: "0 8%" }}>CURATED FRAGMENTS</h3>
+          
+          <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
-             <Link href="/romantiques" className="hover-scale" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
+             <Link href="/romantiques" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
                 <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4940_wbkaih.jpg" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
-                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
+                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 2: Regalia */}
-             <Link href="/regalia" className="hover-scale" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
+             <Link href="/regalia" className="hover-scale min-w-[84vw] md:min-w-[350px] snap-center" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
                 <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523651/IMG_4938_2_pjueyo.png" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
-                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
+                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 3: In Bloom */}
-             <Link href="/bloom" className="hover-scale" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
+             <Link href="/bloom" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
                 <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4939_ldibj2.jpg" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
-                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
+                <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
