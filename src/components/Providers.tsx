@@ -24,10 +24,10 @@ function RouteScrollReset() {
 export default function Providers({ children }: { children: ReactNode }) {
   // Use a slightly faster lerp and syncTouch for absolute smoothness globally without lag
   const lenisOptions = { 
-    lerp: 0.08, 
-    duration: 1.2, 
+    lerp: 0.12, 
+    duration: 0.9, 
     smoothWheel: true,
-    syncTouch: true 
+    syncTouch: false 
   };
 
   return (

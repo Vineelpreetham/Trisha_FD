@@ -28,11 +28,11 @@ export default function ChromaticSoulPage() {
       />
 
       {/* Background subtle dark blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu" style={{ willChange: "transform" }}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
         <Link href="/brand-worlds" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>

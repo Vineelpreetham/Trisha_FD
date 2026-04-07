@@ -13,15 +13,15 @@ export default function GameOfNightPage() {
       
       {/* Black gradient on top and bottom */}
       <div 
-        className="fixed top-0 left-0 w-full h-[30vh] lg:h-[40vh] pointer-events-none z-0"
-        style={{ background: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)" }}
+        className="fixed top-0 left-0 w-full h-[30vh] lg:h-[40vh] pointer-events-none z-0 transform-gpu"
+        style={{ background: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)", willChange: "transform" }}
       />
       <div 
-        className="fixed bottom-0 left-0 w-full h-[30vh] lg:h-[40vh] pointer-events-none z-0"
-        style={{ background: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)" }}
+        className="fixed bottom-0 left-0 w-full h-[30vh] lg:h-[40vh] pointer-events-none z-0 transform-gpu"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)", willChange: "transform" }}
       />
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
         <Link href="/fashion-narratives" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>

@@ -73,7 +73,7 @@ export default function Home() {
         }
       ` }} />
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff", transform: "translateZ(0)", willChange: "transform" }}>
         <Link href="/" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha Vanam.</Link>
         <div className="nav-desktop-links" style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
           <Link href="/" className="touch-target" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
@@ -191,6 +191,8 @@ export default function Home() {
              <img 
                 src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372625/WhatsApp_Image_2026-04-05_at_9.45.11_AM_1_srnwmd.jpg" 
                 alt="Creative Vision" 
+                loading="lazy"
+                decoding="async"
                 className="relative w-full max-w-[520px] h-auto object-cover rounded-lg shadow-2xl transition-transform duration-1000 group-hover:scale-[1.02]"
                 style={{ filter: "drop-shadow(0 30px 50px rgba(20,2,5,0.6))" }} 
              />
@@ -231,21 +233,21 @@ export default function Home() {
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
              <Link href="/romantiques?from=home" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4940_wbkaih.jpg" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4940_wbkaih.jpg" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 2: Regalia */}
              <Link href="/regalia?from=home" className="hover-scale min-w-[84vw] md:min-w-[350px] snap-center" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523651/IMG_4938_2_pjueyo.png" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523651/IMG_4938_2_pjueyo.png" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 3: In Bloom */}
              <Link href="/bloom?from=home" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4939_ldibj2.jpg" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4939_ldibj2.jpg" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>

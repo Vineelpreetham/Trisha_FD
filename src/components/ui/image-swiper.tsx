@@ -204,7 +204,7 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
     };
 
     cardStackElement.addEventListener('pointerdown', handlePointerDown);
-    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('pointerup', handleGlobalPointerUp);
 
     return () => {

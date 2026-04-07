@@ -60,7 +60,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-    className="w-full relative"
+    className="w-full relative transform-gpu will-change-transform"
   >
     <Link href={data.link} className="block w-full relative group cursor-pointer transition-all duration-500 hover:-translate-y-2">
       
@@ -73,6 +73,8 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
         <img 
           src={data.image} 
           alt={data.altTitle} 
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 z-0" 
         />
       </GlowCard>
@@ -102,20 +104,20 @@ export default function CollectionsPage() {
       
       {/* Home Page Gradient Blends (Top & Bottom) */}
       <div 
-        className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
-        style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
+        className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0 transform-gpu"
+        style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)", willChange: "transform" }}
       />
       <div 
-        className="absolute bottom-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
-        style={{ background: "linear-gradient(to top, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
+        className="absolute bottom-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0 transform-gpu"
+        style={{ background: "linear-gradient(to top, #FFF0F3 0%, rgba(255,240,243,0) 100%)", willChange: "transform" }}
       />
 
       {/* Background subtle dark blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu" style={{ willChange: "transform" }}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
         <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
@@ -137,18 +139,18 @@ export default function CollectionsPage() {
          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 lg:gap-x-24 gap-y-16 lg:gap-y-24 relative mt-8 lg:mt-12">
             
             {/* Row 1: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50">
+            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50" style={{ contain: "layout style" }}>
                {collections[0] && <CollectionCard data={collections[0]} index={0} />}
             </div>
-            <div className="md:col-span-1 lg:translate-y-24 relative z-20 transition-transform duration-700 hover:z-50 mt-6 md:mt-0">
+            <div className="md:col-span-1 lg:translate-y-24 relative z-20 transition-transform duration-700 hover:z-50 mt-6 md:mt-0" style={{ contain: "layout style" }}>
                {collections[1] && <CollectionCard data={collections[1]} index={1} />}
             </div>
             
             {/* Row 2: 2 Items */}
-            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50 mt-12 md:mt-0">
+            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50 mt-12 md:mt-0" style={{ contain: "layout style" }}>
                {collections[2] && <CollectionCard data={collections[2]} index={2} />}
             </div>
-            <div className="md:col-span-1 lg:translate-y-24 relative z-20 transition-transform duration-700 hover:z-50 mt-6 md:mt-0">
+            <div className="md:col-span-1 lg:translate-y-24 relative z-20 transition-transform duration-700 hover:z-50 mt-6 md:mt-0" style={{ contain: "layout style" }}>
                {collections[3] && <CollectionCard data={collections[3]} index={3} />}
             </div>
             

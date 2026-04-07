@@ -160,10 +160,10 @@ export default function RegaliaPage() {
       {/* Minimal Navigation */}
       <nav
         className={isMobile
-          ? "fixed top-0 left-0 w-full z-50 flex justify-between items-center mix-blend-difference text-white"
-          : "fixed top-0 left-0 w-full z-50 p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white"
+          ? "fixed top-0 left-0 w-full z-50 flex justify-between items-center mix-blend-difference text-white transform-gpu"
+          : "fixed top-0 left-0 w-full z-50 p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white transform-gpu"
         }
-        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
+        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto", willChange: "transform" } : { willChange: "transform" }}
       >
         <Link
           href={backUrl}

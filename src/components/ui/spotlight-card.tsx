@@ -2,6 +2,9 @@
 
 import React, { useEffect, useRef, ReactNode } from 'react';
 
+// Only inject the glow CSS once globally, not per card instance
+let glowStylesInjected = false;
+
 interface GlowCardProps {
   children: ReactNode;
   className?: string;
@@ -9,7 +12,7 @@ interface GlowCardProps {
   size?: 'sm' | 'md' | 'lg';
   width?: string | number;
   height?: string | number;
-  customSize?: boolean; // When true, ignores size prop and uses width/height or className
+  customSize?: boolean;
 }
 
 const glowColorMap = {
@@ -26,6 +29,61 @@ const sizeMap = {
   lg: 'w-80 h-96'
 };
 
+const GLOW_CSS = `
+  [data-glow]::before,
+  [data-glow]::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: calc(var(--border-size) * -1);
+    border: var(--border-size) solid transparent;
+    border-radius: calc(var(--radius) * 1px);
+    background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+    mask-clip: padding-box, border-box;
+    mask-composite: intersect;
+  }
+  
+  [data-glow]::before {
+    background-image: radial-gradient(
+      calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+      calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+      hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+    );
+    filter: brightness(2);
+  }
+  
+  [data-glow]::after {
+    background-image: radial-gradient(
+      calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+      calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+      hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+    );
+  }
+  
+  [data-glow] [data-glow] {
+    position: absolute;
+    inset: 0;
+    will-change: filter;
+    opacity: var(--outer, 1);
+    border-radius: calc(var(--radius) * 1px);
+    border-width: calc(var(--border-size) * 20);
+    filter: blur(calc(var(--border-size) * 10));
+    background: none;
+    pointer-events: none;
+    border: none;
+  }
+  
+  [data-glow] > [data-glow]::before {
+    inset: -10px;
+    border-width: 10px;
+  }
+`;
+
 const GlowCard: React.FC<GlowCardProps> = ({ 
   children, 
   className = '', 
@@ -38,29 +96,74 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const cardRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
+  // Inject glow styles once globally via <head>
   useEffect(() => {
-    const syncPointer = (e: PointerEvent) => {
-      const { clientX: x, clientY: y } = e;
+    if (glowStylesInjected) return;
+    glowStylesInjected = true;
+    const style = document.createElement('style');
+    style.setAttribute('data-glow-styles', '');
+    style.textContent = GLOW_CSS;
+    document.head.appendChild(style);
+  }, []);
+
+  // Only track pointer when it's actually over this card
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    let animationFrameId: number | null = null;
+    let latestX = 0;
+    let latestY = 0;
+    let isOver = false;
+
+    const updatePointer = () => {
+      if (!isOver || !card) return;
+      const rect = card.getBoundingClientRect();
+      const x = latestX - rect.left;
+      const y = latestY - rect.top;
       
-      if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
-      }
+      card.style.setProperty('--x', x.toFixed(0));
+      card.style.setProperty('--xp', (latestX / window.innerWidth).toFixed(2));
+      card.style.setProperty('--y', y.toFixed(0));
+      card.style.setProperty('--yp', (latestY / window.innerHeight).toFixed(2));
+      animationFrameId = requestAnimationFrame(updatePointer);
     };
 
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
+    const onPointerMove = (e: PointerEvent) => {
+      latestX = e.clientX;
+      latestY = e.clientY;
+    };
+
+    const onPointerEnter = (e: PointerEvent) => {
+      isOver = true;
+      latestX = e.clientX;
+      latestY = e.clientY;
+      animationFrameId = requestAnimationFrame(updatePointer);
+      card.addEventListener('pointermove', onPointerMove, { passive: true } as any);
+    };
+
+    const onPointerLeave = () => {
+      isOver = false;
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+      card.removeEventListener('pointermove', onPointerMove);
+    };
+
+    card.addEventListener('pointerenter', onPointerEnter, { passive: true } as any);
+    card.addEventListener('pointerleave', onPointerLeave, { passive: true } as any);
+    
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      card.removeEventListener('pointerenter', onPointerEnter);
+      card.removeEventListener('pointerleave', onPointerLeave);
+      card.removeEventListener('pointermove', onPointerMove);
+    };
   }, []);
 
   const { base, spread } = glowColorMap[glowColor];
 
-  // Determine sizing
   const getSizeClasses = () => {
-    if (customSize) {
-      return ''; // Let className or inline styles handle sizing
-    }
+    if (customSize) return '';
     return sizeMap[size];
   };
 
@@ -86,13 +189,12 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundColor: 'var(--backdrop, transparent)',
       backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
       backgroundPosition: '50% 50%',
-      backgroundAttachment: 'fixed',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative' as const,
       touchAction: 'none' as const,
+      transform: 'translateZ(0)', // GPU layer promotion
     };
 
-    // Add width and height if provided
     if (width !== undefined) {
       baseStyles.width = typeof width === 'number' ? `${width}px` : width;
     }
@@ -103,87 +205,27 @@ const GlowCard: React.FC<GlowCardProps> = ({
     return baseStyles as React.CSSProperties;
   };
 
-  const beforeAfterStyles = `
-    [data-glow]::before,
-    [data-glow]::after {
-      pointer-events: none;
-      content: "";
-      position: absolute;
-      inset: calc(var(--border-size) * -1);
-      border: var(--border-size) solid transparent;
-      border-radius: calc(var(--radius) * 1px);
-      background-attachment: fixed;
-      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-      mask-clip: padding-box, border-box;
-      mask-composite: intersect;
-    }
-    
-    [data-glow]::before {
-      background-image: radial-gradient(
-        calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
-        calc(var(--x, 0) * 1px)
-        calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
-      );
-      filter: brightness(2);
-    }
-    
-    [data-glow]::after {
-      background-image: radial-gradient(
-        calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
-        calc(var(--x, 0) * 1px)
-        calc(var(--y, 0) * 1px),
-        hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
-      );
-    }
-    
-    [data-glow] [data-glow] {
-      position: absolute;
-      inset: 0;
-      will-change: filter;
-      opacity: var(--outer, 1);
-      border-radius: calc(var(--radius) * 1px);
-      border-width: calc(var(--border-size) * 20);
-      filter: blur(calc(var(--border-size) * 10));
-      background: none;
-      pointer-events: none;
-      border: none;
-    }
-    
-    [data-glow] > [data-glow]::before {
-      inset: -10px;
-      border-width: 10px;
-    }
-  `;
-
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
-      <div
-        ref={cardRef}
-        data-glow
-        style={getInlineStyles()}
-        className={`
-          ${getSizeClasses()}
-          ${!customSize ? 'aspect-[3/4]' : ''}
-          rounded-2xl 
-          relative 
-          grid 
-          grid-rows-[1fr_auto] 
-          shadow-[0_1rem_2rem_-1rem_black] 
-          p-4 
-          gap-4 
-          backdrop-blur-[5px]
-          ${className}
-        `}
-      >
-        <div ref={innerRef} data-glow></div>
-        {children}
-      </div>
-    </>
+    <div
+      ref={cardRef}
+      data-glow
+      style={getInlineStyles()}
+      className={`
+        ${getSizeClasses()}
+        ${!customSize ? 'aspect-[3/4]' : ''}
+        rounded-2xl 
+        relative 
+        grid 
+        grid-rows-[1fr_auto] 
+        shadow-[0_1rem_2rem_-1rem_black] 
+        p-4 
+        gap-4 
+        ${className}
+      `}
+    >
+      <div ref={innerRef} data-glow></div>
+      {children}
+    </div>
   );
 };
 

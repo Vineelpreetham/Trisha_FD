@@ -31,7 +31,7 @@ export default function MagneticCursor() {
       mouseY.set(e.clientY);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -61,7 +61,7 @@ export default function MagneticCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[1000] mix-blend-difference bg-white flex items-center justify-center"
+      className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[1000] mix-blend-difference bg-white flex items-center justify-center transform-gpu"
       style={{
         x: cursorX,
         y: cursorY,
