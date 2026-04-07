@@ -22,6 +22,13 @@ const cardItems: iCardItem[] = [
 
 export default function BloomPage() {
   const [isMobile, setIsMobile] = useState(false);
+  const [backUrl, setBackUrl] = useState("/fashion-narratives");
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
+      setBackUrl("/");
+    }
+  }, []);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -50,7 +57,7 @@ export default function BloomPage() {
         }
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
-        <Link href="/fashion-narratives" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
+        <Link href={backUrl} className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>

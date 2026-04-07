@@ -121,6 +121,13 @@ export default function RegaliaPage() {
   const containerRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [backUrl, setBackUrl] = useState("/digital-fashion");
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
+      setBackUrl("/");
+    }
+  }, []);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -159,7 +166,7 @@ export default function RegaliaPage() {
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : undefined}
       >
         <Link
-          href="/digital-fashion"
+          href={backUrl}
           className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity"
           style={{ minHeight: "44px", minWidth: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}
         >
