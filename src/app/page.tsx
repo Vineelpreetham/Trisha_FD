@@ -226,9 +226,9 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* ── CURATED FRAGMENTS SECTION ── */}
+      {/* ── TOP PICKS SECTION ── */}
       <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif" }}>
-          <h3 style={{ fontSize: "1.2rem", letterSpacing: "0.1em", fontWeight: 400, marginBottom: "4rem", color: "#111", textAlign: "left", padding: "0 8%" }}>CURATED FRAGMENTS</h3>
+          <h3 style={{ fontSize: "1.2rem", letterSpacing: "0.1em", fontWeight: 400, marginBottom: "4rem", color: "#111", textAlign: "left", padding: "0 8%" }}>TOP PICKS</h3>
           
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
@@ -255,6 +255,12 @@ export default function Home() {
           </div>
       </section>
       
+      {/* ── SEAMLESS CURVE INTO FOOTER ── */}
+      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#F0EBE1", position: "relative", zIndex: 30, marginTop: "-2px" }}>
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(50px, 6vw, 100px)" }}>
+           <path d="M0,70 C420,-30 1020,170 1440,70 L1440,0 L0,0 Z" fill="#FAFAFA"></path>
+        </svg>
+      </div>
 
     </main>
   );

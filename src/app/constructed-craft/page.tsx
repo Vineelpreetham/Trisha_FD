@@ -17,10 +17,10 @@ const collections = [
   },
   {
     altTitle: "Signature",
-    subtitle: "The Essence of Identity —",
-    description: "A curation of defining silhouettes where heritage craftsmanship meets a modern signature aesthetic. (Assets coming soon)",
-    link: "#",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7332_cslkhk.jpg",
+    subtitle: "Prints · Embroidery · Garments-",
+    description: "Every print drawn, every thread placed, every silhouette conceived from within — a complete creative anthology that exists as proof of one designer's distinct and unapologetic voice.",
+    link: "/signature",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662824/Screenshot_2026-04-08_at_1.49.53_AM_ltaw6i.png",
     textColor: "text-white",
     align: "bottom"
   },

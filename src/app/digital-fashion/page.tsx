@@ -22,7 +22,8 @@ const collections = [
     link: "/lake-side-dreamer",
     image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498654/-44.jpg_cyjnv5.jpg",
     textColor: "text-white",
-    align: "bottom"
+    align: "bottom",
+    imageClass: "scale-[1.20] group-hover:scale-[1.25] origin-[50%_30%]"
   },
   {
     altTitle: "Regalia",
@@ -53,7 +54,7 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
         <img 
           src={data.image} 
           alt={data.altTitle} 
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 z-0" 
+          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 z-0 ${data.imageClass || 'group-hover:scale-105'}`} 
         />
       </GlowCard>
 

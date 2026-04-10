@@ -4,11 +4,15 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 
 export default function ContactFooter() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const bgColor = isHome ? "bg-[#F0EBE1]" : "bg-[#FCFAF8]";
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -23,15 +27,15 @@ export default function ContactFooter() {
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full flex flex-col relative z-20">
+    <section ref={containerRef} className="w-full flex flex-col relative z-50">
 
       {/* Bottom Half: Solid White Bar */}
       <div
         className={isMobile
-          ? "w-full bg-[#FCFAF8] text-[#1A1A1A] flex flex-col justify-between items-center gap-12 safe-bottom"
-          : "w-full bg-[#FCFAF8] text-[#1A1A1A] pt-16 pb-24 px-8 md:px-16 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12 safe-bottom"
+          ? `w-full ${bgColor} text-[#1A1A1A] flex flex-col justify-between items-center gap-12`
+          : `w-full ${bgColor} text-[#1A1A1A] pt-12 pb-16 px-8 md:px-16 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12`
         }
-        style={isMobile ? { padding: "2.5rem 1.5rem 5rem" } : undefined}
+        style={isMobile ? { padding: "2rem 1.5rem 3.5rem" } : undefined}
       >
 
         <div

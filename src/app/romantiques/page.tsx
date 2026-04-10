@@ -238,12 +238,7 @@ export default function RomantiquesPage() {
           ? "reveal-section relative w-full py-12 pb-24 flex flex-col items-end"
           : "reveal-section relative w-full py-16 md:py-20 pb-32 flex flex-col items-end"
         }>
-          <h2 className={isMobile
-            ? "text-3xl font-serif font-black text-white tracking-tight mb-6 text-right"
-            : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-10 text-right"
-          }>
-            Range Board
-          </h2>
+
           
           <div className={isMobile
             ? "w-full relative shadow-2xl p-2 bg-[#251D1A]"

@@ -26,17 +26,25 @@ export default function Contact() {
             Inquiries.
           </h2>
           <p className="mt-8 text-base text-[#1A1A1A]/70 font-sans font-light leading-relaxed max-w-sm">
-            For bespoke commissions, editorial placements, or creative partnerships.
+            Design grows through connection - let’s connect
           </p>
           
           <div className="mt-20 flex flex-col gap-6 text-sm font-sans tracking-[0.2em] uppercase text-[#1A1A1A]">
              <div className="flex flex-col gap-1">
-               <span className="text-[#8C7B75] text-xs">General</span>
-               <a href="mailto:studio@etermite.com" className="hover:text-[#8C7B75] transition-colors w-fit" data-cursor="hover">studio@eternite.com</a>
+               <span className="text-[#8C7B75] text-xs">Email</span>
+               <a href="mailto:trishavanam@gmail.com" className="hover:text-[#8C7B75] transition-colors w-fit lowercase tracking-widest" data-cursor="hover">trishavanam@gmail.com</a>
              </div>
              <div className="flex flex-col gap-1">
-               <span className="text-[#8C7B75] text-xs">Press / Media</span>
-               <a href="mailto:press@etermite.com" className="hover:text-[#8C7B75] transition-colors w-fit" data-cursor="hover">press@eternite.com</a>
+               <span className="text-[#8C7B75] text-xs">Contact Number</span>
+               <a href="tel:+18575066139" className="hover:text-[#8C7B75] transition-colors w-fit" data-cursor="hover">+1 (857) 506-6139</a>
+             </div>
+             <div className="flex flex-col gap-1">
+               <span className="text-[#8C7B75] text-xs">Location</span>
+               <span className="w-fit">New York, NY</span>
+             </div>
+             <div className="flex flex-col gap-1">
+               <span className="text-[#8C7B75] text-xs">LinkedIn</span>
+               <a href="https://www.linkedin.com/in/trisha-vanam-827088324" target="_blank" rel="noopener noreferrer" className="hover:text-[#8C7B75] transition-colors w-fit lowercase tracking-widest" data-cursor="hover">linkedin.com/in/trisha-vanam</a>
              </div>
           </div>
         </div>

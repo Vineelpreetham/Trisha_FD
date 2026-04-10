@@ -11,7 +11,7 @@ export default function MagneticCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 20, stiffness: 100, mass: 0.8 };
+  const springConfig = { damping: 28, stiffness: 250, mass: 0.1 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -67,13 +67,13 @@ export default function MagneticCursor() {
         y: cursorY,
         translateX: "-50%",
         translateY: "-50%",
-        opacity: isVisible ? 1 : 0,
+        willChange: "transform",
       }}
       animate={{
         scale: isHovered ? 1.5 : 1,
-        opacity: isHovered ? 0.3 : 1,
+        opacity: isVisible ? (isHovered ? 0.3 : 1) : 0,
       }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
     />
   );
 }

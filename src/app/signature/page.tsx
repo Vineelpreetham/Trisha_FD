@@ -1,27 +1,28 @@
 "use client";
 
 import Link from "next/link";
+
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const glossierAssets = [
-  "https://res.cloudinary.com/dbeh0eisn/video/upload/v1775496811/WhatsApp_Video_2026-04-06_at_10.25.48_AM_xs8qv5.mp4",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496769/WhatsApp_Image_2026-04-06_at_10.25.48_AM_vc7bco.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496767/WhatsApp_Image_2026-04-06_at_10.25.48_AM_1_xuno3a.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496766/WhatsApp_Image_2026-04-06_at_10.25.48_AM_2_eg7vqx.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496779/WhatsApp_Image_2026-04-06_at_10.25.49_AM_efbwwj.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_1_fyaeun.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_2_bxnost.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496772/WhatsApp_Image_2026-04-06_at_10.25.49_AM_3_sjivai.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496773/WhatsApp_Image_2026-04-06_at_10.25.49_AM_4_f2fc8i.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496776/WhatsApp_Image_2026-04-06_at_10.25.49_AM_5_w7jwgj.jpg"
+const signaturePhotos = [
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662804/my_signature_1_bd9ktn.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662803/my_signature_2_yfjjz4.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662822/my_signature_3_noftyg.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662822/my_signature_4_b21fiy.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662831/my_signature_5_ejrahp.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662823/my_signature_6_cybmct.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662823/my_signature_7_z1ov3k.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662824/my_signature_8_o5s8hl.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662824/my_signature_9_bzkwmz.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662823/my_signature_10_ccuedx.png"
 ].join(",");
 
-export default function GlossierPage() {
+export default function SignaturePage() {
   return (
     <main className="w-full min-h-screen bg-black text-white font-sans relative overflow-x-hidden pt-32 pb-4 selection:bg-[#D4C3B3] selection:text-black">
       
-      {/* Background Gradient Blends */}
+      {/* Background Gradient Blends (Top & Bottom) identical to Collections */}
       <div 
         className="absolute top-0 left-0 w-full h-[45vh] lg:h-[60vh] pointer-events-none z-0"
         style={{ background: "linear-gradient(to bottom, #FFF0F3 0%, rgba(255,240,243,0) 100%)" }}
@@ -37,7 +38,7 @@ export default function GlossierPage() {
       </div>
 
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
-        <Link href="/brand-worlds" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+        <Link href="/constructed-craft" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>
@@ -51,14 +52,15 @@ export default function GlossierPage() {
            transition={{ duration: 1 }}
            className="text-center w-full mb-16"
          >
-           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Glossier</h1>
+           <h1 className="text-5xl md:text-7xl font-serif font-black text-white tracking-tighter mix-blend-difference">Signature</h1>
          </motion.div>
 
-         {/* Image Swiper Component (Supports mixed media) */}
-         <ImageSwiper images={glossierAssets} />
+         {/* Image Swiper Component */}
+         <ImageSwiper images={signaturePhotos} />
          
       </div>
 
+      
     </main>
   );
 }

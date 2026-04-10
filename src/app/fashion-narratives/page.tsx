@@ -16,6 +16,16 @@ const collections = [
     align: "top"
   },
   {
+    altTitle: "Summer is Calling!",
+    subtitle: "What I See Somewhere between a picnic blanket and a daydream-",
+    description: "the smell of somewhere coastal and warm —a collection that moves like a summer afternoon, unhurried, feminine.",
+    link: "/summer-is-calling",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663476/cover_page_swoc7k.png",
+    textColor: "text-white",
+    align: "bottom"
+  },
+  /*
+  {
     altTitle: "The Game of Time",
     subtitle: "The Game of Time —",
     description: "Valentino in sharp tailoring and chess-born geometry. Every silhouette a calculated move, every layer an act of power.",
@@ -24,6 +34,7 @@ const collections = [
     textColor: "text-white",
     align: "bottom"
   },
+  */
   {
     altTitle: "Romantiques",
     subtitle: "Born to Be Free —",
