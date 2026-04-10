@@ -58,14 +58,14 @@ export default function About() {
           {/* Left Side: Meet the designer Text */}
           <div ref={textRef} className="w-full md:w-1/2 flex flex-col items-start text-left z-30 pt-0 md:pt-4">
             <h1 className="text-4xl md:text-[3.5rem] lg:text-[4.2rem] font-serif font-black leading-[0.9] tracking-tighter text-[#1A1A1A] mb-6">
-              Meet the designer
+              Meet the Designer !
             </h1>
             <p 
               className="text-[#1A1A1A] font-sans text-[11px] md:text-[12px] lg:text-[13px] font-medium leading-[1.8] tracking-[0.01em] w-full max-w-[620px] selection:bg-[#DE6B7A] selection:text-white"
             >
-              Hello! I’m a fashion designer, and my expertise is in the domain of luxury couture, bridal, and contemporary casual wear. Having been born and brought up in the culturally rich country of India, my life has been a blend of rich cultural experiences, traditions, and artful craftsmanship, which influences my design perspective. 
+              Fashion, for me, has always been a language — and that foundation lives in every piece I design. Born and raised in the culturally rich landscape of India, my design perspective is shaped by a lifelong immersion in tradition, craftsmanship, and artful living. My work spans luxury couture, bridal, and contemporary casual wear — each piece a meeting point between heritage and the modern silhouette.
               <br/><br/>
-              My passion is to design clothing that makes people feel beautiful, confident, and empowered. I enjoy creating one-of-a-kind, artful pieces that reflect the essence of individuality, elegance, and beauty. My design inspirations are nature’s poetry, where florals, oversized motifs, and narratives of print art inspire my designs. My clothing is a blend of such natural inspirations, which is then combined with contemporary silhouettes, creating artful, expressive, and timeless pieces.
+              I design for the feeling. Clothing that makes people feel beautiful, confident, and entirely themselves. Every piece is drawn from a deep well of inspiration, translated into designs that are expressive, artful, and built to be timeless. One-of-a-kind, always.
             </p>
           </div>
 

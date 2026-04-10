@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
-import MagneticCursor from "@/components/MagneticCursor";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContactFooter from "@/components/ContactFooter";
 import Link from "next/link";
@@ -41,7 +40,6 @@ export default function RootLayout({
 
         <Providers>
           <ScrollToTop />
-          <MagneticCursor />
           {children}
           <ContactFooter />
         </Providers>
