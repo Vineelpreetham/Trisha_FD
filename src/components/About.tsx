@@ -35,81 +35,60 @@ export default function About() {
   }, []);
 
   return (
-    <main className="w-full relative bg-[#2E040A]" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #FFE4E8 25%, #DE6B7A 50%, #B32435 75%, #590B13 90%, #2E040A 100%)" }}>
-      <section ref={containerRef} id="about" className="relative w-full min-h-screen z-10 flex flex-col items-center pt-24 pb-32 overflow-hidden">
+    <main className="w-full relative min-h-screen text-[#1A1A1A] overflow-hidden" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #F5ECEC 30%, #E8C4C4 65%, #C98484 100%)" }}>
+      
+      {/* Top Navbar */}
+      <nav className="w-full pt-10 pb-4 px-8 md:px-16 lg:px-24 flex justify-between items-center z-30 relative">
+        <Link href="/" className="font-serif text-xl tracking-wide text-[#1A1A1A] font-medium">
+          Trisha Vanam.
+        </Link>
+        <div className="hidden md:flex gap-16 font-sans text-xs tracking-[0.25em] uppercase font-medium text-[#555] translate-y-1">
+          <Link href="/" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Home</Link>
+          <Link href="/collections" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Design Diary</Link>
+          <Link href="/contact" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Contact</Link>
+        </div>
+      </nav>
+
+      <section ref={containerRef} id="about" className="relative w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-12 md:py-20 gap-16">
         
-        {/* Absolute Top Left Logo */}
-        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-30">
-          <Link href="/" className="font-serif text-xl tracking-widest text-[#1A1A1A] uppercase font-medium">
-            TRISHA VANAM.
+        {/* Left Side: Meet the designer Text */}
+        <div ref={textRef} className="w-full md:w-[55%] flex flex-col items-start text-left z-30">
+          <h1 className="text-[3.8rem] md:text-[4.8rem] lg:text-[5.5rem] font-serif font-medium leading-[1.05] tracking-wide text-[#111] mb-12">
+            Meet<br/>
+            <span className="italic font-light text-[#7C3034] pr-4">the</span><br/>
+            Designer.
+          </h1>
+          
+          <p className="text-[#333] font-serif text-[18px] md:text-[20px] leading-[1.8] font-light max-w-[620px] selection:bg-[#7C3034] selection:text-white">
+            Fashion, for me, has always been a language — and that foundation lives in every piece I design. Born and raised in the culturally rich landscape of India, my design perspective is shaped by a lifelong immersion in tradition, craftsmanship, and artful living. My work spans luxury couture, bridal, and contemporary casual wear — each piece a meeting point between heritage and the modern silhouette.
+            <br/><br/>
+            I design for the feeling. Clothing that makes people feel beautiful, confident, and entirely themselves. Every piece is drawn from a deep well of inspiration, translated into designs that are expressive, artful, and built to be timeless. One-of-a-kind, always.
+          </p>
+
+          <Link href="/collections" className="group flex items-center gap-6 mt-16 cursor-pointer overflow-hidden pb-4">
+            <div className="w-12 h-[1px] bg-[#7C3034] group-hover:w-20 transition-all duration-500 ease-out"></div>
+            <span className="uppercase tracking-[0.25em] text-[10px] md:text-[11px] font-sans font-medium text-[#7C3034] group-hover:tracking-[0.3em] transition-all duration-500 ease-out">Discover the work</span>
           </Link>
         </div>
 
-        {/* Top Right Horizontal Nav */}
-        <div className="hidden md:flex absolute top-8 right-8 md:top-12 md:right-12 gap-10 lg:gap-16 z-30">
-          <Link href="/" className="text-[#1A1A1A] text-[10px] md:text-[11px] tracking-[0.25em] font-sans font-medium hover:opacity-50 transition-opacity uppercase">Home</Link>
-          <Link href="/collections" className="text-[#1A1A1A] text-[10px] md:text-[11px] tracking-[0.25em] font-sans font-medium hover:opacity-50 transition-opacity uppercase">Design Diary</Link>
-          <Link href="/contact" className="text-[#1A1A1A] text-[10px] md:text-[11px] tracking-[0.25em] font-sans font-medium hover:opacity-50 transition-opacity uppercase">Contact</Link>
-        </div>
-
-        {/* Flex Row Layout Wrapper (Text Left, Image Right) */}
-        <div className="relative w-full max-w-[1250px] flex flex-col md:flex-row items-start justify-center gap-12 md:gap-16 mt-24 md:mt-32 px-8 lg:px-0 mx-auto">
-          
-          {/* Left Side: Meet the designer Text */}
-          <div ref={textRef} className="w-full md:w-1/2 flex flex-col items-start text-left z-30 pt-0 md:pt-4">
-            <h1 className="text-4xl md:text-[3.5rem] lg:text-[4.2rem] font-serif font-black leading-[0.9] tracking-tighter text-[#1A1A1A] mb-6">
-              Meet the Designer !
-            </h1>
-            <p 
-              className="text-[#1A1A1A] font-sans text-[11px] md:text-[12px] lg:text-[13px] font-medium leading-[1.8] tracking-[0.01em] w-full max-w-[620px] selection:bg-[#DE6B7A] selection:text-white"
-            >
-              Fashion, for me, has always been a language — and that foundation lives in every piece I design. Born and raised in the culturally rich landscape of India, my design perspective is shaped by a lifelong immersion in tradition, craftsmanship, and artful living. My work spans luxury couture, bridal, and contemporary casual wear — each piece a meeting point between heritage and the modern silhouette.
-              <br/><br/>
-              I design for the feeling. Clothing that makes people feel beautiful, confident, and entirely themselves. Every piece is drawn from a deep well of inspiration, translated into designs that are expressive, artful, and built to be timeless. One-of-a-kind, always.
-            </p>
-          </div>
-
-          {/* Right Side: Portrait Image */}
-          <div className="w-full md:w-1/2 flex justify-center md:justify-end relative z-20">
-            <div className="w-[85vw] md:w-[480px] lg:w-[560px] relative shadow-[0_20px_40px_rgba(46,4,10,0.1)] overflow-hidden rounded-[5px]" style={{ aspectRatio: "4/5" }}>
-              <img 
-                ref={imageRef}
-                src="https://res.cloudinary.com/dbeh0eisn/image/upload/t_cropped/IMG_6764.JPG_pc0cvw.jpg" 
-                alt="Portrait" 
-                className="w-full h-full object-cover object-center"
-              />
+        {/* Right Side: Portrait Image inside bounding box */}
+        <div className="w-full md:w-[45%] flex justify-center md:justify-end relative z-20">
+          <div className="w-[90vw] md:w-[420px] lg:w-[480px] relative shadow-2xl overflow-hidden rounded-[2px]" style={{ aspectRatio: "4/5" }}>
+            <img 
+              ref={imageRef}
+              src="https://res.cloudinary.com/dbeh0eisn/image/upload/t_cropped/IMG_6764.JPG_pc0cvw.jpg" 
+              alt="Portrait" 
+              className="w-full h-full object-cover object-center transition-transform duration-[2s] ease-out hover:scale-105"
+            />
+            {/* Minimalist dot indicator seen in the screenshot */}
+            <div className="absolute top-6 right-6 w-8 h-8 rounded-full border border-black/10 bg-white/20 backdrop-blur-md flex items-center justify-center pointer-events-none">
+               <div className="w-1.5 h-1.5 rounded-full bg-[#7C3034]"></div>
             </div>
           </div>
-          
         </div>
+        
       </section>
 
-      {/* SEAMLESS TRANSITION - View Projects Footer Section */}
-      <section className="relative w-full min-h-[65vh] flex items-center justify-center">
-        {/* Mask the top of the smoke canvas completely so it fades infinitely into the background gradient above */}
-        <div 
-          className="absolute inset-0 opacity-90" 
-          style={{ 
-            maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)"
-          }}
-        >
-          <SmokeBackground smokeColor="#F28482" backColor="#2E040A" />
-        </div>
-        
-        {/* Soft vignette to blend edges inward into the darkness */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#2E040A_100%)] pointer-events-none" />
-        
-        <div className="relative z-10 flex flex-col items-center gap-10 text-center px-6">
-          <p className="text-[#FFB5A7] font-sans text-xs md:text-sm uppercase tracking-[0.5em] opacity-80">Explore the work</p>
-          <Link href="/collections" className="group relative block cursor-pointer">
-            <h2 className="text-6xl md:text-[7rem] lg:text-[9rem] font-serif font-black text-white leading-none tracking-tighter drop-shadow-2xl transition-transform duration-1000 ease-out group-hover:scale-[1.03]">
-              View Projects
-            </h2>
-            <div className="absolute -bottom-4 md:-bottom-8 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#FFB5A7] transition-all duration-700 ease-out group-hover:w-[45%] opacity-80"></div>
-          </Link>
-        </div>
-      </section>
     </main>
   );
 }

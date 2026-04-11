@@ -24,7 +24,6 @@ const collections = [
     textColor: "text-white",
     align: "bottom"
   },
-  /*
   {
     altTitle: "The Game of Time",
     subtitle: "The Game of Time —",
@@ -34,7 +33,6 @@ const collections = [
     textColor: "text-white",
     align: "bottom"
   },
-  */
   {
     altTitle: "Romantiques",
     subtitle: "Born to Be Free —",
