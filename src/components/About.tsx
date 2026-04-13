@@ -94,7 +94,7 @@ export default function About() {
             WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)"
           }}
         >
-          <SmokeBackground smokeColor="#F28482" bgColor="#2E040A" />
+          <SmokeBackground smokeColor="#F28482" backColor="#2E040A" />
         </div>
         
         {/* Soft vignette to blend edges inward into the darkness */}
