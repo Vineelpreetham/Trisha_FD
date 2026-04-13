@@ -1,10 +1,20 @@
 "use client";
 import Link from "next/link";
-import Work from "@/components/Work";
+import dynamic from "next/dynamic";
 
+// Dynamically import Work (Three.js/R3F moodboard) — prevents ~200KB of 3D code from blocking initial load
+const Work = dynamic(() => import("@/components/Work"), {
+  ssr: false,
+  loading: () => <section className="w-full h-[100vh] bg-[#F8F6F2]" />
+});
 
 import MobileNav from "@/components/MobileNav";
-import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
+
+// Dynamically import WebGL smoke — prevents shader code from blocking initial bundle
+const SmokeBackground = dynamic(
+  () => import("@/components/ui/spooky-smoke-animation").then(mod => ({ default: mod.SmokeBackground })),
+  { ssr: false, loading: () => <div className="w-full h-full" style={{ background: "#F8F6F2" }} /> }
+);
 
 const GR = [
   "linear-gradient(to bottom, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
@@ -112,9 +122,11 @@ export default function Home() {
 {/* ── FOLD 1: TOP HALF IMAGE ── */}
         <section className="hero-model-section" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, margin: "0 auto", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
-            <img src="/latest-model-cutout.webp" alt="model top"
+            <img src="/latest-model-cutout.webp" alt="Trisha Vanam fashion model cutout"
               fetchPriority="high"
               decoding="async"
+              width={820}
+              height={1640}
               style={{ 
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
@@ -132,9 +144,11 @@ export default function Home() {
         {/* ── FOLD 2: BOTTOM HALF IMAGE ── */}
         <section className="hero-model-bottom" style={{ position: "absolute", top: "100vh", left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, margin: "0 auto", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
-            <img src="/latest-model-cutout.webp" alt="model bottom"
+            <img src="/latest-model-cutout.webp" alt="Trisha Vanam fashion model"
               loading="eager"
               decoding="async"
+              width={820}
+              height={1640}
               style={{ 
                 height: "200vh", width: "auto", maxWidth: "150%",
                 objectFit: "contain",             
@@ -212,10 +226,12 @@ export default function Home() {
              <div className="absolute inset-0 bg-white/5 border border-white/20 translate-x-4 translate-y-4 rounded-lg pointer-events-none transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6 hidden md:block max-w-[520px] ml-auto"></div>
              
              <img 
-                src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372625/WhatsApp_Image_2026-04-05_at_9.45.11_AM_1_srnwmd.jpg" 
-                alt="Creative Vision" 
+                src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1775372625/WhatsApp_Image_2026-04-05_at_9.45.11_AM_1_srnwmd.jpg" 
+                alt="Trisha Vanam creative vision portrait" 
                 loading="lazy"
                 decoding="async"
+                width={520}
+                height={650}
                 className="relative w-full max-w-[520px] h-auto object-cover rounded-lg shadow-2xl transition-transform duration-1000 group-hover:scale-[1.02]"
                 style={{ filter: "drop-shadow(0 30px 50px rgba(20,2,5,0.6))" }} 
              />
@@ -256,21 +272,21 @@ export default function Home() {
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
              <Link href="/romantiques?from=home" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4940_wbkaih.jpg" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774523650/IMG_4940_wbkaih.jpg" alt="Romantiques fashion collection" loading="lazy" decoding="async" width={600} height={750} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 2: Regalia */}
              <Link href="/regalia?from=home" className="hover-scale min-w-[84vw] md:min-w-[350px] snap-center" style={{ flex: "1.2 1 350px", position: "relative", aspectRatio: "16/10", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523651/IMG_4938_2_pjueyo.png" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_700/v1774523651/IMG_4938_2_pjueyo.png" alt="Regalia couture collection" loading="lazy" decoding="async" width={700} height={438} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 3: In Bloom */}
              <Link href="/bloom?from=home" className="hover-scale min-w-[84vw] md:min-w-[300px] snap-center" style={{ flex: "1 1 300px", position: "relative", aspectRatio: "4/5", borderRadius: "12px", overflow: "hidden", textDecoration: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.4s ease" }}>
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774523650/IMG_4939_ldibj2.jpg" loading="lazy" decoding="async" style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774523650/IMG_4939_ldibj2.jpg" alt="In Bloom floral fashion collection" loading="lazy" decoding="async" width={600} height={750} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>

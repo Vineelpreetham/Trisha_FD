@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getCldImageUrl } from "@/lib/cloudinary";
-import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 import MobileNav from "@/components/MobileNav";
 
 export default function About() {

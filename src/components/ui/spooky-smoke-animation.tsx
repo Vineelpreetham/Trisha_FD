@@ -168,29 +168,61 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<Renderer | null>(null);
+    const [ready, setReady] = React.useState(false);
 
-    // Effect for initialization and cleanup
+    // Deferred initialization — don't block first paint with WebGL shader compilation
     useEffect(() => {
         if (!canvasRef.current) return;
         const canvas = canvasRef.current;
-        const renderer = new Renderer(canvas, fragmentShaderSource);
-        rendererRef.current = renderer;
-        
-        const handleResize = () => renderer.updateScale();
-        handleResize(); // Initial size
-        window.addEventListener('resize', handleResize);
-        
+
         let animationFrameId: number;
-        const loop = (now: number) => {
-            renderer.render(now);
-            animationFrameId = requestAnimationFrame(loop);
+        let cancelled = false;
+
+        const init = () => {
+            if (cancelled) return;
+            const renderer = new Renderer(canvas, fragmentShaderSource);
+            rendererRef.current = renderer;
+
+            const handleResize = () => renderer.updateScale();
+            handleResize();
+            window.addEventListener('resize', handleResize);
+
+            // Throttle to ~30fps to halve CPU/GPU cost
+            let lastTime = 0;
+            const FRAME_INTERVAL = 1000 / 30;
+            const loop = (now: number) => {
+                if (cancelled) return;
+                if (now - lastTime >= FRAME_INTERVAL) {
+                    renderer.render(now);
+                    lastTime = now;
+                }
+                animationFrameId = requestAnimationFrame(loop);
+            };
+            loop(performance.now());
+            setReady(true);
+
+            // Store cleanup ref
+            (canvas as any).__smokeCleanup = () => {
+                window.removeEventListener('resize', handleResize);
+                cancelAnimationFrame(animationFrameId);
+                renderer.reset();
+            };
         };
-        loop(0);
+
+        // Use requestIdleCallback to defer heavy WebGL init until the browser is idle
+        if ('requestIdleCallback' in window) {
+            (window as any).requestIdleCallback(init, { timeout: 2000 });
+        } else {
+            // Fallback: defer by 1 second
+            setTimeout(init, 1000);
+        }
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            cancelled = true;
             cancelAnimationFrame(animationFrameId);
-            renderer.reset(); 
+            if ((canvas as any).__smokeCleanup) {
+                (canvas as any).__smokeCleanup();
+            }
         };
     }, []);
     
@@ -206,6 +238,10 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
     }, [smokeColor]);
 
     return (
-            <canvas ref={canvasRef} className="w-full h-full block" />
+        <canvas
+            ref={canvasRef}
+            className="w-full h-full block"
+            style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.8s ease-in' }}
+        />
     );
 };

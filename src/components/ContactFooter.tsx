@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
-import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 
 export default function ContactFooter() {
   const containerRef = useRef<HTMLDivElement>(null);
