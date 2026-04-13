@@ -2,13 +2,13 @@
 import React, { useEffect, useRef } from 'react';
 
 // --- FRAGMENT SHADER ---
+// We add a `u_color` uniform to accept a color from our component.
 const fragmentShaderSource = `#version 300 es
 precision highp float;
 out vec4 O;
 uniform float time;
 uniform vec2 resolution;
-uniform vec3 u_color;
-uniform vec3 u_back_color;
+uniform vec3 u_color; // <-- The new color uniform
 
 #define FC gl_FragCoord.xy
 #define R resolution
@@ -20,24 +20,32 @@ float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<5;i++){t+=a*noise(p);p*=mat2(1,-
 
 void main(){
   vec2 uv=(FC-.5*R)/R.y;
-  vec3 col=vec3(1);
+  vec3 bg_color = vec3(0.972, 0.965, 0.949); // #F8F6F2 beige
+  
   uv.x+=.25;
   uv*=vec2(2,1);
 
   float n=fbm(uv*.28-vec2(T*.01,0));
   n=noise(uv*3.+n*2.);
 
-  col.r-=fbm(uv+vec2(0,T*.015)+n);
-  col.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
-  col.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
+  // Calculate purely the "smoke density" noise, starting from 1 (clear) down towards 0 (dense smoke)
+  vec3 noise_intensity = vec3(1.0);
+  noise_intensity.r-=fbm(uv+vec2(0,T*.015)+n);
+  noise_intensity.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
+  noise_intensity.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
 
-  col=mix(col, u_color, dot(col,vec3(.21,.71,.07)));
+  // Directly mix between the pink smoke (u_color) and the beige portfolio background (bg_color).
+  // This completely eliminates any black or gray tones from the render.
+  vec3 col = mix(u_color, bg_color, clamp(noise_intensity, 0.0, 1.0));
 
-  col=mix(u_back_color,col,min(time*.1,1.));
-  col=clamp(col,0.,1.);
+  // Seamless fade in from the beige background so it doesn't pop roughly on load
+  col=mix(bg_color,col,min(time*0.5,1.));
+  
   O=vec4(col,1);
 }`;
 
+// --- RENDERER CLASS ---
+// Updated to handle the new color uniform
 class Renderer {
   private readonly vertexSrc = `#version 300 es
 precision highp float;
@@ -51,8 +59,7 @@ void main(){gl_Position=position;}`;
   private vs: WebGLShader | null = null;
   private fs: WebGLShader | null = null;
   private buffer: WebGLBuffer | null = null;
-  private color: [number, number, number] = [1, 1, 1];
-  private backColor: [number, number, number] = [0.08, 0.08, 0.08];
+  private color: [number, number, number] = [0.5, 0.5, 0.5]; // Default to gray
 
   constructor(canvas: HTMLCanvasElement, fragmentSource: string) {
     this.canvas = canvas;
@@ -61,15 +68,13 @@ void main(){gl_Position=position;}`;
     this.init();
   }
   
-  updateColors(newColor: [number, number, number], newBackColor: [number, number, number]) {
+  updateColor(newColor: [number, number, number]) {
     this.color = newColor;
-    this.backColor = newBackColor;
   }
 
   updateScale() {
-    const dpr = Math.min(1.5, window.devicePixelRatio || 1);
-    const width = this.canvas.offsetWidth || window.innerWidth;
-    const height = this.canvas.offsetHeight || 500;
+    const dpr = Math.min(1.5, Math.max(1, window.devicePixelRatio)); // Cap at 1.5 for performance
+    const { innerWidth: width, innerHeight: height } = window;
     this.canvas.width = width * dpr;
     this.canvas.height = height * dpr;
     this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
@@ -79,6 +84,9 @@ void main(){gl_Position=position;}`;
     const gl = this.gl;
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.error(`Shader compilation error: ${gl.getShaderInfoLog(shader)}`);
+    }
   }
 
   reset() {
@@ -102,6 +110,9 @@ void main(){gl_Position=position;}`;
     gl.attachShader(this.program, this.vs);
     gl.attachShader(this.program, this.fs);
     gl.linkProgram(this.program);
+    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      console.error(`Program linking error: ${gl.getProgramInfoLog(this.program)}`);
+    }
   }
 
   private init() {
@@ -113,22 +124,30 @@ void main(){gl_Position=position;}`;
     const position = gl.getAttribLocation(program, "position");
     gl.enableVertexAttribArray(position);
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    Object.assign(program, {
+      resolution: gl.getUniformLocation(program, "resolution"),
+      time: gl.getUniformLocation(program, "time"),
+      u_color: gl.getUniformLocation(program, "u_color"), // Get location of our new uniform
+    });
   }
 
   render(now = 0) {
     const { gl, program, buffer, canvas } = this;
     if (!program || !gl.isProgram(program)) return;
+    gl.clearColor(0.972, 0.965, 0.949, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(program);
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.uniform2f(gl.getUniformLocation(program, "resolution"), canvas.width, canvas.height);
-    gl.uniform1f(gl.getUniformLocation(program, "time"), now * 2.2e-3);
-    gl.uniform3fv(gl.getUniformLocation(program, "u_color"), this.color);
-    gl.uniform3fv(gl.getUniformLocation(program, "u_back_color"), this.backColor);
+    gl.uniform2f((program as any).resolution, canvas.width, canvas.height);
+    gl.uniform1f((program as any).time, now * 1e-3);
+    gl.uniform3fv((program as any).u_color, this.color); // Send the color to the shader
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 }
 
-const hexToRgb = (hex: string): [number, number, number] => {
+// --- UTILITY FUNCTION ---
+// Converts a hex color string like "#FF5733" to an array of floats [r, g, b]
+const hexToRgb = (hex: string): [number, number, number] | null => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? [
@@ -136,50 +155,57 @@ const hexToRgb = (hex: string): [number, number, number] => {
           parseInt(result[2], 16) / 255,
           parseInt(result[3], 16) / 255,
         ]
-      : [1, 1, 1];
+      : null;
 };
 
-interface SmokeBackgroundProps {
-  smokeColor?: string;
-  backColor?: string;
+// --- REACT COMPONENT ---
+export interface SmokeBackgroundProps {
+  smokeColor?: string; // e.g., "#8A2BE2"
 }
 
 export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({ 
-  smokeColor = "#FFFFFF",
-  backColor = "#BE1020"
+  smokeColor = "#808080" // Default to gray
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<Renderer | null>(null);
 
+    // Effect for initialization and cleanup
     useEffect(() => {
         if (!canvasRef.current) return;
-        const renderer = new Renderer(canvasRef.current, fragmentShaderSource);
+        const canvas = canvasRef.current;
+        const renderer = new Renderer(canvas, fragmentShaderSource);
         rendererRef.current = renderer;
         
         const handleResize = () => renderer.updateScale();
-        handleResize();
+        handleResize(); // Initial size
         window.addEventListener('resize', handleResize);
         
-        let animId: number;
+        let animationFrameId: number;
         const loop = (now: number) => {
             renderer.render(now);
-            animId = requestAnimationFrame(loop);
+            animationFrameId = requestAnimationFrame(loop);
         };
-        loop(performance.now());
+        loop(0);
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animId);
+            cancelAnimationFrame(animationFrameId);
             renderer.reset(); 
         };
     }, []);
     
+    // Effect to update color when the prop changes
     useEffect(() => {
-        if (rendererRef.current) {
-            rendererRef.current.updateColors(hexToRgb(smokeColor), hexToRgb(backColor));
+        const renderer = rendererRef.current;
+        if (renderer) {
+            const rgbColor = hexToRgb(smokeColor);
+            if (rgbColor) {
+                renderer.updateColor(rgbColor);
+            }
         }
-    }, [smokeColor, backColor]);
+    }, [smokeColor]);
 
-    return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />;
+    return (
+            <canvas ref={canvasRef} className="w-full h-full block" />
+    );
 };
-

@@ -4,6 +4,7 @@ import Work from "@/components/Work";
 
 
 import MobileNav from "@/components/MobileNav";
+import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 
 const GR = [
   "linear-gradient(to bottom, #FFC4D1 0%, #FFF0F3 15%, rgba(251, 251, 251, 0) 25%)",
@@ -51,7 +52,7 @@ export default function Home() {
           .hero-to-work-blend {
             margin-top: -76vh !important; /* Snapped perfectly right after the marquee with no gap */
           }
-          .about-link-container {
+          .about-link-overlay {
             display: none !important;
           }
         }
@@ -66,7 +67,7 @@ export default function Home() {
           animation: marquee 40s linear infinite;
           font-family: "Playfair Display", serif;
           font-size: 10vw;
-          color: rgba(30, 4, 6, 0.12);
+          color: rgba(255, 255, 255, 0.4);
           text-transform: uppercase;
           letter-spacing: 0.1em;
           font-weight: 300;
@@ -86,10 +87,14 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* CONTINUOUS 200VH GRADIENT WRAPPER to mathematically eliminate any background seam */}
-      <div style={{ position: "sticky", bottom: 0, width: "100%", height: "200vh", background: GR, zIndex: 10 }}>
+      {/* CONTINUOUS GRADIENT WRAPPER */}
+      <div className="hero-200vh-wrapper" style={{ position: "sticky", bottom: 0, width: "100%", height: "200vh", background: "#F8F6F2", zIndex: 10 }}>
         
-        {/* Editorial grain texture overlay for the rich painted gradient vibe */}
+        {/* Desktop: WebGL smoke | Mobile: static gradient */}
+        <div className="smoke-container" style={{ position: "sticky", top: 0, width: "100%", height: "100vh", zIndex: 0, overflow: "hidden" }}>
+          <SmokeBackground smokeColor="#e8b4b4" />
+        </div>
+        <div className="mobile-hero-gradient" style={{ display: "none" }} />
         <div className="noise-overlay" style={{ position: "absolute", inset:0, width:"100%", height:"100%", zIndex:1 }}></div>
 
                 {/* Cinematic Background Marquee (Animated) */}
@@ -98,9 +103,15 @@ export default function Home() {
             TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp; TRISHA VANAM &nbsp;&nbsp;
           </div>
         </div>
+
+        {/* ── GIANT TYPOGRAPHY BACKGROUND ── */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", overflow: "hidden", zIndex: 5, pointerEvents: "none" }}>
+          <h1 className="giant-trisha-text" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(12rem, 28vw, 60rem)", lineHeight: 0.8, whiteSpace: "nowrap", color: "rgba(255, 255, 255, 0.45)", textTransform: "uppercase", letterSpacing: "0.02em" }}>TRISHA</h1>
+        </div>
+
 {/* ── FOLD 1: TOP HALF IMAGE ── */}
-        <section style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: 0, right: "10%", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
+        <section className="hero-model-section" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, margin: "0 auto", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
             <img src="/latest-model-cutout.webp" alt="model top"
               fetchPriority="high"
               decoding="async"
@@ -119,8 +130,8 @@ export default function Home() {
         </section>
 
         {/* ── FOLD 2: BOTTOM HALF IMAGE ── */}
-        <section style={{ position: "absolute", top: "100vh", left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: 0, right: "10%", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
+        <section className="hero-model-bottom" style={{ position: "absolute", top: "100vh", left: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, margin: "0 auto", width: W, height: "100%", zIndex: 10, display: "flex", justifyContent: "center", pointerEvents: "none", overflow: "visible" }}>
             <img src="/latest-model-cutout.webp" alt="model bottom"
               loading="eager"
               decoding="async"
@@ -140,22 +151,34 @@ export default function Home() {
 
         {/* ── UNIFIED SCROLLING TYPOGRAPHY OVERLAY (200vh) ── */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "200vh", zIndex: 20, pointerEvents: "none" }}>
-            {/* Top Link Block (Fold 1) */}
-            <div className="about-link-container" style={{ position: "absolute", top: "42vh", left: "8%", pointerEvents: "auto" }}>
-                <Link href="/about" className="hover-scale" style={{ display: "inline-block", fontSize: "clamp(3.5rem, 7vw, 7rem)", fontFamily: "Playfair Display, serif", fontStyle: "italic", color: "#1E0406", textDecoration: "none", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.9 }}>
-                    About me
+            {/* Stylish About Me — sits on top of the TR in TRISHA */}
+            <div className="about-link-overlay" style={{ position: "absolute", top: "50vh", left: "22%", pointerEvents: "auto", transform: "translate(-50%, -50%)" }}>
+                <Link href="/about" className="group" style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", textDecoration: "none", gap: "0.4rem" }}>
+                    <span style={{ fontSize: "clamp(0.55rem, 0.7vw, 0.75rem)", letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(30, 4, 6, 0.5)", fontFamily: "Inter, sans-serif", fontWeight: 500, transition: "color 0.4s ease" }} className="group-hover:!text-[#1E0406]">
+                        Discover
+                    </span>
+                    <span style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400, color: "#1E0406", lineHeight: 0.95, letterSpacing: "-0.02em", transition: "transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease", opacity: 0.85 }} className="group-hover:translate-x-2 group-hover:!opacity-100">
+                        About me
+                    </span>
+                    <div style={{ width: "3rem", height: "1px", background: "rgba(30, 4, 6, 0.25)", marginTop: "0.3rem", transition: "width 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), background 0.4s ease" }} className="group-hover:!w-[6rem] group-hover:!bg-[#1E0406]" />
                 </Link>
             </div>
-            {/* Giant Center Typography removed per user request */}
 
         </div>
       </div>
 
-      {/* ── SEAMLESS HERO-TO-WORK BLEND ── */}
-      <div className="hero-to-work-blend" style={{ position: "relative", zIndex: 40, marginTop: "-12vh" }}>
-        {/* Soft gradient fade from hero tones into Work background */}
-        <div style={{ width: "100%", height: "clamp(80px, 12vw, 180px)", background: "linear-gradient(to bottom, #FBFBFB 0%, #F8F6F2 100%)", position: "relative" }} />
-        
+      {/* ── SEAMLESS CURVED HERO-TO-WORK BLEND ── */}
+      <div className="hero-to-work-blend" style={{
+        position: "relative", zIndex: 40, marginTop: "-20vh", background: "#FFFFFF",
+        WebkitMaskImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 200' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 C360,200 1080,-20 1440,80 L1440,200 L0,200 Z' fill='black'/%3E%3C/svg%3E"), linear-gradient(black, black)`,
+        WebkitMaskSize: "100% clamp(100px, 14vw, 240px), 100% calc(100% - clamp(100px, 14vw, 240px) + 2px)",
+        WebkitMaskPosition: "top center, bottom center",
+        WebkitMaskRepeat: "no-repeat",
+        maskImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 200' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 C360,200 1080,-20 1440,80 L1440,200 L0,200 Z' fill='black'/%3E%3C/svg%3E"), linear-gradient(black, black)`,
+        maskSize: "100% clamp(100px, 14vw, 240px), 100% calc(100% - clamp(100px, 14vw, 240px) + 2px)",
+        maskPosition: "top center, bottom center",
+        maskRepeat: "no-repeat"
+      }}>
         {/* Work section seamlessly continues */}
         <div style={{ position: "relative", zIndex: 40 }}>
            <Work />

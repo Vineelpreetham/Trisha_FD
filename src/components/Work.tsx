@@ -4,28 +4,28 @@ import Link from "next/link";
 import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Image as DreiImage, Preload } from "@react-three/drei";
+import { Image as DreiImage } from "@react-three/drei";
 import { useScroll, useSpring, motion, useTransform, MotionValue } from "framer-motion";
 import { getCldUploadUrl } from "@/lib/cloudinary";
 
 const IMAGES = [
-  getCldUploadUrl("IMG_6428_hwtohb.png", { width: 800 }),
-  getCldUploadUrl("IMG_6430_tz56ya.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6424_gmrwui.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6422_ztzuzs.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6417_kta8nm.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6414_ovfxye.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6428_hwtohb.png", { width: 600 }),
+  getCldUploadUrl("IMG_6430_tz56ya.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6424_gmrwui.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6422_ztzuzs.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6417_kta8nm.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6414_ovfxye.jpg", { width: 600 }),
   // Re-using a few to fill the 12-image moodboard grid! 
-  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 800 }),
-  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 800 }),
+  getCldUploadUrl("IMG_6432_ou6nog.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 600 }),
+  getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 600 }),
   // ── 3 NEW IMAGES ADDED TO FILL GAPS ──
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638002/in_bloom_6_asc7dq.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638003/in_bloom_7_ji0kbd.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774638082/romantiques_4_wbjszd.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638002/in_bloom_6_asc7dq.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638003/in_bloom_7_ji0kbd.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638082/romantiques_4_wbjszd.jpg",
 ];
 
 const PRNG = (seed: number) => {
@@ -154,7 +154,6 @@ function PortfolioScene({ scrollProgress }: { scrollProgress: MotionValue<number
           scrollProgress={scrollProgress}
         />
       ))}
-      <Preload all />
     </group>
   );
 }
@@ -189,6 +188,7 @@ function DesktopWork() {
           camera={{ position: [0, 0, 5], fov: 45 }}
           dpr={[1, 1.5]}
           gl={{ antialias: true, alpha: true }}
+          performance={{ min: 0.5 }}
           className="absolute inset-0 z-0 pointer-events-none"
         >
           <PortfolioScene scrollProgress={sceneProgress} />

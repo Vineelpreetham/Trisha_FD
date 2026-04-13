@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getCldImageUrl } from "@/lib/cloudinary";
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
+import MobileNav from "@/components/MobileNav";
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +39,7 @@ export default function About() {
     <main className="w-full relative min-h-screen text-[#1A1A1A] overflow-hidden" style={{ background: "linear-gradient(to bottom, #FFFFFF 0%, #F5ECEC 30%, #E8C4C4 65%, #C98484 100%)" }}>
       
       {/* Top Navbar */}
-      <nav className="w-full pt-10 pb-4 px-8 md:px-16 lg:px-24 flex justify-between items-center z-30 relative">
+      <nav className="w-full pt-10 pb-4 px-6 md:px-16 lg:px-24 flex justify-between items-center z-30 relative">
         <Link href="/" className="font-serif text-xl tracking-wide text-[#1A1A1A] font-medium">
           Trisha Vanam.
         </Link>
@@ -46,6 +47,9 @@ export default function About() {
           <Link href="/" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Home</Link>
           <Link href="/collections" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Design Diary</Link>
           <Link href="/contact" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Contact</Link>
+        </div>
+        <div className="md:hidden">
+          <MobileNav />
         </div>
       </nav>
 

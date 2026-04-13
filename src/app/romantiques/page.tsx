@@ -85,7 +85,7 @@ export default function RomantiquesPage() {
         }
         style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto", willChange: "transform" } : { willChange: "transform" }}
       >
-        <Link href={backUrl} className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
+        <Link href={backUrl} className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>

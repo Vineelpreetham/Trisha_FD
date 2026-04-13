@@ -57,9 +57,9 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
         />
       </GlowCard>
 
-      {/* Category title overlapping the boundary with mix-blend-difference for dual-tone inversion */}
-      <div className="absolute top-16 left-[-10%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
-        <h2 className="font-serif font-black text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+      {/* Category title — safe positioning to prevent mobile overflow */}
+      <div className="absolute top-16 left-[4%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
+        <h2 className="font-serif font-black text-3xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
           {data.altTitle.split(' ').map((word: string, i: number) => (
              <span key={i} className="block">{word}</span>
           ))}
@@ -95,8 +95,8 @@ export default function BrandWorldsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
-        <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+      <nav className="fixed top-0 left-0 w-full z-50 p-4 md:p-10 safe-top flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
+        <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>

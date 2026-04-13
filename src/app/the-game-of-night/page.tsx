@@ -21,8 +21,8 @@ export default function GameOfNightPage() {
         style={{ background: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)", willChange: "transform" }}
       />
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
-        <Link href="/fashion-narratives" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">
+      <nav className="fixed top-0 left-0 w-full z-50 p-4 md:p-10 safe-top flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
+        <Link href="/fashion-narratives" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
         <div className="font-serif text-sm tracking-widest hidden md:block">TRISHA VANAM.</div>

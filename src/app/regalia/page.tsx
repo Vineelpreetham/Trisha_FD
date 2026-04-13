@@ -167,7 +167,7 @@ export default function RegaliaPage() {
       >
         <Link
           href={backUrl}
-          className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity"
+          className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target"
           style={{ minHeight: "44px", minWidth: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}
         >
           ← Back

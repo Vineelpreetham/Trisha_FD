@@ -9,22 +9,124 @@ interface ImageSwiperProps {
   className?: string;
 }
 
+// ── MOBILE SNAP-SCROLL GALLERY ──
+function MobileSnapGallery({ imageList }: { imageList: string[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const scrollLeft = el.scrollLeft;
+      const itemWidth = el.offsetWidth * 0.84;
+      const index = Math.round(scrollLeft / itemWidth);
+      setActiveIndex(Math.min(index, imageList.length - 1));
+    };
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, [imageList.length]);
+
+  return (
+    <div style={{ width: '100%', position: 'relative' }}>
+      {/* Counter */}
+      <div style={{
+        textAlign: 'center', marginBottom: '1rem',
+        fontFamily: 'Inter, sans-serif', fontSize: '0.7rem',
+        letterSpacing: '0.3em', color: 'rgba(255,255,255,0.35)',
+        textTransform: 'uppercase',
+      }}>
+        <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>{String(activeIndex + 1).padStart(2, '0')}</span>
+        <span> / {String(imageList.length).padStart(2, '0')}</span>
+      </div>
+
+      {/* Horizontal snap-scroll */}
+      <div
+        ref={scrollRef}
+        className="hide-scrollbar"
+        style={{
+          display: 'flex', gap: '0.75rem', overflowX: 'auto', overflowY: 'hidden',
+          scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch',
+          paddingLeft: '5vw', paddingRight: '5vw', paddingBottom: '1rem',
+        }}
+      >
+        {imageList.map((url, i) => (
+          <div
+            key={i}
+            style={{
+              flex: '0 0 84vw', scrollSnapAlign: 'center',
+              borderRadius: '16px', overflow: 'hidden',
+              background: 'rgba(0,0,0,0.3)',
+              boxShadow: i === activeIndex
+                ? '0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)'
+                : '0 8px 24px rgba(0,0,0,0.2)',
+              transform: i === activeIndex ? 'scale(1)' : 'scale(0.94)',
+              opacity: i === activeIndex ? 1 : 0.5,
+              transition: 'transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease',
+            }}
+          >
+            {url.toLowerCase().endsWith('.mov') || url.toLowerCase().endsWith('.mp4') ? (
+              <video src={url} autoPlay loop muted playsInline
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+              />
+            ) : (
+              <img
+                src={url}
+                alt={`Look ${i + 1}`}
+                loading={i < 3 ? 'eager' : 'lazy'}
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', marginTop: '0.75rem' }}>
+        {imageList.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: i === activeIndex ? '20px' : '5px',
+              height: '5px',
+              borderRadius: '3px',
+              background: i === activeIndex ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.2)',
+              transition: 'all 0.3s ease',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export const ImageSwiper: React.FC<ImageSwiperProps> = ({
   images,
-  cardWidth = 1050,  // Increased width
-  cardHeight = 600, // Increased height
+  cardWidth = 1050,
+  cardHeight = 600,
   className = ''
 }) => {
   const cardStackRef = useRef<HTMLDivElement>(null);
   const isSwiping = useRef(false);
+  const isAnimating = useRef(false);
   const startX = useRef(0);
+  const startY = useRef(0);
   const currentX = useRef(0);
+  const swipeDirection = useRef<'horizontal' | 'vertical' | null>(null);
   const animationFrameId = useRef<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const imageList = images.split(/,(?=https:\/\/)/).map(img => img.trim()).filter(img => img);
   const [cardOrder, setCardOrder] = useState<number[]>(() =>
     Array.from({ length: imageList.length }, (_, i) => i)
   );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const getDurationFromCSS = useCallback((
     variableName: string,
@@ -72,8 +174,11 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
   }, [getActiveCard]);
 
   const triggerSwipe = useCallback((direction: 'left' | 'right') => {
+    if (isAnimating.current) return; // Block rapid double-swipe
     const card = getActiveCard();
     if (!card) return;
+
+    isAnimating.current = true;
 
     if (animationFrameId.current) {
       cancelAnimationFrame(animationFrameId.current);
@@ -97,24 +202,31 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
         if (prev.length === 0) return [];
         return [...prev.slice(1), prev[0]];
       });
+      // Unlock after reorder + a small buffer for the next transition to settle
+      setTimeout(() => { isAnimating.current = false; }, 50);
     }, duration);
 
   }, [getActiveCard, getDurationFromCSS, cardWidth]);
 
   // Handle actual back swipe (Arrow Left)
   const triggerSwipeBack = useCallback(() => {
+    if (isAnimating.current) return; // Block rapid double-swipe
+    isAnimating.current = true;
     // Quick pop from the back to the front
     setCardOrder(prev => {
       if (prev.length === 0) return [];
       return [prev[prev.length - 1], ...prev.slice(0, prev.length - 1)];
     });
+    setTimeout(() => { isAnimating.current = false; }, 100);
   }, []);
 
-  const handleStart = useCallback((clientX: number) => {
-    if (isSwiping.current) return;
+  const handleStart = useCallback((clientX: number, clientY: number) => {
+    if (isSwiping.current || isAnimating.current) return;
     isSwiping.current = true;
     startX.current = clientX;
+    startY.current = clientY;
     currentX.current = clientX;
+    swipeDirection.current = null;
     const card = getActiveCard();
     if (card) card.style.transition = 'none';
   }, [getActiveCard]);
@@ -126,6 +238,13 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
       animationFrameId.current = null;
     }
 
+    // If direction was vertical, just bail cleanly
+    if (swipeDirection.current === 'vertical') {
+      isSwiping.current = false;
+      swipeDirection.current = null;
+      return;
+    }
+
     const deltaX = currentX.current - startX.current;
     const threshold = 150; // Increased threshold required to trigger swipe
     const duration = getDurationFromCSS('--card-swap-duration', cardStackRef.current) || 600;
@@ -135,7 +254,7 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
       card.style.transition = `transform ${duration}ms cubic-bezier(0.25, 0.1, 0.25, 1), opacity ${duration}ms ease`;
 
       if (Math.abs(deltaX) > threshold) {
-        const direction = Math.sign(deltaX) > 0 ? 'right' : 'left';
+        isAnimating.current = true;
         // Elegant visual throw
         card.style.setProperty('--swipe-x', `${Math.sign(deltaX) * (cardWidth * 1.1)}px`);
         card.style.setProperty('--swipe-rotate', `${Math.sign(deltaX) * 2}deg`);
@@ -146,6 +265,7 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
             if (prev.length === 0) return [];
             return [...prev.slice(1), prev[0]];
           });
+          setTimeout(() => { isAnimating.current = false; }, 50);
         }, duration);
       } else {
         applySwipeStyles(0); // Snap back to center
@@ -154,12 +274,27 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
     }
 
     isSwiping.current = false;
+    swipeDirection.current = null;
     startX.current = 0;
+    startY.current = 0;
     currentX.current = 0;
   }, [getDurationFromCSS, getActiveCard, applySwipeStyles, cardWidth, updatePositions]);
 
-  const handleMove = useCallback((clientX: number) => {
+  const handleMove = useCallback((clientX: number, clientY: number) => {
     if (!isSwiping.current) return;
+
+    // Detect swipe direction on first significant movement
+    if (swipeDirection.current === null) {
+      const dx = Math.abs(clientX - startX.current);
+      const dy = Math.abs(clientY - startY.current);
+      if (dx > 8 || dy > 8) {
+        swipeDirection.current = dy > dx ? 'vertical' : 'horizontal';
+      }
+    }
+
+    // If scrolling vertically, let the page handle it
+    if (swipeDirection.current === 'vertical') return;
+
     if (animationFrameId.current) {
       cancelAnimationFrame(animationFrameId.current);
     }
@@ -192,10 +327,10 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
       if (e.pointerType === 'mouse') {
         e.preventDefault();
       }
-      handleStart(e.clientX);
+      handleStart(e.clientX, e.clientY);
     };
     const handlePointerMove = (e: PointerEvent) => {
-      handleMove(e.clientX);
+      handleMove(e.clientX, e.clientY);
     };
 
     // Global pointerup to catch release outside element
@@ -224,13 +359,19 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
     });
   }, [cardOrder, updatePositions]);
 
+  // ── MOBILE: render snap-scroll gallery ──
+  if (isMobile) {
+    return <MobileSnapGallery imageList={imageList} />;
+  }
+
+  // ── DESKTOP: render card-stack swiper ──
   return (
     <section
       className={`relative flex items-center justify-center select-none z-10 w-full max-w-[100vw] ${className}`}
       ref={cardStackRef}
       style={{
         height: cardHeight + 40,
-        touchAction: 'none',
+        touchAction: 'pan-y', // Allow vertical scroll pass-through on mobile
         transformStyle: 'preserve-3d',
         '--card-perspective': '1600px',
         '--card-z-offset': '10px', // closer stack
@@ -294,6 +435,7 @@ export const ImageSwiper: React.FC<ImageSwiperProps> = ({
               alt={`Collection Look ${originalIndex + 1}`}
               className="w-full h-full object-contain select-none pointer-events-none" 
               draggable={false}
+              loading={displayIndex < 3 ? 'eager' : 'lazy'}
             />
           )}
         </article>
