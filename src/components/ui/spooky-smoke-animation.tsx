@@ -183,6 +183,10 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
             const renderer = new Renderer(canvas, fragmentShaderSource);
             rendererRef.current = renderer;
 
+            // Apply prop color immediately — the color useEffect won't re-run since prop hasn't changed
+            const rgbColor = hexToRgb(smokeColor);
+            if (rgbColor) renderer.updateColor(rgbColor);
+
             const handleResize = () => renderer.updateScale();
             handleResize();
             window.addEventListener('resize', handleResize);
