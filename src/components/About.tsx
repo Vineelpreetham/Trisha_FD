@@ -54,7 +54,7 @@ export default function About() {
 
       <section ref={containerRef} id="about" className="relative w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-12 md:py-20 gap-16">
         
-        {/* Left Side: Meet the designer Text */}
+        {/* Left Side: The Designer's Story Text */}
         <div ref={textRef} className="w-full md:w-[55%] flex flex-col items-start text-left z-30">
           <h1 className="text-[3.8rem] md:text-[4.8rem] lg:text-[5.5rem] font-serif font-medium leading-[1.05] tracking-wide text-[#111] mb-12">
             The<br/>
