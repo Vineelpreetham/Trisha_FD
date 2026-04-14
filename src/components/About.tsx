@@ -57,9 +57,9 @@ export default function About() {
         {/* Left Side: Meet the designer Text */}
         <div ref={textRef} className="w-full md:w-[55%] flex flex-col items-start text-left z-30">
           <h1 className="text-[3.8rem] md:text-[4.8rem] lg:text-[5.5rem] font-serif font-medium leading-[1.05] tracking-wide text-[#111] mb-12">
-            Meet<br/>
-            <span className="italic font-light text-[#7C3034] pr-4">the</span><br/>
-            Designer.
+            The<br/>
+            <span className="italic font-light text-[#7C3034] pr-4">Designer&apos;s</span><br/>
+            Story.
           </h1>
           
           <p className="text-[#333] font-serif text-[18px] md:text-[20px] leading-[1.8] font-light max-w-[620px] selection:bg-[#7C3034] selection:text-white">
