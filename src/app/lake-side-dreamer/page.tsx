@@ -29,11 +29,11 @@ export default function LakesideDreamerPage() {
       />
 
       {/* Background subtle dark blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu" style={{ willChange: "transform" }}>
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
-      <nav className="fixed top-0 left-0 w-full z-50 p-4 md:p-10 safe-top flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
+      <nav className="fixed top-0 left-0 w-full z-50 p-4 md:p-10 safe-top flex justify-between items-center mix-blend-difference text-white pointer-events-none transform-gpu">
         <Link href="/digital-fashion" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
@@ -76,7 +76,7 @@ export default function LakesideDreamerPage() {
       </div>
 
       {/* Seamless Scroll Indicator (Fixed at bottom right) */}
-      <div className="fixed bottom-6 md:bottom-12 right-6 md:right-10 z-50 flex flex-col items-center gap-4 pointer-events-none mix-blend-difference text-white transform-gpu" style={{ willChange: "transform" }}>
+      <div className="fixed bottom-6 md:bottom-12 right-6 md:right-10 z-50 flex flex-col items-center gap-4 pointer-events-none mix-blend-difference text-white transform-gpu">
         <span 
           className="font-sans text-[9px] md:text-[10px] uppercase tracking-[0.3em] rotate-90 origin-right translate-y-[-30px] md:translate-y-[-40px] opacity-70 whitespace-nowrap"
         >

@@ -55,7 +55,7 @@ export default function BloomPage() {
           ? "fixed top-0 left-0 w-full z-50 flex justify-between items-center mix-blend-difference text-white transform-gpu"
           : "fixed top-0 left-0 w-full z-50 pt-12 pb-6 px-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white transform-gpu"
         }
-        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto", willChange: "transform" } : { willChange: "transform" }}
+        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : {}}
       >
         <Link href={backUrl} className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back
@@ -68,7 +68,7 @@ export default function BloomPage() {
       </div>
 
       {/* Seamless Scroll Indicator (Fixed at bottom right) */}
-      <div className="fixed bottom-6 md:bottom-12 right-6 md:right-10 z-50 flex flex-col items-center gap-4 pointer-events-none mix-blend-difference text-white transform-gpu" style={{ willChange: "transform" }}>
+      <div className="fixed bottom-6 md:bottom-12 right-6 md:right-10 z-50 flex flex-col items-center gap-4 pointer-events-none mix-blend-difference text-white transform-gpu">
         <span 
           className="font-sans text-[9px] md:text-[10px] uppercase tracking-[0.3em] rotate-90 origin-right translate-y-[-30px] md:translate-y-[-40px] opacity-70 whitespace-nowrap"
         >

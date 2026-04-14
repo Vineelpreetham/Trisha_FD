@@ -84,7 +84,7 @@ export default function Home() {
         }
       ` }} />
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff", transform: "translateZ(0)", willChange: "transform" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff", transform: "translateZ(0)" }}>
         <Link href="/" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", fontWeight: 400, textDecoration: "none", color: "inherit", letterSpacing: "-0.02em" }}>Trisha Vanam.</Link>
         <div className="nav-desktop-links" style={{ display: "flex", gap: "clamp(1.5rem, 3.5vw, 4rem)", fontSize: "clamp(0.7rem, 0.9vw, 0.9rem)", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 500 }}>
           <Link href="/" className="touch-target transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
@@ -132,7 +132,6 @@ export default function Home() {
                 objectFit: "contain",             
                 objectPosition: "top center",   
                 transform: "translateZ(0)",
-                willChange: "transform",
                 display: "block", 
                 mixBlendMode: "normal",
                 filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))"
@@ -154,7 +153,6 @@ export default function Home() {
                 objectFit: "contain",             
                 objectPosition: "top center",
                 transform: "translateY(-50%) translateZ(0)",  
-                willChange: "transform",
                 display: "block",
                 mixBlendMode: "normal",
                 filter: "drop-shadow(0 10px 30px rgba(100,20,30,0.12))"

@@ -22,11 +22,17 @@ function RouteScrollReset() {
 }
 
 export default function Providers({ children }: { children: ReactNode }) {
-  // Use a slightly faster lerp and syncTouch for absolute smoothness globally without lag
+  // On desktop Safari, smoothWheel fights the browser's own scroll physics and causes jank.
+  // Detect Safari and let it handle the wheel event natively — native Safari scroll is buttery.
+  // Chrome/Firefox are unaffected and keep Lenis smooth scroll as before.
+  const isSafari =
+    typeof navigator !== "undefined" &&
+    /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   const lenisOptions = { 
     lerp: 0.12, 
     duration: 0.9, 
-    smoothWheel: true,
+    smoothWheel: !isSafari,  // disable on Safari — native is faster
     syncTouch: false 
   };
 

@@ -73,7 +73,7 @@ export default function RomantiquesPage() {
       />
 
       {/* Background subtle dark blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu" style={{ willChange: "transform" }}>
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 transform-gpu">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2E2722_0%,_transparent_75%)]"></div>
       </div>
 
@@ -83,7 +83,7 @@ export default function RomantiquesPage() {
           ? "fixed top-0 left-0 w-full z-50 flex justify-between items-center mix-blend-difference text-white transform-gpu"
           : "fixed top-0 left-0 w-full z-50 pt-12 pb-6 px-6 md:p-10 flex justify-between items-center pointer-events-none mix-blend-difference text-white transform-gpu"
         }
-        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto", willChange: "transform" } : { willChange: "transform" }}
+        style={isMobile ? { padding: "env(safe-area-inset-top, 0.75rem) 1.25rem 0.75rem", pointerEvents: "auto" } : {}}
       >
         <Link href={backUrl} className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target" style={{ minHeight: "44px", display: "flex", alignItems: "center", padding: "0.5rem" }}>
           ← Back

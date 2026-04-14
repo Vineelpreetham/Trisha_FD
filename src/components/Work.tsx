@@ -186,8 +186,8 @@ function DesktopWork() {
         {/* 3D WebGL Canvas for Desktop */}
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
-          dpr={[1, 1.5]}
-          gl={{ antialias: true, alpha: true }}
+          dpr={[1, 1.2]}
+          gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
           performance={{ min: 0.5 }}
           className="absolute inset-0 z-0 pointer-events-none"
         >

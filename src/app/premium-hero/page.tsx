@@ -83,7 +83,7 @@ export default function PremiumHeroPage() {
     <main className="bg-[#050505] text-[#FAFAFA] min-h-[300vh] selection:bg-[#EBEBEB] selection:text-[#050505] overflow-x-hidden font-sans">
       
       {/* MINIMALIST METALLIC NAV */}
-      <nav className="fixed top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center z-50 text-white mix-blend-difference pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
+      <nav className="fixed top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center z-50 text-white mix-blend-difference pointer-events-none transform-gpu">
          <Link href="/" className="font-medium tracking-tighter text-xl md:text-2xl hover:opacity-60 transition-opacity pointer-events-auto">
             Design.
          </Link>

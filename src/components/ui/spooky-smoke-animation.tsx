@@ -16,7 +16,7 @@ uniform vec3 u_color; // <-- The new color uniform
 
 float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(rnd(i),rnd(i+vec2(1,0)),u.x),mix(rnd(i+vec2(0,1)),rnd(i+1.),u.x),u.y);}
-float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<5;i++){t+=a*noise(p);p*=mat2(1,-1.2,.2,1.2)*2.;a*=.5;}return t;}
+float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<4;i++){t+=a*noise(p);p*=mat2(1,-1.2,.2,1.2)*2.;a*=.5;}return t;}
 
 void main(){
   vec2 uv=(FC-.5*R)/R.y;
@@ -63,7 +63,9 @@ void main(){gl_Position=position;}`;
 
   constructor(canvas: HTMLCanvasElement, fragmentSource: string) {
     this.canvas = canvas;
-    this.gl = canvas.getContext("webgl2") as WebGL2RenderingContext;
+    const ctx = canvas.getContext("webgl2");
+    if (!ctx) throw new Error("WebGL2 not supported");
+    this.gl = ctx;
     this.setup(fragmentSource);
     this.init();
   }
@@ -180,10 +182,16 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
 
         const init = () => {
             if (cancelled) return;
-            const renderer = new Renderer(canvas, fragmentShaderSource);
+            let renderer: Renderer;
+            try {
+                renderer = new Renderer(canvas, fragmentShaderSource);
+            } catch {
+                // WebGL2 unavailable (e.g. old Safari) — silently bail, CSS fallback shows
+                return;
+            }
             rendererRef.current = renderer;
 
-            // Apply prop color immediately — the color useEffect won't re-run since prop hasn't changed
+            // Apply prop color immediately
             const rgbColor = hexToRgb(smokeColor);
             if (rgbColor) renderer.updateColor(rgbColor);
 
@@ -191,9 +199,9 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
             handleResize();
             window.addEventListener('resize', handleResize);
 
-            // Throttle to ~30fps to halve CPU/GPU cost
+            // Throttle to ~20fps — further halves GPU cost, imperceptible on slow smoke
             let lastTime = 0;
-            const FRAME_INTERVAL = 1000 / 30;
+            const FRAME_INTERVAL = 1000 / 20;
             const loop = (now: number) => {
                 if (cancelled) return;
                 if (now - lastTime >= FRAME_INTERVAL) {
