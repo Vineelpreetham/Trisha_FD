@@ -15,11 +15,10 @@ export const metadata: Metadata = {
   description: "A premium fashion editorial experience.",
   icons: {
     icon: [
-      { url: "/favicon-v2.png", type: "image/png" },
-      { url: "/favicon-v2.ico", type: "image/x-icon" },
+      { url: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png", type: "image/png" },
     ],
     apple: [
-      { url: "/favicon-v2.png" },
+      { url: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" },
     ],
   },
 };

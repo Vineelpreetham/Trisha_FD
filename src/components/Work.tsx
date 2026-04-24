@@ -159,7 +159,7 @@ function PortfolioScene({ scrollProgress }: { scrollProgress: MotionValue<number
 }
 
 // ─── DESKTOP MOODBOARD ───
-function DesktopWork() {
+function DesktopWork({ isMobile }: { isMobile?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -183,9 +183,9 @@ function DesktopWork() {
     <section ref={containerRef} id="work" className="relative w-full h-[400vh] bg-[#F8F6F2]">
       <div className="sticky top-0 w-full h-screen overflow-hidden">
         
-        {/* 3D WebGL Canvas for Desktop */}
+        {/* 3D WebGL Canvas for Desktop & Mobile */}
         <Canvas
-          camera={{ position: [0, 0, 5], fov: 45 }}
+          camera={{ position: [0, 0, 5], fov: isMobile ? 75 : 45 }}
           dpr={[1, 1.2]}
           gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
           performance={{ min: 0.5 }}
@@ -221,108 +221,6 @@ function DesktopWork() {
   );
 }
 
-// ─── MOBILE PORTFOLIO — Single Image CTA ───
-// Replaces DOM scatter & 3D WebGL with an editorial image button.
-// Only rendered on screens < 768px (via the isMobile check in Work).
-function MobileWork() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Subtle parallax scale on scroll
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 1.02]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.2, 0.5], [40, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0.2, 0.45], [0, 1]);
-
-  return (
-    <section
-      ref={sectionRef}
-      id="work-mobile"
-      className="relative w-full bg-[#F8F6F2]"
-      style={{ padding: "3rem 1.25rem 4rem" }}
-    >
-      {/* Section title */}
-      <motion.div
-        className="text-center mb-8"
-        style={{ opacity: imageOpacity }}
-      >
-        <h3
-          className="font-serif text-[#1A1A1A] leading-[1.1]"
-          style={{ fontSize: "2rem", fontWeight: 400, letterSpacing: "-0.02em", opacity: 0.85 }}
-        >
-          Portfolio.
-        </h3>
-      </motion.div>
-
-      {/* Hero image as a link button */}
-      <Link href="/collections" className="block">
-        <motion.div
-          className="relative w-full overflow-hidden rounded-lg"
-          style={{
-            scale: imageScale,
-            opacity: imageOpacity,
-            boxShadow: "0 20px 60px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.1)",
-          }}
-        >
-          <img
-            src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1774372610/2_u6w78z.png"
-            alt="View Design"
-            className="w-full h-auto object-cover"
-            style={{ display: "block" }}
-          />
-
-          {/* Gradient overlay with CTA text */}
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-end"
-            style={{
-              background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 35%, transparent 60%)",
-              padding: "2rem 1.5rem",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "0.7rem",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase" as const,
-                color: "#fff",
-                fontWeight: 500,
-                fontFamily: "Inter, sans-serif",
-                padding: "0.7rem 2rem",
-                border: "1px solid rgba(255,255,255,0.6)",
-                borderRadius: "50px",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                background: "rgba(255,255,255,0.1)",
-              }}
-            >
-              View Design
-            </span>
-          </div>
-        </motion.div>
-      </Link>
-
-      {/* Subtle descriptive text below */}
-      <motion.p
-        className="text-center font-sans"
-        style={{
-          y: textY,
-          opacity: textOpacity,
-          fontSize: "0.8rem",
-          color: "#8C7B75",
-          letterSpacing: "0.15em",
-          textTransform: "uppercase" as const,
-          marginTop: "1.5rem",
-          fontWeight: 400,
-        }}
-      >
-        Tap to explore
-      </motion.p>
-    </section>
-  );
-}
 
 // ─── INIT ───
 export default function Work() {
@@ -337,5 +235,6 @@ export default function Work() {
 
   if (isMobile === null) return null;
 
-  return isMobile ? <MobileWork /> : <DesktopWork />;
+  // Render the sticky 3D moodboard for both mobile and desktop
+  return <DesktopWork isMobile={isMobile} />;
 }

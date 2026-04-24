@@ -4,14 +4,11 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { usePathname } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ContactFooter() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  const bgColor = isHome ? "bg-[#F0EBE1]" : "bg-[#FCFAF8]";
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -21,58 +18,105 @@ export default function ContactFooter() {
   }, []);
 
   useEffect(() => {
-    // Footer is now constantly visible. Opacity removed to prevent text from disappearing.
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Subtle parallax or reveal effect could be added here
+    if (containerRef.current) {
+      gsap.fromTo(
+        containerRef.current.querySelectorAll('.footer-reveal'),
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          }
+        }
+      );
+    }
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full flex flex-col relative z-50">
-
-      {/* Bottom Half: Solid White Bar */}
-      <div
-        className={isMobile
-          ? `w-full ${bgColor} text-[#1A1A1A] flex flex-col justify-between items-center gap-12`
-          : `w-full ${bgColor} text-[#1A1A1A] pt-12 pb-16 px-8 md:px-16 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12`
-        }
-        style={isMobile ? { padding: "2rem 1.5rem 3.5rem" } : undefined}
-      >
-
-        <div
-          className={isMobile
-            ? "font-serif tracking-wide font-light lowercase"
-            : "font-serif text-3xl md:text-4xl lg:text-[2.5rem] text-[#605055] tracking-wide font-light lowercase whitespace-nowrap"
-          }
-          style={isMobile ? { fontSize: "1.4rem", color: "#605055", textAlign: "center" } : undefined}
-        >
-          trishavanam.com
-        </div>
-
-        {/* Right: Info Grid */}
-        <div className={isMobile ? "flex flex-col gap-8 text-center" : "flex flex-col sm:flex-row gap-16 md:gap-32 text-center sm:text-left"}>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-serif text-xl md:text-[1.35rem] text-[#332A2D]">Location</h3>
-            <p className="font-sans font-normal text-[#605055] text-sm md:text-[0.95rem] opacity-80">
-              New York, NY
+    <footer ref={containerRef} className="w-full bg-[#1A1818] text-[#FDF8F7] relative z-50 overflow-hidden pt-20 pb-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
+        
+        {/* Top Section: CTA & Links */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 lg:gap-8 mb-24 lg:mb-32">
+          
+          {/* Left: Email CTA */}
+          <div className="footer-reveal flex flex-col max-w-md w-full">
+            <h3 className="font-serif text-2xl md:text-3xl text-[#E8CE73] mb-4 tracking-wide">
+              Contact
+            </h3>
+            <p className="font-sans font-light text-sm md:text-base text-white/60 leading-relaxed mb-8">
+              For collaborations, editorial features, or private commissions.
             </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-serif text-xl md:text-[1.35rem] text-[#332A2D]">Contact</h3>
-            <a
-              href="mailto:trishavanam@gmail.com"
-              className="font-sans font-normal text-[#605055] text-sm md:text-[0.95rem] opacity-80 hover:opacity-100 transition-opacity underline underline-offset-[3px] decoration-[0.5px]"
-              style={{ minHeight: isMobile ? "44px" : undefined, display: isMobile ? "flex" : undefined, alignItems: isMobile ? "center" : undefined, justifyContent: isMobile ? "center" : undefined }}
+            <a 
+              href="mailto:trishavanam@gmail.com" 
+              className="font-serif text-xl md:text-3xl hover:text-[#E8CE73] hover:italic transition-all duration-300 flex items-center gap-4 w-fit"
             >
               trishavanam@gmail.com
+              <ArrowUpRight size={24} strokeWidth={1.5} className="text-[#E8CE73]" />
             </a>
           </div>
 
+          {/* Right: Grid of Links */}
+          <div className="footer-reveal flex flex-wrap md:flex-nowrap gap-12 md:gap-24 lg:gap-32 w-full lg:w-auto">
+            {/* Social */}
+            <div className="flex flex-col gap-6 min-w-[120px]">
+              <h4 className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-white/40">Social</h4>
+              <div className="flex flex-col gap-3 font-serif text-lg tracking-wide">
+                <a href="#" className="hover:text-[#E8CE73] hover:italic transition-all duration-300">
+                  Instagram
+                </a>
+                <a href="#" className="hover:text-[#E8CE73] hover:italic transition-all duration-300">
+                  Pinterest
+                </a>
+                <a href="#" className="hover:text-[#E8CE73] hover:italic transition-all duration-300">
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div className="flex flex-col gap-6 min-w-[120px]">
+              <h4 className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-white/40">Based In</h4>
+              <div className="flex flex-col gap-3 font-serif text-lg tracking-wide text-white/80">
+                <span>New York, NY</span>
+                <span className="text-white/40 text-sm mt-1">Available Worldwide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Huge Typography */}
+        <div className="footer-reveal w-full flex justify-center mb-12 overflow-hidden py-4">
+          <h1 
+            className="font-serif leading-none tracking-tighter text-[#E8CE73]/90"
+            style={{ fontSize: "clamp(2.5rem, 9vw, 12rem)", margin: 0, whiteSpace: "nowrap" }}
+          >
+            TRISHA <span className="italic font-light">VANAM</span>
+          </h1>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="footer-reveal flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10 font-sans text-[0.65rem] tracking-[0.15em] uppercase text-white/30">
+          <p>© {new Date().getFullYear()} Trisha Vanam. All Rights Reserved.</p>
+          <div className="flex gap-8">
+            <Link href="#" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white/80 transition-colors">Terms of Service</Link>
+          </div>
         </div>
 
       </div>
-
-    </section>
+      
+      {/* Ambient background glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-[#71171d] blur-[150px] opacity-20 pointer-events-none rounded-full" />
+    </footer>
   );
 }
 

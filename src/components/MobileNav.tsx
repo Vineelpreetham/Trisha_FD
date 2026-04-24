@@ -63,9 +63,14 @@ export default function MobileNav() {
                 <Link
                   href="/"
                   onClick={() => setIsOpen(false)}
-                  className="font-serif text-xl tracking-widest"
+                  className="inline-block"
                 >
-                  TRISHA VANAM.
+                  <img 
+                    src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
+                    alt="Trisha Vanam Logo" 
+                    className="h-16 md:h-20 w-auto" 
+                    style={{ filter: "invert(1)", mixBlendMode: "screen" }}
+                  />
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
