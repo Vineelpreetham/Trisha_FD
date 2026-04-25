@@ -16,106 +16,109 @@ export default function Contact() {
     }, 2000);
   };
   return (
-    <section id="contact" className="relative w-full min-h-screen flex items-center justify-center bg-[#080203] overflow-hidden z-10 py-20 px-6">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neutral-600/10 rounded-full blur-[100px] pointer-events-none" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-20">
+    <section id="contact" className="relative w-full py-40 bg-[#F8F6F2] overflow-hidden z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-20">
         
-        <div className="flex flex-col justify-center">
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter mix-blend-difference mb-8 text-white">
-            Initiate <br/> Dialogue.
+        {/* Header Block */}
+        <div className="flex flex-col justify-start">
+          <h2 className="text-6xl md:text-[8vw] font-serif text-[#1A1A1A] leading-[0.85] tracking-tight">
+            Inquiries.
           </h2>
-          <p className="text-xl text-neutral-400 font-light max-w-sm mb-12">
-            For inquiries regarding bespoke digital couture, collaborations, and futuristic tailoring.
+          <p className="mt-8 text-base text-[#1A1A1A]/70 font-sans font-light leading-relaxed max-w-sm">
+            For bespoke commissions, editorial placements, or creative partnerships.
           </p>
-          <div className="flex flex-col gap-4 text-sm font-mono tracking-widest uppercase text-neutral-500">
-            <a href="mailto:trishavanam@gmail.com" className="hover:text-white transition-colors" data-cursor="hover">trishavanam@gmail.com</a>
-            <a href="tel:+18575066139" className="hover:text-white transition-colors" data-cursor="hover">+1 (857) 506-6139</a>
-            <p>New York /// NY</p>
+          
+          <div className="mt-20 flex flex-col gap-6 text-sm font-sans tracking-[0.2em] uppercase text-[#1A1A1A]">
+             <div className="flex flex-col gap-1">
+               <span className="text-[#8C7B75] text-xs">Email</span>
+               <a href="mailto:trishavanam@gmail.com" className="hover:text-[#8C7B75] transition-colors w-fit lowercase tracking-widest text-lg" data-cursor="hover">trishavanam@gmail.com</a>
+             </div>
+             <div className="flex flex-col gap-1">
+               <span className="text-[#8C7B75] text-xs">Contact Number</span>
+               <a href="tel:+18575066139" className="hover:text-[#8C7B75] transition-colors w-fit text-lg" data-cursor="hover">+1 (857) 506-6139</a>
+             </div>
+             <div className="flex flex-col gap-1 mt-4">
+               <span className="text-[#8C7B75] text-xs">Location</span>
+               <span className="text-lg">New York, NY</span>
+             </div>
           </div>
         </div>
 
-        <div className="relative">
+        {/* Minimal Form Block */}
+        <div className="flex flex-col justify-center">
           <motion.form 
             onSubmit={handleSubmit}
-            className="flex flex-col gap-6 p-8 md:p-12 glassmorphism rounded-2xl relative"
+            className="relative w-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           >
             {isSuccess ? (
                <motion.div 
-                 initial={{ opacity: 0, scale: 0.8 }}
-                 animate={{ opacity: 1, scale: 1 }}
-                 className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 className="h-[300px] flex flex-col justify-center items-center text-center border border-[#D6CFC7]"
                >
-                 <div className="w-16 h-16 rounded-full border border-white/50 flex items-center justify-center mb-6">
-                   <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                   </svg>
-                 </div>
-                 <h3 className="text-2xl font-bold uppercase tracking-widest mb-2 text-white">Transmission Sent</h3>
-                 <p className="text-neutral-400 font-light">We will respond shortly.</p>
+                 <h3 className="text-3xl font-serif text-[#1A1A1A] mb-4">Request Sent</h3>
+                 <p className="text-[#8C7B75] font-sans text-sm tracking-[0.1em] uppercase">Our atelier will respond shortly.</p>
                </motion.div>
             ) : (
-              <>
-                <div className="relative group">
+              <div className="flex flex-col gap-12 border-l border-[#D6CFC7] pl-8 md:pl-16">
+                
+                <div className="relative group w-full">
                   <input 
                     type="text" 
                     id="name" 
                     required 
-                    className="w-full bg-transparent border-b border-white/20 py-4 px-2 text-white outline-none focus:border-white transition-colors peer"
-                    placeholder=" "
+                    className="w-full bg-transparent border-b border-[#D6CFC7] py-4 text-xl md:text-2xl text-[#1A1A1A] outline-none focus:border-[#1A1A1A] transition-colors peer rounded-none placeholder-transparent"
+                    placeholder="Name"
                   />
-                  <label htmlFor="name" className="absolute left-2 top-4 text-neutral-500 font-light uppercase tracking-widest text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-white">
-                    Name
+                  <label htmlFor="name" className="absolute left-0 top-5 text-[#8C7B75] font-sans tracking-wide text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#1A1A1A] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[#1A1A1A]">
+                    Full Name
                   </label>
                 </div>
                 
-                <div className="relative group mt-4">
+                <div className="relative group w-full">
                   <input 
                     type="email" 
                     id="email" 
                     required 
-                    className="w-full bg-transparent border-b border-white/20 py-4 px-2 text-white outline-none focus:border-white transition-colors peer"
-                    placeholder=" "
+                    className="w-full bg-transparent border-b border-[#D6CFC7] py-4 text-xl md:text-2xl text-[#1A1A1A] outline-none focus:border-[#1A1A1A] transition-colors peer rounded-none placeholder-transparent"
+                    placeholder="Email"
                   />
-                  <label htmlFor="email" className="absolute left-2 top-4 text-neutral-500 font-light uppercase tracking-widest text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-white">
-                    Email
+                  <label htmlFor="email" className="absolute left-0 top-5 text-[#8C7B75] font-sans tracking-wide text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#1A1A1A] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[#1A1A1A]">
+                    Email Address
                   </label>
                 </div>
 
-                <div className="relative group mt-4 h-32">
+                <div className="relative group w-full">
                   <textarea 
                     id="message" 
                     required 
-                    className="w-full h-full bg-transparent border-b border-white/20 py-4 px-2 text-white outline-none focus:border-white transition-colors peer resize-none"
-                    placeholder=" "
+                    className="w-full bg-transparent border-b border-[#D6CFC7] py-4 text-lg md:text-xl text-[#1A1A1A] outline-none focus:border-[#1A1A1A] transition-colors peer resize-none min-h-[120px] rounded-none placeholder-transparent"
+                    placeholder="Message"
                   />
-                  <label htmlFor="message" className="absolute left-2 top-4 text-neutral-500 font-light uppercase tracking-widest text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-white">
-                    Message
+                  <label htmlFor="message" className="absolute left-0 top-5 text-[#8C7B75] font-sans tracking-wide text-sm pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#1A1A1A] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[#1A1A1A]">
+                    Project Details or Inquiry
                   </label>
                 </div>
 
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="mt-8 relative overflow-hidden group w-full py-4 border border-white/20 rounded-sm uppercase tracking-[0.2em] text-sm hover:border-white transition-colors disabled:opacity-50"
-                  data-cursor="hover"
-                >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
-                    {isSubmitting ? "Transmitting..." : "Send Message"}
-                  </span>
-                  <div className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-                </button>
-              </>
+                <div className="flex mt-8">
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="group bg-[#1A1A1A] text-white px-10 py-5 text-xs font-sans uppercase tracking-[0.2em] hover:bg-[#8C7B75] transition-colors disabled:opacity-50"
+                    data-cursor="hover"
+                  >
+                    {isSubmitting ? "Sending..." : "Submit Inquiry"}
+                  </button>
+                </div>
+              </div>
             )}
           </motion.form>
         </div>
+
       </div>
     </section>
   );
