@@ -110,7 +110,7 @@ export default function Home() {
       <section 
         className="flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24"
         style={{ 
-          background: "#080203", 
+          background: "radial-gradient(circle at center, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.7) 100%), linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.8) 100%), #080203", 
           padding: "4rem 8% 8rem 8%", 
           color: "#FDF8F7", 
           position: "relative", 
