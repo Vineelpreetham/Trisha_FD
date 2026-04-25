@@ -102,15 +102,15 @@ export default function Home() {
       <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 50 }}>
         <div className="absolute inset-0 bg-[#F8F6F2] -z-10 -top-[2px] md:mt-32"></div>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(120px, 18vw, 280px)" }}>
-           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#EB9394" />
+           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#080203" />
         </svg>
       </div>
 
-      {/* ── CREATIVE VISION SECTION (Deep Red Gradient) ── */}
+      {/* ── CREATIVE VISION SECTION (Dark Theme) ── */}
       <section 
         className="flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24"
         style={{ 
-          background: "linear-gradient(180deg, #EB9394 0%, #A2252C 30%, #3d0a10 100%)", 
+          background: "linear-gradient(180deg, #080203 0%, #1A1818 100%)", 
           padding: "4rem 8% 8rem 8%", 
           color: "#FDF8F7", 
           position: "relative", 
@@ -139,9 +139,9 @@ export default function Home() {
          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start text-center md:text-left mt-12 md:mt-0 relative px-4 md:px-0">
              
              <div className="relative w-full">
-                 <h2 className="font-serif leading-[0.85] tracking-tighter relative z-10" style={{ fontSize: "clamp(4.5rem, 11vw, 8.5rem)", color: "#FFFFFF", textShadow: "0 10px 40px rgba(0,0,0,0.15)" }}>
+                 <h2 className="font-serif leading-[0.85] tracking-tighter relative z-10" style={{ fontSize: "clamp(4.5rem, 11vw, 8.5rem)", color: "#E8CE73", textShadow: "0 10px 40px rgba(0,0,0,0.15)" }}>
                      Creative<br/>
-                     <span className="italic font-light text-[#FFEFEF] pl-0 md:pl-20 mt-2 md:mt-[-0.1em] inline-block opacity-95">Vision.</span>
+                     <span className="italic font-light text-[#E8CE73] pl-0 md:pl-20 mt-2 md:mt-[-0.1em] inline-block opacity-95">Vision.</span>
                  </h2>
              </div>
              
@@ -159,7 +159,7 @@ export default function Home() {
       {/* Arch into Top Picks */}
       <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 30, marginTop: "-2px" }}>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 15vw, 220px)" }}>
-           <rect width="1440" height="320" fill="#3d0a10" />
+           <rect width="1440" height="320" fill="#1A1818" />
            <path d="M0,320 Q720,-20 1440,320 L1440,320 L0,320 Z" fill="#FAFAFA" />
         </svg>
       </div>
