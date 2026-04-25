@@ -41,9 +41,16 @@ export default function ContactFooter() {
   }, []);
 
   return (
-    <footer ref={containerRef} className="w-full bg-[#1A1818] text-[#FDF8F7] relative z-50 overflow-hidden pt-12 pb-8">
+    <footer ref={containerRef} className="w-full bg-[#080203] text-[#FDF8F7] relative z-50 overflow-hidden pt-12 pb-8">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
         
+        {/* Email Link */}
+        <div className="footer-reveal w-full flex justify-center mb-6">
+          <a href="mailto:trishavanam@gmail.com" className="font-sans text-sm md:text-base tracking-widest uppercase text-white/60 hover:text-[#E8CE73] transition-colors relative z-10" style={{ letterSpacing: "0.2em" }}>
+            trishavanam@gmail.com
+          </a>
+        </div>
+
         {/* Huge Typography */}
         <div className="footer-reveal w-full flex justify-center mb-6 overflow-hidden pt-4">
           <h1 

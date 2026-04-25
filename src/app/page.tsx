@@ -197,7 +197,7 @@ export default function Home() {
       <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 30, marginTop: "-2px" }}>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 15vw, 220px)" }}>
            <rect width="1440" height="320" fill="#FAFAFA" />
-           <path d="M0,320 Q720,30 1440,320 L1440,320 L0,320 Z" fill="#1A1818" />
+           <path d="M0,320 Q720,30 1440,320 L1440,320 L0,320 Z" fill="#080203" />
         </svg>
       </div>
 
