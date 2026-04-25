@@ -102,15 +102,6 @@ export default function MobileNav() {
                 ))}
               </div>
 
-              {/* Bottom Accent */}
-              <motion.div 
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ delay: 0.6 }}
-                 className="absolute bottom-10 left-10 text-xs font-sans tracking-[0.2em] uppercase text-white/50"
-              >
-                Vogue Editorial Portfolio
-              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>,

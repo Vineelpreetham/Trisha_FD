@@ -68,14 +68,14 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
       <GlowCard 
         customSize={true} 
         glowColor="blue"
-        className="relative w-full md:aspect-[3/4] rounded-[40px] overflow-hidden shadow-xl group-hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] bg-transparent !p-0 z-10"
+        className="relative w-full aspect-[3/4] rounded-[40px] overflow-hidden shadow-xl group-hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] bg-transparent !p-0 z-10"
       >
         <img 
           src={data.image} 
           alt={data.altTitle} 
           loading="lazy"
           decoding="async"
-          className="w-full h-auto md:absolute md:inset-0 md:h-full md:object-cover block transition-transform duration-1000 group-hover:scale-105 z-0" 
+          className="absolute inset-0 w-full h-full object-cover block transition-transform duration-1000 group-hover:scale-105 z-0" 
         />
       </GlowCard>
 

@@ -94,10 +94,10 @@ export default function RomantiquesPage() {
       <div className={isMobile ? "relative z-10 w-full mx-auto px-4" : "relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12 lg:px-24"}>
 
         {/* --- SECTION 1: HERO --- */}
-        <section className="reveal-section relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-32 pb-16">
+        <section className="reveal-section relative w-full min-h-[60vh] md:min-h-[90vh] flex flex-col items-center justify-start pt-24 md:pt-32 pb-8 md:pb-16">
           
           {/* Centered Title Top */}
-          <div className="w-full flex flex-col items-center z-20 mb-12">
+          <div className="w-full flex flex-col items-center z-20 mb-6 md:mb-12">
             <h1
               className={isMobile
                 ? "leading-[0.9] font-serif font-black text-white uppercase tracking-tighter text-center drop-shadow-sm"
@@ -132,11 +132,11 @@ export default function RomantiquesPage() {
 
         {/* --- SECTION 2: MOOD BOARD --- */}
         <section className={isMobile
-          ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-center"
+          ? "reveal-section relative w-full py-4 mb-4 flex flex-col items-center"
           : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col items-center"
         }>
           <h2 className={isMobile
-            ? "text-3xl font-serif font-black text-white tracking-tight mb-8 text-center"
+            ? "text-3xl font-serif font-black text-white tracking-tight mb-4 text-center"
             : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-12 text-center"
           }>
             Mood Board
@@ -155,7 +155,7 @@ export default function RomantiquesPage() {
 
         {/* --- SECTION 3: COLOUR SWATCH BOARD --- */}
         <section className={isMobile
-          ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-center gap-8"
+          ? "reveal-section relative w-full py-4 mb-4 flex flex-col items-center gap-4"
           : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col md:flex-row items-center gap-12"
         }>
           
@@ -175,7 +175,7 @@ export default function RomantiquesPage() {
             : "w-full md:w-[30%] flex flex-col items-center md:items-end order-1 md:order-2"
           }>
             <h2 className={isMobile
-              ? "text-3xl font-serif font-black text-white tracking-tight mb-6 text-center leading-[1]"
+              ? "text-3xl font-serif font-black text-white tracking-tight mb-3 text-center leading-[1]"
               : "text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white tracking-tight mb-12 text-right leading-[1]"
             }>
               Colour<br/>Swatch<br/>Board
@@ -214,11 +214,11 @@ export default function RomantiquesPage() {
 
         {/* --- SECTION 4: SILHOUETTE BOARD --- */}
         <section className={isMobile
-          ? "reveal-section relative w-full py-12 mb-8 flex flex-col items-start"
+          ? "reveal-section relative w-full py-4 mb-4 flex flex-col items-start"
           : "reveal-section relative w-full py-16 md:py-20 mb-12 flex flex-col items-start"
         }>
           <h2 className={isMobile
-            ? "text-3xl font-serif font-black text-white tracking-tight mb-6"
+            ? "text-3xl font-serif font-black text-white tracking-tight mb-3"
             : "text-4xl md:text-6xl font-serif font-black text-white tracking-tight mb-10"
           }>
             Silhouette Board
@@ -235,7 +235,7 @@ export default function RomantiquesPage() {
 
         {/* --- SECTION 5: RANGE BOARD & FLAT SKETCHES --- */}
         <section className={isMobile
-          ? "reveal-section relative w-full py-12 pb-24 flex flex-col items-end"
+          ? "reveal-section relative w-full py-4 pb-16 flex flex-col items-end"
           : "reveal-section relative w-full py-16 md:py-20 pb-32 flex flex-col items-end"
         }>
 
