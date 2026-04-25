@@ -110,7 +110,7 @@ export default function Home() {
       <section 
         className="flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24"
         style={{ 
-          background: "linear-gradient(180deg, #080203 0%, #1A1818 100%)", 
+          background: "#080203", 
           padding: "4rem 8% 8rem 8%", 
           color: "#FDF8F7", 
           position: "relative", 
