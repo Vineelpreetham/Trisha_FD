@@ -41,11 +41,11 @@ export default function ContactFooter() {
   }, []);
 
   return (
-    <footer ref={containerRef} className="w-full bg-[#1A1818] text-[#FDF8F7] relative z-50 overflow-hidden pt-20 pb-10">
+    <footer ref={containerRef} className="w-full bg-[#1A1818] text-[#FDF8F7] relative z-50 overflow-hidden pt-12 pb-8">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
         
         {/* Top Section: CTA & Links */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 lg:gap-8 mb-24 lg:mb-32">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8 mb-12 lg:mb-16">
           
           {/* Left: Email CTA */}
           <div className="footer-reveal flex flex-col max-w-md w-full">
@@ -94,17 +94,17 @@ export default function ContactFooter() {
         </div>
 
         {/* Huge Typography */}
-        <div className="footer-reveal w-full flex justify-center mb-12 overflow-hidden py-4">
+        <div className="footer-reveal w-full flex justify-center mb-8 overflow-hidden py-2">
           <h1 
             className="font-serif leading-none tracking-tighter text-[#E8CE73]/90"
-            style={{ fontSize: "clamp(2.5rem, 9vw, 12rem)", margin: 0, whiteSpace: "nowrap" }}
+            style={{ fontSize: "clamp(2.5rem, 7vw, 8rem)", margin: 0, whiteSpace: "nowrap" }}
           >
             TRISHA <span className="italic font-light">VANAM</span>
           </h1>
         </div>
 
         {/* Bottom Bar */}
-        <div className="footer-reveal flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10 font-sans text-[0.65rem] tracking-[0.15em] uppercase text-white/30">
+        <div className="footer-reveal flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white/10 font-sans text-[0.65rem] tracking-[0.15em] uppercase text-white/30">
           <p>© {new Date().getFullYear()} Trisha Vanam. All Rights Reserved.</p>
           <div className="flex gap-8">
             <Link href="#" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
@@ -115,7 +115,7 @@ export default function ContactFooter() {
       </div>
       
       {/* Ambient background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-[#71171d] blur-[150px] opacity-20 pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[30vh] bg-[#71171d] blur-[100px] opacity-20 pointer-events-none rounded-full" />
     </footer>
   );
 }
