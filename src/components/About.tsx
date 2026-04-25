@@ -43,7 +43,7 @@ export default function About() {
           <Link href="/" className="font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity text-[#1A1A1A] flex items-center">
             ← Back
           </Link>
-          <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "18px", width: "auto", objectFit: "contain", filter: "brightness(0)" }} className="hidden md:block" />
+          <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "18px", width: "auto", objectFit: "contain", mixBlendMode: "multiply" }} className="hidden md:block" />
         </div>
         <div className="hidden md:flex gap-16 font-sans text-xs tracking-[0.25em] uppercase font-medium text-[#555] translate-y-1">
           <Link href="/" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Home</Link>
