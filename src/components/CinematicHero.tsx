@@ -220,12 +220,12 @@ export default function CinematicHero() {
           <video
             ref={videoRef}
             className="hero-video"
+            autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={POSTER}
-            crossOrigin="anonymous"
           >
             <source src={VIDEO_WEBM} type="video/webm" />
             <source src={VIDEO_MP4} type="video/mp4" />
