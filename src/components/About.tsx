@@ -39,9 +39,14 @@ export default function About() {
       
       {/* Top Navbar */}
       <nav className="w-full pt-10 pb-4 px-6 md:px-16 lg:px-24 flex justify-between items-center z-30 relative">
-        <Link href="/" className="font-serif text-xl tracking-wide text-[#1A1A1A] font-medium">
-          Trisha Vanam.
-        </Link>
+        <div className="flex items-center gap-6 md:gap-10">
+          <Link href="/" className="font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity text-[#1A1A1A] flex items-center">
+            ← Back
+          </Link>
+          <span className="font-serif text-xl tracking-wide text-[#1A1A1A] font-medium hidden md:block">
+            Trisha Vanam.
+          </span>
+        </div>
         <div className="hidden md:flex gap-16 font-sans text-xs tracking-[0.25em] uppercase font-medium text-[#555] translate-y-1">
           <Link href="/" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Home</Link>
           <Link href="/collections" className="transition-transform duration-300 ease-out hover:scale-110 active:scale-95 inline-block hover:text-black">Design Diary</Link>
