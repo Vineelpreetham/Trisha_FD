@@ -3,6 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
+// Cloudinary base for the hero video
+const VIDEO_BASE = "https://res.cloudinary.com/dbeh0eisn/video/upload";
+const VIDEO_ID = "Woman_walks_towards_202604242205_impvit";
+
+// Optimised sources: smaller quality + WebM fallback for broader compatibility
+const VIDEO_MP4  = `${VIDEO_BASE}/f_mp4,q_auto,w_1280/${VIDEO_ID}.mp4`;
+const VIDEO_WEBM = `${VIDEO_BASE}/f_webm,q_auto,w_1280/${VIDEO_ID}.webm`;
+// Poster: first frame extracted via Cloudinary's video→image transform
+const POSTER = `${VIDEO_BASE}/so_0,f_auto,q_auto,w_1280/${VIDEO_ID}.jpg`;
+
 export default function CinematicHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -11,30 +21,43 @@ export default function CinematicHero() {
     const vid = videoRef.current;
     if (!vid) return;
 
-    const handleLoad = () => {
+    const triggerLoaded = () => {
+      if (!loaded) setLoaded(true);
+    };
+
+    const handleCanPlay = () => {
       vid.play().then(() => {
-        setLoaded(true);
+        triggerLoaded();
         // Freeze the video exactly when the text completes its slower slide animation
         setTimeout(() => {
           if (videoRef.current) {
             videoRef.current.pause();
           }
         }, 6500); // 2.0s delay + 4.5s duration
-      }).catch(() => setLoaded(true));
+      }).catch(() => triggerLoaded());
     };
 
-    if (vid.readyState >= 3) {
-      handleLoad();
+    // Listen for multiple readiness signals
+    if (vid.readyState >= 2) {
+      handleCanPlay();
     } else {
-      vid.addEventListener("canplaythrough", handleLoad, { once: true });
+      vid.addEventListener("canplay", handleCanPlay, { once: true });
+      vid.addEventListener("canplaythrough", handleCanPlay, { once: true });
     }
 
-    const timer = setTimeout(() => setLoaded(true), 2500);
+    // Handle outright failure (network error, codec unsupported, etc.)
+    const handleError = () => triggerLoaded();
+    vid.addEventListener("error", handleError, { once: true });
+
+    // Fallback: always reveal after 3s so the page is never stuck on black
+    const timer = setTimeout(triggerLoaded, 3000);
     return () => {
       clearTimeout(timer);
-      vid.removeEventListener("canplaythrough", handleLoad);
+      vid.removeEventListener("canplay", handleCanPlay);
+      vid.removeEventListener("canplaythrough", handleCanPlay);
+      vid.removeEventListener("error", handleError);
     };
-  }, []);
+  }, [loaded]);
 
   return (
     <>
@@ -197,12 +220,16 @@ export default function CinematicHero() {
           <video
             ref={videoRef}
             className="hero-video"
-            src="https://res.cloudinary.com/dbeh0eisn/video/upload/v1777048677/Woman_walks_towards_202604242205_impvit.mp4"
             muted
             loop
             playsInline
-            preload="auto"
-          />
+            preload="metadata"
+            poster={POSTER}
+            crossOrigin="anonymous"
+          >
+            <source src={VIDEO_WEBM} type="video/webm" />
+            <source src={VIDEO_MP4} type="video/mp4" />
+          </video>
 
           {/* ── FULL-COVER VIGNETTE ── */}
           <div style={{
