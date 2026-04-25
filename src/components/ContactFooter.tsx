@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
@@ -40,40 +41,55 @@ export default function ContactFooter() {
     }
   }, []);
 
+  const pathname = usePathname();
+
+  // Dynamic colors based on page
+  let bgStyle = "#F8F6F2"; // Default to light cream for all pages
+  let isLight = true;
+
+  if (pathname === "/") {
+    bgStyle = "linear-gradient(180deg, #994C3C 0%, #341315 100%)"; // Home gradient
+    isLight = false;
+  }
+
+  const textColor = isLight ? "text-[#1A1A1A]/80" : "text-white/80";
+  const linkColor = isLight ? "text-[#1A1A1A]/60" : "text-white/50";
+  const hoverColor = isLight ? "hover:text-[#8C7B75]" : "hover:text-[#E8CE73]";
+  const bottomColor = isLight ? "text-[#1A1A1A]/40" : "text-white/30";
+  const borderColor = isLight ? "border-[#1A1A1A]/10" : "border-white/10";
+  const glowColor = isLight ? "bg-[#D6CFC7]" : "bg-[#71171d]";
+
   return (
-    <footer ref={containerRef} className="w-full bg-[#080203] text-[#FDF8F7] relative z-50 overflow-hidden pt-12 pb-8">
+    <footer ref={containerRef} className={`w-full relative z-50 overflow-hidden pt-8 pb-6 ${isLight ? 'text-[#1A1A1A]' : 'text-[#FDF8F7]'}`} style={{ background: bgStyle }}>
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
         
-        {/* Email Link */}
-        <div className="footer-reveal w-full flex justify-center mb-6">
-          <a href="mailto:trishavanam@gmail.com" className="font-sans text-sm md:text-base tracking-widest uppercase text-white/60 hover:text-[#E8CE73] transition-colors relative z-10" style={{ letterSpacing: "0.2em" }}>
-            trishavanam@gmail.com
-          </a>
+        {/* Statement */}
+        <div className="footer-reveal w-full flex justify-center mb-6 text-center">
+           <p className={`font-serif italic text-xl md:text-2xl max-w-lg leading-snug ${textColor}`}>
+             "Design grows through connection — let’s connect"
+           </p>
         </div>
 
-        {/* Huge Typography */}
-        <div className="footer-reveal w-full flex justify-center mb-6 overflow-hidden pt-4">
-          <h1 
-            className="font-serif leading-none tracking-tighter text-[#E8CE73]/90"
-            style={{ fontSize: "clamp(2.5rem, 5vw, 6rem)", margin: 0, whiteSpace: "nowrap" }}
-          >
-            TRISHA <span className="italic font-light">VANAM</span>
-          </h1>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="footer-reveal flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-white/10 font-sans text-[0.65rem] tracking-[0.15em] uppercase text-white/30">
-          <p>© {new Date().getFullYear()} Trisha Vanam. All Rights Reserved.</p>
-          <div className="flex gap-8">
-            <Link href="#" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white/80 transition-colors">Terms of Service</Link>
-          </div>
+        {/* Minimal Contact Info */}
+        <div className="footer-reveal w-full flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-0">
+           <a href="mailto:trishavanam@gmail.com" className={`font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase transition-colors relative z-10 ${linkColor} ${hoverColor}`}>
+             trishavanam@gmail.com
+           </a>
+           <a href="tel:+18575066139" className={`font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase transition-colors relative z-10 ${linkColor} ${hoverColor}`}>
+             +1 (857) 506-6139
+           </a>
+           <span className={`font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase relative z-10 ${linkColor}`}>
+             New York, NY
+           </span>
+           <a href="https://www.linkedin.com/in/trisha-vanam-827088324" target="_blank" rel="noopener noreferrer" className={`font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase transition-colors relative z-10 ${linkColor} ${hoverColor}`}>
+             LinkedIn
+           </a>
         </div>
 
       </div>
       
       {/* Ambient background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[30vh] bg-[#71171d] blur-[100px] opacity-20 pointer-events-none rounded-full" />
+      <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[30vh] blur-[100px] opacity-20 pointer-events-none rounded-full ${glowColor}`} />
     </footer>
   );
 }

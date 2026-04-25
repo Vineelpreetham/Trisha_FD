@@ -3,61 +3,107 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-// Cloudinary base for the hero video
-const VIDEO_BASE = "https://res.cloudinary.com/dbeh0eisn/video/upload";
-const VIDEO_ID = "Woman_walks_towards_202604242205_impvit";
-
-// Optimised sources: smaller quality + WebM fallback for broader compatibility
-const VIDEO_MP4  = `${VIDEO_BASE}/f_mp4,q_auto,w_1280/${VIDEO_ID}.mp4`;
-const VIDEO_WEBM = `${VIDEO_BASE}/f_webm,q_auto,w_1280/${VIDEO_ID}.webm`;
-// Poster: first frame extracted via Cloudinary's video→image transform
-const POSTER = `${VIDEO_BASE}/so_0,f_auto,q_auto,w_1280/${VIDEO_ID}.jpg`;
+// Direct Cloudinary URLs — no on-the-fly transcoding, same approach as Regalia
+const VIDEO_SRC = "https://res.cloudinary.com/dbeh0eisn/video/upload/v1777048677/Woman_walks_towards_202604242205_impvit.mp4";
+const POSTER = "https://res.cloudinary.com/dbeh0eisn/video/upload/so_0,f_jpg,q_auto,w_1280/v1777048677/Woman_walks_towards_202604242205_impvit.jpg";
 
 export default function CinematicHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
 
+  const [videoFailed, setVideoFailed] = useState(false);
+
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
 
+    let hasFired = false;
     const triggerLoaded = () => {
-      if (!loaded) setLoaded(true);
+      if (!hasFired) {
+        hasFired = true;
+        setLoaded(true);
+      }
     };
 
-    const handleCanPlay = () => {
-      vid.play().then(() => {
-        triggerLoaded();
-        // Freeze the video exactly when the text completes its slower slide animation
-        setTimeout(() => {
-          if (videoRef.current) {
-            videoRef.current.pause();
-          }
-        }, 6500); // 2.0s delay + 4.5s duration
-      }).catch(() => triggerLoaded());
+    const freezeAfterAnimation = () => {
+      setTimeout(() => {
+        if (videoRef.current) videoRef.current.pause();
+      }, 6500);
     };
 
-    // Listen for multiple readiness signals
+    const tryPlay = () => {
+      if (!vid) return;
+      const playPromise = vid.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          triggerLoaded();
+          freezeAfterAnimation();
+        }).catch(() => {
+          // Autoplay blocked — show poster as fallback, mark loaded so UI isn't stuck
+          setVideoFailed(true);
+          triggerLoaded();
+        });
+      }
+    };
+
+    // Strategy 1: If already buffered enough, play immediately
     if (vid.readyState >= 2) {
-      handleCanPlay();
+      tryPlay();
     } else {
-      vid.addEventListener("canplay", handleCanPlay, { once: true });
-      vid.addEventListener("canplaythrough", handleCanPlay, { once: true });
+      // Strategy 2: Wait for canplay event
+      const onCanPlay = () => tryPlay();
+      vid.addEventListener("canplay", onCanPlay, { once: true });
     }
 
+    // Strategy 3: Retry play on user interaction (click/touch anywhere)
+    // Many mobile browsers require a user gesture before allowing video playback
+    const onUserInteraction = () => {
+      if (vid.paused && !videoFailed) {
+        tryPlay();
+      }
+      // Clean up after first interaction
+      document.removeEventListener("click", onUserInteraction);
+      document.removeEventListener("touchstart", onUserInteraction);
+    };
+    document.addEventListener("click", onUserInteraction, { once: true, passive: true });
+    document.addEventListener("touchstart", onUserInteraction, { once: true, passive: true });
+
+    // Strategy 4: IntersectionObserver — retry when section scrolls into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && vid.paused) {
+          tryPlay();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(vid);
+
+    // Strategy 5: Retry a few times with increasing delays
+    const retryTimers = [
+      setTimeout(() => { if (vid.paused) tryPlay(); }, 1000),
+      setTimeout(() => { if (vid.paused) tryPlay(); }, 2500),
+    ];
+
     // Handle outright failure (network error, codec unsupported, etc.)
-    const handleError = () => triggerLoaded();
+    const handleError = () => {
+      setVideoFailed(true);
+      triggerLoaded();
+    };
     vid.addEventListener("error", handleError, { once: true });
 
-    // Fallback: always reveal after 3s so the page is never stuck on black
-    const timer = setTimeout(triggerLoaded, 3000);
+    // Final safety: always reveal after 4s so the page is never stuck on black
+    const safetyTimer = setTimeout(triggerLoaded, 4000);
+
     return () => {
-      clearTimeout(timer);
-      vid.removeEventListener("canplay", handleCanPlay);
-      vid.removeEventListener("canplaythrough", handleCanPlay);
+      clearTimeout(safetyTimer);
+      retryTimers.forEach(clearTimeout);
+      observer.disconnect();
+      document.removeEventListener("click", onUserInteraction);
+      document.removeEventListener("touchstart", onUserInteraction);
       vid.removeEventListener("error", handleError);
     };
-  }, [loaded]);
+  }, []);
 
   return (
     <>
@@ -216,20 +262,34 @@ export default function CinematicHero() {
       <section className="true-depth-hero">
         <div className="hero-sticky-content">
 
-          {/* ── VIDEO ── */}
+          {/* ── POSTER FALLBACK (visible when video can't autoplay) ── */}
+          <img
+            src={POSTER}
+            alt="Trisha Vanam"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 60%",
+              filter: "contrast(1.07) brightness(0.76)",
+              zIndex: 0,
+            }}
+          />
+
+          {/* ── VIDEO (direct src like Regalia — most reliable cross-browser) ── */}
           <video
             ref={videoRef}
             className="hero-video"
             autoPlay
-            muted
             loop
+            muted
             playsInline
             preload="auto"
+            src={VIDEO_SRC}
             poster={POSTER}
-          >
-            <source src={VIDEO_WEBM} type="video/webm" />
-            <source src={VIDEO_MP4} type="video/mp4" />
-          </video>
+          />
 
           {/* ── FULL-COVER VIGNETTE ── */}
           <div style={{

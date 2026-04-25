@@ -25,7 +25,7 @@ export default function Contact() {
             Inquiries.
           </h2>
           <p className="mt-8 text-base text-[#1A1A1A]/70 font-sans font-light leading-relaxed max-w-sm">
-            For bespoke commissions, editorial placements, or creative partnerships.
+            Design grows through connection - let’s connect
           </p>
           
           <div className="mt-20 flex flex-col gap-6 text-sm font-sans tracking-[0.2em] uppercase text-[#1A1A1A]">
@@ -40,6 +40,10 @@ export default function Contact() {
              <div className="flex flex-col gap-1 mt-4">
                <span className="text-[#8C7B75] text-xs">Location</span>
                <span className="text-lg">New York, NY</span>
+             </div>
+             <div className="flex flex-col gap-1 mt-4">
+               <span className="text-[#8C7B75] text-xs">LinkedIn</span>
+               <a href="https://www.linkedin.com/in/trisha-vanam-827088324" target="_blank" rel="noopener noreferrer" className="hover:text-[#8C7B75] transition-colors w-fit text-lg lowercase" data-cursor="hover">trisha-vanam</a>
              </div>
           </div>
         </div>

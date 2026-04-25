@@ -102,7 +102,7 @@ export default function Home() {
       <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 50 }}>
         <div className="absolute inset-0 bg-[#F8F6F2] -z-10 -top-[2px] md:mt-32"></div>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(120px, 18vw, 280px)" }}>
-           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#3d0a10" />
+           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#994C3C" />
         </svg>
       </div>
 
@@ -110,8 +110,8 @@ export default function Home() {
       <section 
         className="flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24"
         style={{ 
-          background: "linear-gradient(180deg, #3d0a10 0%, #8b1826 50%, #3d0a10 100%)",
-          padding: "4rem 8% 8rem 8%", 
+          background: "linear-gradient(180deg, #994C3C 0%, #341315 100%)",
+          padding: "2rem 8% 4rem 8%", 
           color: "#FDF8F7", 
           position: "relative", 
           zIndex: 50, 
@@ -157,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* Arch into Top Picks */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#3d0a10", position: "relative", zIndex: 30, marginTop: "-2px" }}>
+      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#341315", position: "relative", zIndex: 30, marginTop: "-2px" }}>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 15vw, 220px)" }}>
            <path d="M0,320 Q720,-320 1440,320 L1440,320 L0,320 Z" fill="#FAFAFA" />
         </svg>
