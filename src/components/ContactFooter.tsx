@@ -43,6 +43,9 @@ export default function ContactFooter() {
 
   const pathname = usePathname();
 
+  // No footer on contact page — contact info is already on the page
+  if (pathname === "/contact") return null;
+
   // Dynamic colors based on page
   let bgStyle = "#F8F6F2"; // Default to light cream for all pages
   let isLight = true;
