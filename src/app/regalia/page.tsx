@@ -172,7 +172,7 @@ export default function RegaliaPage() {
         >
           ← Back
         </Link>
-        <div style={{ fontFamily: "Georgia, serif", fontSize: "0.8rem", color: "#fff", letterSpacing: "0.2em" }}>TRISHA VANAM.</div>
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "18px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }} className="hidden md:block" />
       </nav>
 
       {/* Cinematic Hero - Video */}
