@@ -16,7 +16,7 @@ export default function Contact() {
     }, 2000);
   };
   return (
-    <section id="contact" className="relative w-full py-40 bg-[#F8F6F2] overflow-hidden z-10">
+    <section id="contact" className="relative w-full py-40 overflow-hidden z-10">
       <div className="max-w-7xl mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-20">
         
         {/* Header Block */}
