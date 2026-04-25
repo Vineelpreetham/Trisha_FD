@@ -192,13 +192,8 @@ export default function Home() {
           </div>
       </section>
       
-      {/* ── SEAMLESS CURVE INTO FOOTER ── */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 30, marginTop: "-2px" }}>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 15vw, 220px)" }}>
-           <rect width="1440" height="320" fill="#FAFAFA" />
-           <path d="M0,320 Q720,30 1440,320 L1440,320 L0,320 Z" fill="#080203" />
-        </svg>
-      </div>
+      {/* Straight line transition into footer instead of a curve */}
+      <div style={{ width: "100%", height: "1px", background: "#E8CE73", opacity: 0.2 }} />
 
     </main>
   );
