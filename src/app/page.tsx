@@ -157,14 +157,35 @@ export default function Home() {
       </section>
 
       {/* Arch into Top Picks */}
-      <div style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#341315", position: "relative", zIndex: 30, marginTop: "-2px" }}>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(100px, 15vw, 220px)" }}>
-           <path d="M0,320 Q720,-320 1440,320 L1440,320 L0,320 Z" fill="#FAFAFA" />
+      <div style={{
+        width: "100%",
+        overflow: "hidden",
+        lineHeight: 0,
+        background: "#341315",
+        position: "relative",
+        zIndex: 30,
+        marginTop: "-2px",
+        marginBottom: "-2px",
+        transform: "translateZ(0)",
+        WebkitTransform: "translateZ(0)",
+      }}>
+        <svg
+          viewBox="0 0 1440 322"
+          preserveAspectRatio="none"
+          style={{
+            display: "block",
+            width: "100%",
+            height: "clamp(100px, 15vw, 220px)",
+            transform: "translateZ(0)",
+            WebkitTransform: "translateZ(0)",
+          }}
+        >
+           <path d="M0,322 Q720,-320 1440,322 L1440,322 L0,322 Z" fill="#FAFAFA" />
         </svg>
       </div>
 
       {/* ── TOP PICKS SECTION ── */}
-      <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif" }}>
+      <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
           <h3 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80" style={{ marginBottom: "4rem" }}>Top Picks.</h3>
           
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
