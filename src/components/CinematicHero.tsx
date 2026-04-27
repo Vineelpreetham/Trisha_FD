@@ -18,6 +18,8 @@ export default function CinematicHero() {
     if (!vid) return;
 
     let hasFired = false;
+    let freezeTimer: ReturnType<typeof setTimeout> | null = null;
+
     const triggerLoaded = () => {
       if (!hasFired) {
         hasFired = true;
@@ -25,48 +27,81 @@ export default function CinematicHero() {
       }
     };
 
-    const freezeAfterAnimation = () => {
-      setTimeout(() => {
-        if (videoRef.current) videoRef.current.pause();
-      }, 6500);
+    const scheduleFreeze = () => {
+      if (!freezeTimer) {
+        freezeTimer = setTimeout(() => {
+          if (videoRef.current) videoRef.current.pause();
+        }, 6500);
+      }
     };
 
     const tryPlay = () => {
       if (!vid) return;
+      // Safari: if video is already playing (e.g., back-nav bfcache restore), just trigger
+      if (!vid.paused) {
+        triggerLoaded();
+        scheduleFreeze();
+        return;
+      }
       const playPromise = vid.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
           triggerLoaded();
-          freezeAfterAnimation();
+          scheduleFreeze();
         }).catch(() => {
           // Autoplay blocked — show poster as fallback, mark loaded so UI isn't stuck
           setVideoFailed(true);
           triggerLoaded();
         });
+      } else {
+        // Older Safari returns undefined from play() — assume it started
+        triggerLoaded();
+        scheduleFreeze();
       }
     };
+
+    // Safari-specific: fire triggerLoaded as soon as data is available,
+    // even if play() promise hasn't resolved yet. This handles the case
+    // where Safari fires canplay/loadeddata before the play promise settles.
+    const onCanPlay = () => {
+      if (!vid.paused) {
+        triggerLoaded();
+        scheduleFreeze();
+      }
+    };
+    const onLoadedData = () => {
+      // If already playing (Safari bfcache / back-nav), trigger immediately
+      if (!vid.paused) {
+        triggerLoaded();
+        scheduleFreeze();
+      }
+    };
+    vid.addEventListener("canplay", onCanPlay, { passive: true });
+    vid.addEventListener("loadeddata", onLoadedData, { passive: true });
+
+    // Safari: check readyState immediately — video may already be buffered
+    // (happens on page reload or bfcache restore)
+    if (vid.readyState >= 3 && !vid.paused) {
+      triggerLoaded();
+      scheduleFreeze();
+    }
 
     // Always attempt to play immediately.
     // Browsers queue play() requests internally and start as soon as
     // enough data is buffered — no need to wait for canplay.
-    // This avoids the race condition where `canplay` fires during SSR→hydration
-    // (before the useEffect listener is ever registered), causing first-load failures.
     tryPlay();
 
-    // Strategy 3: Retry play on user interaction (click/touch anywhere)
+    // Retry play on user interaction (click/touch anywhere)
     // Many mobile browsers require a user gesture before allowing video playback
     const onUserInteraction = () => {
       if (vid.paused && !videoFailed) {
         tryPlay();
       }
-      // Clean up after first interaction
-      document.removeEventListener("click", onUserInteraction);
-      document.removeEventListener("touchstart", onUserInteraction);
     };
     document.addEventListener("click", onUserInteraction, { once: true, passive: true });
     document.addEventListener("touchstart", onUserInteraction, { once: true, passive: true });
 
-    // Strategy 4: IntersectionObserver — retry when section scrolls into view
+    // IntersectionObserver — retry when section scrolls into view
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting && vid.paused) {
@@ -77,10 +112,11 @@ export default function CinematicHero() {
     );
     observer.observe(vid);
 
-    // Strategy 5: Retry a few times with increasing delays
+    // Retry with increasing delays (handles slow network + Safari timing quirks)
     const retryTimers = [
-      setTimeout(() => { if (vid.paused) tryPlay(); }, 1000),
-      setTimeout(() => { if (vid.paused) tryPlay(); }, 2500),
+      setTimeout(() => { if (vid.paused) tryPlay(); }, 500),
+      setTimeout(() => { if (vid.paused) tryPlay(); }, 1500),
+      setTimeout(() => { if (vid.paused) tryPlay(); }, 3000),
     ];
 
     // Handle outright failure (network error, codec unsupported, etc.)
@@ -95,10 +131,13 @@ export default function CinematicHero() {
 
     return () => {
       clearTimeout(safetyTimer);
+      if (freezeTimer) clearTimeout(freezeTimer);
       retryTimers.forEach(clearTimeout);
       observer.disconnect();
       document.removeEventListener("click", onUserInteraction);
       document.removeEventListener("touchstart", onUserInteraction);
+      vid.removeEventListener("canplay", onCanPlay);
+      vid.removeEventListener("loadeddata", onLoadedData);
       vid.removeEventListener("error", handleError);
     };
   }, []);

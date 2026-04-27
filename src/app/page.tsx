@@ -192,8 +192,7 @@ export default function Home() {
           </div>
       </section>
       
-      {/* Straight line transition into footer instead of a curve */}
-      <div style={{ width: "100%", height: "1px", background: "#E8CE73", opacity: 0.2 }} />
+
 
     </main>
   );
