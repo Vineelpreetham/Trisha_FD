@@ -46,14 +46,12 @@ export default function CinematicHero() {
       }
     };
 
-    // Strategy 1: If already buffered enough, play immediately
-    if (vid.readyState >= 2) {
-      tryPlay();
-    } else {
-      // Strategy 2: Wait for canplay event
-      const onCanPlay = () => tryPlay();
-      vid.addEventListener("canplay", onCanPlay, { once: true });
-    }
+    // Always attempt to play immediately.
+    // Browsers queue play() requests internally and start as soon as
+    // enough data is buffered — no need to wait for canplay.
+    // This avoids the race condition where `canplay` fires during SSR→hydration
+    // (before the useEffect listener is ever registered), causing first-load failures.
+    tryPlay();
 
     // Strategy 3: Retry play on user interaction (click/touch anywhere)
     // Many mobile browsers require a user gesture before allowing video playback
@@ -152,7 +150,7 @@ export default function CinematicHero() {
         }
         .cinematic-text-left.triggered {
           animation: slideFromLeft 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          animation-delay: 2.0s; /* Allow more walking before text starts */
+          animation-delay: 0.8s; /* Earlier reveal */
         }
 
         .cinematic-text-right {
@@ -161,7 +159,7 @@ export default function CinematicHero() {
         }
         .cinematic-text-right.triggered {
           animation: slideFromRight 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          animation-delay: 2.0s; /* Allow more walking before text starts */
+          animation-delay: 0.8s; /* Earlier reveal */
         }
 
         /* ─── SUBTLE ACCESSORIES ──────────────────────────────────── */
@@ -303,12 +301,13 @@ export default function CinematicHero() {
             `,
           }} />
 
-          {/* ── TRISHA — bottom left ── */}
+          {/* ── TRISHA — left side, vertically centered ── */}
           <div
             style={{
               position: "absolute",
               left: "clamp(1.2rem, 3.5vw, 4.5rem)",
-              bottom: "clamp(5rem, 20vh, 13rem)",
+              top: "50%",
+              transform: "translateY(-50%)",
               zIndex: 3,
               pointerEvents: "none",
             }}
@@ -342,13 +341,12 @@ export default function CinematicHero() {
             </div>
           </div>
 
-          {/* ── VANAM — right side, vertically centered ── */}
+          {/* ── VANAM — bottom right ── */}
           <div
             style={{
               position: "absolute",
               right: "clamp(1.2rem, 3.5vw, 4.5rem)",
-              top: "50%",
-              transform: "translateY(-50%)",
+              bottom: "clamp(5rem, 20vh, 13rem)",
               zIndex: 3,
               pointerEvents: "none",
             }}

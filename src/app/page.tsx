@@ -165,7 +165,7 @@ export default function Home() {
 
       {/* ── TOP PICKS SECTION ── */}
       <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif" }}>
-          <h3 style={{ fontSize: "1.2rem", letterSpacing: "0.1em", fontWeight: 400, marginBottom: "4rem", color: "#111", textAlign: "left", padding: "0 8%" }}>TOP PICKS</h3>
+          <h3 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80" style={{ marginBottom: "4rem" }}>Top Picks.</h3>
           
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
