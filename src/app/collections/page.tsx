@@ -29,7 +29,7 @@ const collections = [
     subtitle: "Innovation with Purpose:-",
     description: "Adaptive fashion and bioplastic innovation, exploring clothing that fits the person and the planet through radical self-expression.",
     link: "/conscious-design",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7331_zurmar.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7331_zurmar.jpg",
     textColor: "text-white",
     align: "bottom"
   },
@@ -121,7 +121,7 @@ export default function CollectionsPage() {
         <Link href="/" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Tighter max-width restrains image size for a better aesthetic */}

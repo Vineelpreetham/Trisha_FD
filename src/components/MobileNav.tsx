@@ -66,7 +66,7 @@ export default function MobileNav() {
                   className="inline-block"
                 >
                   <img 
-                    src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
+                    src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
                     alt="Trisha Vanam Logo" 
                     className="h-16 md:h-20 w-auto" 
                     style={{ filter: "invert(1)", mixBlendMode: "screen" }}

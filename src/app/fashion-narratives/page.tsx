@@ -20,7 +20,7 @@ const collections = [
     subtitle: "What I See Somewhere between a picnic blanket and a daydream-",
     description: "the smell of somewhere coastal and warm —a collection that moves like a summer afternoon, unhurried, feminine.",
     link: "/summer-is-calling",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663476/cover_page_swoc7k.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663476/cover_page_swoc7k.png",
     textColor: "text-white",
     align: "bottom"
   },
@@ -38,7 +38,7 @@ const collections = [
     subtitle: "Born to Be Free —",
     description: "Colours borrowed from candlelight and quiet longing — the secret worlds women built when the outside world wouldn't let them in.",
     link: "/romantiques",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7328_vgjiux.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7328_vgjiux.jpg",
     textColor: "text-white",
     align: "top"
   },
@@ -47,7 +47,7 @@ const collections = [
     subtitle: "As the Season Turns —",
     description: "Inspired by Keukenhof Gardens — a three-month journey from soft spring pastels to bold tulip brights and the quiet blush of late-season roses.",
     link: "/bloom",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775301406/IMG_7333_dz4lp4.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7333_dz4lp4.jpg",
     textColor: "text-white",
     align: "bottom"
   }
@@ -119,7 +119,7 @@ export default function FashionNarrativesPage() {
         <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Increased padding safely bounds the text overhang without clipping */}

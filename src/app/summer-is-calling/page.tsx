@@ -6,11 +6,11 @@ import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
 const summerPhotos = [
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663488/summer_is_calling_1_w9nqfb.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663477/summer_is_calling_2_vfygft.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663485/summer_is_calling_3_x1rjsv.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663477/summer_is_calling_4_q0ek58.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775663478/summer_is_calling_5_ux5u6r.png"
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663488/summer_is_calling_1_w9nqfb.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663477/summer_is_calling_2_vfygft.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663485/summer_is_calling_3_x1rjsv.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663477/summer_is_calling_4_q0ek58.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775663478/summer_is_calling_5_ux5u6r.png"
 ].join(",");
 
 export default function SummerIsCallingPage() {
@@ -36,7 +36,7 @@ export default function SummerIsCallingPage() {
         <Link href="/fashion-narratives" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}

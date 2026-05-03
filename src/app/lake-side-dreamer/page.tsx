@@ -5,13 +5,13 @@ import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
 const lakesideDreamerPhotos = [
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498682/WhatsApp_Image_2026-04-06_at_11.11.33_AM_imgtuw.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498661/WhatsApp_Image_2026-04-06_at_11.11.33_AM_1_kwgtj7.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498665/WhatsApp_Image_2026-04-06_at_11.11.33_AM_2_qnjp4l.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498668/WhatsApp_Image_2026-04-06_at_11.11.33_AM_3_szqdth.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498670/WhatsApp_Image_2026-04-06_at_11.11.33_AM_4_cxwdof.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498675/WhatsApp_Image_2026-04-06_at_11.11.33_AM_5_a5vi3h.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498677/WhatsApp_Image_2026-04-06_at_11.11.33_AM_6_nsvlqw.jpg"
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498682/WhatsApp_Image_2026-04-06_at_11.11.33_AM_imgtuw.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498661/WhatsApp_Image_2026-04-06_at_11.11.33_AM_1_kwgtj7.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498665/WhatsApp_Image_2026-04-06_at_11.11.33_AM_2_qnjp4l.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498668/WhatsApp_Image_2026-04-06_at_11.11.33_AM_3_szqdth.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498670/WhatsApp_Image_2026-04-06_at_11.11.33_AM_4_cxwdof.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498675/WhatsApp_Image_2026-04-06_at_11.11.33_AM_5_a5vi3h.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498677/WhatsApp_Image_2026-04-06_at_11.11.33_AM_6_nsvlqw.jpg"
 ].join(",");
 
 export default function LakesideDreamerPage() {
@@ -37,7 +37,7 @@ export default function LakesideDreamerPage() {
         <Link href="/digital-fashion" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}

@@ -11,7 +11,7 @@ const collections = [
     subtitle: "City life meets nostalgia —",
     description: "where city life meets the nostalgia of school hallways. Casual silhouettes, utility details, and a youthful energy that carries the warmth of high school days into the rhythm of modern urban living.",
     link: "/metropolitan-memoirs",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775500166/Screenshot_2026-04-05_at_6.34.14_PM_fwrfuo.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775500166/Screenshot_2026-04-05_at_6.34.14_PM_fwrfuo.png",
     textColor: "text-white",
     align: "top"
   },
@@ -20,7 +20,7 @@ const collections = [
     subtitle: "Prints · Embroidery · Garments-",
     description: "Every print drawn, every thread placed, every silhouette conceived from within — a complete creative anthology that exists as proof of one designer's distinct and unapologetic voice.",
     link: "/signature",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775662824/Screenshot_2026-04-08_at_1.49.53_AM_ltaw6i.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775662824/Screenshot_2026-04-08_at_1.49.53_AM_ltaw6i.png",
     textColor: "text-white",
     align: "bottom"
   },
@@ -29,7 +29,7 @@ const collections = [
     subtitle: "Technique in Motion —",
     description: "A study of form, fabric, and hand — every draping technique explored, refined, and documented as a designer's ongoing conversation with cloth.",
     link: "/the-art-of-fold",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775556215/the_art_of_fold_3_t1hxgo.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775556215/the_art_of_fold_3_t1hxgo.png",
     textColor: "text-white",
     align: "bottom"
   }
@@ -99,7 +99,7 @@ export default function ConstructedCraftPage() {
         <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       <div className="w-full max-w-[1200px] mx-auto px-8 md:px-20 lg:px-32 mb-32 flex flex-col items-center">

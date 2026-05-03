@@ -65,7 +65,7 @@ export default function Home() {
       <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff", transform: "translateZ(0)" }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img 
-            src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
+            src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
             alt="Trisha Vanam" 
             style={{ 
               height: "clamp(3.5rem, 6vw, 5rem)", 

@@ -11,7 +11,7 @@ const collections = [
     subtitle: "Skin-first storytelling —",
     description: "A Spring Red reimagining of Glossier's e-commerce experience — blending the brand's editorial DNA with a bold cherry palette, campaign-driven product grids, and effortless skin-first storytelling for SS 2025.",
     link: "/glossier",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496751/Screenshot_2026-04-06_at_12.24.56_AM_gry1ls.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496751/Screenshot_2026-04-06_at_12.24.56_AM_gry1ls.png",
     textColor: "text-white",
     align: "top"
   },
@@ -20,7 +20,7 @@ const collections = [
     subtitle: "A vision for the future —",
     description: "A brand built before its time — Trisha Vanam is a vision for the future, where every identity decision, from aesthetic to ethos, is laid with intention, ready for the moment it meets the world.",
     link: "/trisha-vanam",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496581/Screenshot_2026-04-06_at_12.09.59_AM_nzhob0.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496581/Screenshot_2026-04-06_at_12.09.59_AM_nzhob0.png",
     textColor: "text-white",
     align: "bottom"
   },
@@ -29,7 +29,7 @@ const collections = [
     subtitle: "The emotional language of colour —",
     description: "Every colour chosen with intention — a mood board series that maps the emotional language of what lives inside the mind, translating raw thoughts, feelings, and inner visions onto the page exactly as they appear.",
     link: "/chromatic-soul",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496708/WhatsApp_Image_2026-04-06_at_10.04.12_AM_egnif5.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496708/WhatsApp_Image_2026-04-06_at_10.04.12_AM_egnif5.jpg",
     textColor: "text-white",
     align: "top"
   }
@@ -99,7 +99,7 @@ export default function BrandWorldsPage() {
         <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}

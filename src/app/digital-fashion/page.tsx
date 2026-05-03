@@ -20,7 +20,7 @@ const collections = [
     subtitle: "AI-crafted campaign —",
     description: "An AI-crafted campaign video built through Midjourney and beyond — a girl, a lakeside, and the quiet world that lives inside a dream, rendered frame by frame from imagination into image.",
     link: "/lake-side-dreamer",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775498654/-44.jpg_cyjnv5.jpg",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775498654/-44.jpg_cyjnv5.jpg",
     textColor: "text-white",
     align: "bottom",
     imageClass: "scale-[1.20] group-hover:scale-[1.25] origin-[50%_30%]"
@@ -30,7 +30,7 @@ const collections = [
     subtitle: "Baroque grandeur —",
     description: "baroque grandeur and opera glamour reborn. A modern tribute to the timeless power and poise of royal femininity",
     link: "/regalia",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775372627/Website_TV_uods5i.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775372627/Website_TV_uods5i.png",
     textColor: "text-white",
     align: "top"
   }
@@ -100,7 +100,7 @@ export default function DigitalFashionPage() {
         <Link href="/collections" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       <div className="w-full max-w-[1200px] mx-auto px-8 md:px-20 lg:px-32 mb-32 flex flex-col items-center">

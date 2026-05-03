@@ -5,24 +5,24 @@ import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
 const trishaVanamAssets = [
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496583/tv_1_zhefeq.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496583/tv_2_amyfyo.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496588/tv_3_b91qjh.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496588/tv_4_j1bjtv.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496588/tv_5_m9a313.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496589/tv_6_ayogby.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496583/tv_1_zhefeq.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496583/tv_2_amyfyo.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496588/tv_3_b91qjh.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496588/tv_4_j1bjtv.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496588/tv_5_m9a313.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496589/tv_6_ayogby.png",
   "https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1775496634/tv_7_yswzwb.mp4",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496592/tv_7_vtfgpj.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496592/tv_7_vtfgpj.png",
   "https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1775496655/tv_8_q5lt3d.mp4",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496614/tv_8_rpe3x4.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496595/tv_9_ml4q0a.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496595/tv_10_uggkft.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496595/tv_11_zrf0mo.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496597/tv_12_gfdwzc.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496599/tv_13_pnyy6s.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496602/tv_14_vbh5qb.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496600/tv_15_l0ovou.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496603/tv_16_j561gv.png"
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496614/tv_8_rpe3x4.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496595/tv_9_ml4q0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496595/tv_10_uggkft.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496595/tv_11_zrf0mo.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496597/tv_12_gfdwzc.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496599/tv_13_pnyy6s.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496602/tv_14_vbh5qb.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496600/tv_15_l0ovou.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496603/tv_16_j561gv.png"
 ].join(",");
 
 export default function TrishaVanamPage() {
@@ -48,7 +48,7 @@ export default function TrishaVanamPage() {
         <Link href="/brand-worlds" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}

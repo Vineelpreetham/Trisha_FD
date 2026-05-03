@@ -6,15 +6,15 @@ import { motion } from "framer-motion";
 
 const glossierAssets = [
   "https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1775496811/WhatsApp_Video_2026-04-06_at_10.25.48_AM_xs8qv5.mp4",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496769/WhatsApp_Image_2026-04-06_at_10.25.48_AM_vc7bco.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496767/WhatsApp_Image_2026-04-06_at_10.25.48_AM_1_xuno3a.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496766/WhatsApp_Image_2026-04-06_at_10.25.48_AM_2_eg7vqx.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496779/WhatsApp_Image_2026-04-06_at_10.25.49_AM_efbwwj.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_1_fyaeun.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_2_bxnost.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496772/WhatsApp_Image_2026-04-06_at_10.25.49_AM_3_sjivai.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496773/WhatsApp_Image_2026-04-06_at_10.25.49_AM_4_f2fc8i.jpg",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496776/WhatsApp_Image_2026-04-06_at_10.25.49_AM_5_w7jwgj.jpg"
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496769/WhatsApp_Image_2026-04-06_at_10.25.48_AM_vc7bco.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496767/WhatsApp_Image_2026-04-06_at_10.25.48_AM_1_xuno3a.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496766/WhatsApp_Image_2026-04-06_at_10.25.48_AM_2_eg7vqx.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496779/WhatsApp_Image_2026-04-06_at_10.25.49_AM_efbwwj.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_1_fyaeun.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496770/WhatsApp_Image_2026-04-06_at_10.25.49_AM_2_bxnost.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496772/WhatsApp_Image_2026-04-06_at_10.25.49_AM_3_sjivai.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496773/WhatsApp_Image_2026-04-06_at_10.25.49_AM_4_f2fc8i.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775496776/WhatsApp_Image_2026-04-06_at_10.25.49_AM_5_w7jwgj.jpg"
 ].join(",");
 
 export default function GlossierPage() {
@@ -40,7 +40,7 @@ export default function GlossierPage() {
         <Link href="/brand-worlds" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}

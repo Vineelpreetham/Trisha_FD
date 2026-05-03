@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
-const metropolitanPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504191/1_xiocww.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504184/2_iylzmy.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504164/3_xfwc7u.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504164/4_f0m3i9.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504157/5_jjxavd.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504164/6_huszng.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504163/7_gagxp1.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504165/8_x6inss.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504167/9_p3z737.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504183/10_jxjsdk.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504174/11_gfkv75.png,https://res.cloudinary.com/dbeh0eisn/image/upload/v1775504176/12_dinihr.png";
+const metropolitanPhotos = "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504191/1_xiocww.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504184/2_iylzmy.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504164/3_xfwc7u.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504164/4_f0m3i9.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504157/5_jjxavd.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504164/6_huszng.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504163/7_gagxp1.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504165/8_x6inss.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504167/9_p3z737.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504183/10_jxjsdk.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504174/11_gfkv75.png,https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775504176/12_dinihr.png";
 
 export default function MetropolitanMemoirsPage() {
   return (
@@ -30,7 +30,7 @@ export default function MetropolitanMemoirsPage() {
         <Link href="/constructed-craft" className="pointer-events-auto font-sans text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity touch-target">
           ← Back
         </Link>
-        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
+        <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" alt="Trisha Vanam" style={{ height: "clamp(3.5rem, 6vw, 5rem)", width: "auto", objectFit: "contain", filter: "invert(1)", mixBlendMode: "screen" }} className="hidden md:block" />
       </nav>
 
       {/* Header */}
