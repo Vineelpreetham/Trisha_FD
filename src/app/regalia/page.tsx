@@ -180,7 +180,7 @@ export default function RegaliaPage() {
         <video 
           ref={heroVideoRef}
           autoPlay loop muted playsInline
-          src="https://res.cloudinary.com/dbeh0eisn/video/upload/v1774463613/PORTFOLIO_TRISHA_rub7rt.mp4" 
+          src="https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1774463613/PORTFOLIO_TRISHA_rub7rt.mp4"
           style={{ position: "absolute", top: isMobile ? "0" : "-10%", left: 0, width: "100%", height: isMobile ? "100%" : "120%", objectFit: "cover", zIndex: 0, opacity: 0.8 }} 
         />
         

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 // Direct Cloudinary URLs — no on-the-fly transcoding, same approach as Regalia
-const VIDEO_SRC = "https://res.cloudinary.com/dbeh0eisn/video/upload/v1777048677/Woman_walks_towards_202604242205_impvit.mp4";
+const VIDEO_SRC = "https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1777048677/Woman_walks_towards_202604242205_impvit.mp4";
 const POSTER = "https://res.cloudinary.com/dbeh0eisn/video/upload/so_0,f_jpg,q_auto,w_1280/v1777048677/Woman_walks_towards_202604242205_impvit.jpg";
 
 export default function CinematicHero() {
@@ -323,7 +323,7 @@ export default function CinematicHero() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             src={VIDEO_SRC}
             poster={POSTER}
           />

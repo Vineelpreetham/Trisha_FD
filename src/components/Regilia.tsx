@@ -53,7 +53,7 @@ export default function Regilia() {
         <div className="absolute inset-0 w-full h-full -z-10">
           <video
             ref={videoRef}
-            src="https://res.cloudinary.com/dbeh0eisn/video/upload/v1774463613/PORTFOLIO_TRISHA_rub7rt.mp4"
+            src="https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1774463613/PORTFOLIO_TRISHA_rub7rt.mp4"
             autoPlay
             loop
             muted

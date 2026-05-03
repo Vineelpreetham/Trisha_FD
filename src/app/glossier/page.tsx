@@ -5,7 +5,7 @@ import { ImageSwiper } from "@/components/ui/image-swiper";
 import { motion } from "framer-motion";
 
 const glossierAssets = [
-  "https://res.cloudinary.com/dbeh0eisn/video/upload/v1775496811/WhatsApp_Video_2026-04-06_at_10.25.48_AM_xs8qv5.mp4",
+  "https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1775496811/WhatsApp_Video_2026-04-06_at_10.25.48_AM_xs8qv5.mp4",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496769/WhatsApp_Image_2026-04-06_at_10.25.48_AM_vc7bco.jpg",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496767/WhatsApp_Image_2026-04-06_at_10.25.48_AM_1_xuno3a.jpg",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/v1775496766/WhatsApp_Image_2026-04-06_at_10.25.48_AM_2_eg7vqx.jpg",

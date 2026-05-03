@@ -64,7 +64,7 @@ export default function LakesideDreamerPage() {
            style={{ height: "clamp(400px, 85vh, 900px)", maxWidth: "100%", aspectRatio: "9/16" }}
          >
            <video 
-             src="https://res.cloudinary.com/dbeh0eisn/video/upload/v1775823173/IMG_7693_vhwiyb.mp4" 
+             src="https://res.cloudinary.com/dbeh0eisn/video/upload/q_auto,vc_auto/v1775823173/IMG_7693_vhwiyb.mp4"
              autoPlay 
              loop 
              muted 
