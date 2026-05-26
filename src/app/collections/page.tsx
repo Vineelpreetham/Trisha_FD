@@ -50,6 +50,15 @@ const collections = [
     image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1775301406/IMG_7332_cslkhk.jpg",
     textColor: "text-white",
     align: "bottom"
+  },
+  {
+    altTitle: "Technical Flat",
+    subtitle: "Design through technical drawing:-",
+    description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
+    link: "/trail-tech",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779801461/copy_of_44_oqzbnp.png",
+    textColor: "text-white",
+    align: "bottom"
   }
 ];
 
@@ -154,11 +163,12 @@ export default function CollectionsPage() {
                {collections[3] && <CollectionCard data={collections[3]} index={3} />}
             </div>
             
-            {/* Row 3: 1 Item (Perfectly Centered & tucked under) */}
-            <div className="md:col-span-2 flex justify-center lg:translate-y-8 relative z-30 transition-transform duration-700 hover:z-50 mt-16 md:mt-12 lg:-mt-8 pb-32">
-               <div className="w-full md:w-[60%] lg:w-[50%]">
-                  {collections[4] && <CollectionCard data={collections[4]} index={4} />}
-               </div>
+            {/* Row 3: 2 Items */}
+            <div className="md:col-span-1 lg:translate-y-0 relative z-10 transition-transform duration-700 hover:z-50 mt-12 md:mt-0" style={{ contain: "layout style" }}>
+               {collections[4] && <CollectionCard data={collections[4]} index={4} />}
+            </div>
+            <div className="md:col-span-1 lg:translate-y-24 relative z-20 transition-transform duration-700 hover:z-50 mt-6 md:mt-0 pb-32" style={{ contain: "layout style" }}>
+               {collections[5] && <CollectionCard data={collections[5]} index={5} />}
             </div>
 
          </div>
