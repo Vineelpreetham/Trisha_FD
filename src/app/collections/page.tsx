@@ -62,7 +62,7 @@ const collections = [
   //   align: "bottom"
   // },
   {
-    altTitle: "Tech Flat",
+    altTitle: "Tech Flats",
     subtitle: "Design through technical drawing:-",
     description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
     link: "/tech-flat",

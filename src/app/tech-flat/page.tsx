@@ -136,7 +136,7 @@ export default function TechFlatPage() {
               className="font-serif font-black text-black leading-none tracking-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
             >
-              Tech Flat
+              Tech Flats
             </h1>
             <p
               className="font-sans text-black/45 mt-4 max-w-xl leading-relaxed"

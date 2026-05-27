@@ -77,7 +77,7 @@ const CarouselItem = ({ src, index, containerRef }: { src: string; index: number
     >
       <img
         src={src}
-        alt={`Tech Flat ${index + 1}`}
+        alt={`Tech Flats ${index + 1}`}
         className="w-full h-full object-cover"
         style={{ transform: "translateZ(0)" }} // Force hardware acceleration
       />
