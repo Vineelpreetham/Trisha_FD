@@ -56,6 +56,10 @@ interface CircularGalleryProps
    * @default "left"
    */
   scrollDirection?: "left" | "right";
+  /**
+   * Callback triggered when an item in the gallery is clicked.
+   */
+  onItemClick?: (item: GalleryItem, index: number) => void;
 }
 
 /* --------------------------------
@@ -472,10 +476,14 @@ class App {
   boundOnWheel!: (e: any) => void;
   boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void;
   boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchUp!: () => void;
+  boundOnTouchUp!: (e: MouseEvent | TouchEvent) => void;
   boundOnMouseMove!: (e: MouseEvent) => void;
   mouseX: number = -9999;
   hoveredIndex: number = -1;
+  onItemClick?: (item: GalleryItem, index: number) => void;
+  touchStartTime: number = 0;
+  touchStartX: number = 0;
+  touchStartY: number = 0;
 
   constructor(
     container: HTMLElement,
@@ -488,6 +496,7 @@ class App {
       scrollSpeed,
       scrollEase,
       scrollDirection,
+      onItemClick,
     }: {
       items?: GalleryItem[];
       bend: number;
@@ -497,12 +506,14 @@ class App {
       scrollSpeed: number;
       scrollEase: number;
       scrollDirection: "left" | "right";
+      onItemClick?: (item: GalleryItem, index: number) => void;
     },
   ) {
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.scrollDirection = scrollDirection;
+    this.onItemClick = onItemClick;
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
 
     autoBind(this);
@@ -589,19 +600,59 @@ class App {
   onTouchDown(e: MouseEvent | TouchEvent) {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
-    this.start = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const isTouch = "touches" in e;
+    const clientX = isTouch ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
+    const clientY = isTouch ? (e as TouchEvent).touches[0].clientY : (e as MouseEvent).clientY;
+    this.start = clientX;
+    this.touchStartX = clientX;
+    this.touchStartY = clientY;
+    this.touchStartTime = Date.now();
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
     if (!this.isDown) return;
-    const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+    const isTouch = "touches" in e;
+    const clientX = isTouch ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
+    const distance = (this.start - clientX) * (this.scrollSpeed * 0.025);
     this.scroll.target = (this.scroll as any).position + distance;
   }
 
-  onTouchUp() {
+  onTouchUp(e: MouseEvent | TouchEvent) {
     this.isDown = false;
     this.onCheck();
+
+    if (!e) return;
+
+    const isTouch = "touches" in e || "changedTouches" in e;
+    let clientX: number | undefined;
+    let clientY: number | undefined;
+
+    if (isTouch) {
+      const te = e as TouchEvent;
+      const touch = te.touches[0] || te.changedTouches[0];
+      if (touch) {
+        clientX = touch.clientX;
+        clientY = touch.clientY;
+      }
+    } else {
+      const me = e as MouseEvent;
+      clientX = me.clientX;
+      clientY = me.clientY;
+    }
+
+    if (clientX !== undefined && clientY !== undefined) {
+      const diffX = Math.abs(clientX - this.touchStartX);
+      const diffY = Math.abs(clientY - this.touchStartY);
+      const timeDiff = Date.now() - this.touchStartTime;
+
+      // Tap threshold: less than 6px movement and under 250ms duration
+      if (diffX < 6 && diffY < 6 && timeDiff < 250) {
+        if (this.hoveredIndex !== -1 && this.onItemClick) {
+          const originalIndex = this.hoveredIndex % (this.mediasImages.length / 2);
+          this.onItemClick(this.mediasImages[this.hoveredIndex], originalIndex);
+        }
+      }
+    }
   }
 
   onWheel(e: WheelEvent) {
@@ -743,6 +794,7 @@ const CircularGallery = ({
   scrollDirection = "left",
   className,
   fontClassName,
+  onItemClick,
   ...props
 }: CircularGalleryProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -768,12 +820,13 @@ const CircularGallery = ({
       scrollSpeed,
       scrollEase,
       scrollDirection,
+      onItemClick,
     });
 
     return () => {
       app.destroy();
     };
-  }, [items, bend, borderRadius, scrollSpeed, scrollEase, scrollDirection, fontClassName]);
+  }, [items, bend, borderRadius, scrollSpeed, scrollEase, scrollDirection, fontClassName, onItemClick]);
 
   return (
     <div
