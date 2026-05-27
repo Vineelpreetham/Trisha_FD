@@ -145,7 +145,6 @@ export default function TrailTechPage() {
       <main
         className="w-full min-h-screen overflow-x-hidden relative"
         style={{ background: "linear-gradient(to bottom, #B2A5A5 0%, #D4C4C4 35%, #EDE0DC 70%, #F5EAE8 100%)" }}
-        data-lenis-prevent
       >
 
         {/* Nav */}
