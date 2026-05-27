@@ -194,6 +194,7 @@ class Media {
   speed: number = 0;
   isBefore: boolean = false;
   isAfter: boolean = false;
+  imageLoaded: boolean = false;
 
   constructor({
     geometry,
@@ -248,6 +249,13 @@ class Media {
 
   createShader() {
     const texture = new Texture(this.gl, { generateMipmaps: true });
+
+    // Start with a tiny 1x1 transparent placeholder — real image loads lazily
+    const placeholder = document.createElement("canvas");
+    placeholder.width = 1;
+    placeholder.height = 1;
+    texture.image = placeholder;
+
     this.program = new Program(this.gl, {
       depthTest: false,
       depthWrite: false,
@@ -314,12 +322,17 @@ class Media {
       },
       transparent: true,
     });
+  }
 
+  /** Lazy load: download the real image only when called */
+  loadImage() {
+    if (this.imageLoaded) return;
+    this.imageLoaded = true;
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.src = this.image;
     img.onload = () => {
-      texture.image = img;
+      this.program.uniforms.tMap.value.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
     };
   }
@@ -368,6 +381,11 @@ class Media {
         this.plane.position.y = arc;
         this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
       }
+    }
+
+    // Lazy load: only download the image when the plane is near the viewport
+    if (!this.imageLoaded && Math.abs(x) < this.viewport.width * 1.5) {
+      this.loadImage();
     }
 
     this.speed = scroll.current - scroll.last;
