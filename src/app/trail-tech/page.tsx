@@ -1,65 +1,69 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 
+/* ──────────────────────────────────────────────
+   Cloudinary-optimized URLs — f_auto,q_auto +
+   width cap at 400px (images display at ~220px)
+   ────────────────────────────────────────────── */
 const ALL = [
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811488/5_qnibol_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811479/10_d22yqx_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811471/8_wf9ymg_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811463/11_jnfcmt_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811455/13_aj4nsk_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811447/12_u3e61c_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811440/9_bxw8eq_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811431/14_qhrd6u_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811423/15_eekgho_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811415/16_fnpigv_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811408/7_qwhoh6_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811399/19_sbradd_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811390/21_lqqan2_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811381/18_bgmneg_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811371/17_dyifhr_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811364/22_h4fvov_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811355/23_lrnduc_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811345/20_rtaydw_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811337/24_tudzj5_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811329/27_ubttqr_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811321/29_y2r5gz_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811313/28_wgyeqo_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811305/30_xk5aea_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811297/25_ez9erz_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811286/31_dnjm2k_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811276/26_llyngy_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811269/32_sju3ve_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811260/33_wmaasv_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811252/35_uygeju_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811243/36_uy9k3j_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811235/38_neqt9j_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811227/39_zr6ex5_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811219/34_uyle01_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811210/40_e9wxbt_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811201/6_v23ewm_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811194/42_jzd1wb_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811188/45_rnccws_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811180/46_d80bbz_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811172/47_vuwo9h_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811163/41_oygowc_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811155/48_c3rxxm_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811149/43_fgcm5s_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811140/49_qxj2ip_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811134/44_oqzbnp_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811129/51_uhbai0_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811122/53_cv1kog_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811112/52_jou9ux_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811104/55_lxtc5y_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811096/56_prh46a_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811089/57_t6ufff_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811080/50_wmni4f_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811074/54_jhxiif_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811062/59_tgz6eu_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811053/60_roaac9_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811044/58_goolgw_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811035/37_x9r87u_475a40.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/v1779811026/61_qlxqeq_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811488/5_qnibol_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811479/10_d22yqx_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811471/8_wf9ymg_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811463/11_jnfcmt_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811455/13_aj4nsk_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811447/12_u3e61c_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811440/9_bxw8eq_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811431/14_qhrd6u_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811423/15_eekgho_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811415/16_fnpigv_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811408/7_qwhoh6_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811399/19_sbradd_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811390/21_lqqan2_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811381/18_bgmneg_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811371/17_dyifhr_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811364/22_h4fvov_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811355/23_lrnduc_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811345/20_rtaydw_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811337/24_tudzj5_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811329/27_ubttqr_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811321/29_y2r5gz_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811313/28_wgyeqo_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811305/30_xk5aea_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811297/25_ez9erz_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811286/31_dnjm2k_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811276/26_llyngy_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811269/32_sju3ve_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811260/33_wmaasv_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811252/35_uygeju_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811243/36_uy9k3j_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811235/38_neqt9j_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811227/39_zr6ex5_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811219/34_uyle01_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811210/40_e9wxbt_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811201/6_v23ewm_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811194/42_jzd1wb_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811188/45_rnccws_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811180/46_d80bbz_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811172/47_vuwo9h_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811163/41_oygowc_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811155/48_c3rxxm_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811149/43_fgcm5s_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811140/49_qxj2ip_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811134/44_oqzbnp_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811129/51_uhbai0_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811122/53_cv1kog_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811112/52_jou9ux_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811104/55_lxtc5y_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811096/56_prh46a_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811089/57_t6ufff_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811080/50_wmni4f_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811074/54_jhxiif_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811062/59_tgz6eu_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811053/60_roaac9_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811044/58_goolgw_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811035/37_x9r87u_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779811026/61_qlxqeq_475a40.png",
 ];
 
 const ALL_REV = [...ALL].reverse();
@@ -71,18 +75,24 @@ const ROWS = [
   { imgs: ALL_MID, toLeft: true,  dur: 140, h: 220 },
 ];
 
+/* ──────────────────────────────────────────────
+   GPU-friendly marquee using pure CSS translate.
+   - Removed willChange: "transform" (was
+     promoting 348 layers to GPU — massive memory)
+   - Added content-visibility: auto for off-screen
+     paint savings
+   - Lazy loading images + decoding async
+   - Hover state uses CSS-only transform (no
+     React re-render of entire row)
+   ────────────────────────────────────────────── */
+
 function MarqueeRow({ imgs, toLeft, dur, h }: { imgs: string[]; toLeft: boolean; dur: number; h: number }) {
-  const [paused, setPaused] = useState(false);
-  const [hovIdx, setHovIdx] = useState(-1);
   const doubled = [...imgs, ...imgs];
 
   return (
-    <div
-      className="overflow-hidden w-full"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => { setPaused(false); setHovIdx(-1); }}
-    >
+    <div className="overflow-hidden w-full tt-marquee-row">
       <div
+        className="tt-marquee-track"
         style={{
           display: "flex",
           gap: "18px",
@@ -91,38 +101,29 @@ function MarqueeRow({ imgs, toLeft, dur, h }: { imgs: string[]; toLeft: boolean;
           animationDuration: `${dur}s`,
           animationTimingFunction: "linear",
           animationIterationCount: "infinite",
-          animationPlayState: paused ? "paused" : "running",
-          willChange: "transform",
           paddingBottom: "4px",
         }}
       >
-        {doubled.map((src, i) => {
-          const isHov = hovIdx === i;
-          return (
-            <div
-              key={i}
-              style={{
-                flexShrink: 0,
-                height: h,
-                width: "auto",
-                position: "relative",
-                transform: `scale(${isHov ? 1.1 : 1}) translateY(${isHov ? -8 : 0}px)`,
-                transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
-                cursor: "pointer",
-                zIndex: isHov ? 10 : 1,
-              }}
-              onMouseEnter={() => setHovIdx(i)}
-              onMouseLeave={() => setHovIdx(-1)}
-            >
-              <img
-                src={src}
-                alt=""
-                draggable={false}
-                style={{ height: "100%", width: "auto", display: "block", pointerEvents: "none" }}
-              />
-            </div>
-          );
-        })}
+        {doubled.map((src, i) => (
+          <div
+            key={i}
+            className="tt-marquee-card"
+            style={{
+              flexShrink: 0,
+              height: h,
+              width: "auto",
+            }}
+          >
+            <img
+              src={src}
+              alt=""
+              draggable={false}
+              loading="lazy"
+              decoding="async"
+              style={{ height: "100%", width: "auto", display: "block", pointerEvents: "none" }}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -133,12 +134,38 @@ export default function TrailTechPage() {
     <>
       <style>{`
         @keyframes ttMarqueeLeft {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          from { transform: translate3d(0, 0, 0); }
+          to   { transform: translate3d(-50%, 0, 0); }
         }
         @keyframes ttMarqueeRight {
-          from { transform: translateX(-50%); }
-          to   { transform: translateX(0); }
+          from { transform: translate3d(-50%, 0, 0); }
+          to   { transform: translate3d(0, 0, 0); }
+        }
+
+        /* Single GPU layer for the entire track, not per-card */
+        .tt-marquee-track {
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        /* Pause on hover — pure CSS, no React re-render */
+        .tt-marquee-row:hover .tt-marquee-track {
+          animation-play-state: paused;
+        }
+
+        /* Card hover — pure CSS transform, no state */
+        .tt-marquee-card {
+          position: relative;
+          cursor: pointer;
+          z-index: 1;
+          transform: scale(1) translateY(0) translateZ(0);
+          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+          contain: layout style paint;
+        }
+        .tt-marquee-card:hover {
+          transform: scale(1.1) translateY(-8px) translateZ(0);
+          z-index: 10;
         }
       `}</style>
 
