@@ -492,7 +492,7 @@ class App {
     this.renderer = new Renderer({
       alpha: true,
       antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: Math.min(window.devicePixelRatio || 1, 1.5),
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
@@ -511,8 +511,8 @@ class App {
 
   createGeometry() {
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: 50,
-      widthSegments: 100,
+      heightSegments: 10,
+      widthSegments: 20,
     });
   }
 
@@ -572,9 +572,10 @@ class App {
   }
 
   onWheel(e: WheelEvent) {
-    const delta = e.deltaY || (e as any).wheelDelta || e.detail;
+    // Only capture horizontal scroll; let vertical scroll pass through for page scrolling
+    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+    const delta = e.deltaX || e.deltaY || (e as any).wheelDelta || e.detail;
     const speed = (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
-    // "right" row → invert so scroll moves items RIGHT; "left" row → normal (items move LEFT)
     this.scroll.target += this.scrollDirection === "right" ? -speed : speed;
     this.onCheckDebounce();
   }
@@ -635,21 +636,19 @@ class App {
     this.boundOnTouchUp = this.onTouchUp;
 
     window.addEventListener("resize", this.boundOnResize);
-    window.addEventListener("mousewheel", this.boundOnWheel as any);
-    window.addEventListener("wheel", this.boundOnWheel as any);
+    this.container.addEventListener("wheel", this.boundOnWheel as any, { passive: true });
     this.container.addEventListener("mousedown", this.boundOnTouchDown);
     window.addEventListener("mousemove", this.boundOnTouchMove);
     window.addEventListener("mouseup", this.boundOnTouchUp);
-    this.container.addEventListener("touchstart", this.boundOnTouchDown);
-    window.addEventListener("touchmove", this.boundOnTouchMove);
+    this.container.addEventListener("touchstart", this.boundOnTouchDown, { passive: true });
+    window.addEventListener("touchmove", this.boundOnTouchMove, { passive: true });
     window.addEventListener("touchend", this.boundOnTouchUp);
   }
 
   destroy() {
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener("resize", this.boundOnResize);
-    window.removeEventListener("mousewheel", this.boundOnWheel as any);
-    window.removeEventListener("wheel", this.boundOnWheel as any);
+    this.container.removeEventListener("wheel", this.boundOnWheel as any);
     this.container.removeEventListener("mousedown", this.boundOnTouchDown);
     window.removeEventListener("mousemove", this.boundOnTouchMove);
     window.removeEventListener("mouseup", this.boundOnTouchUp);
