@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { X, ZoomIn, ZoomOut } from "lucide-react";
 
-/* ─── All 57 fashion flat images (Cloudinary Optimized with w_800 for high resolution inspection) ─── */
+/* ─── All 85 fashion flat images (Cloudinary Optimized with w_800 for high resolution inspection) ─── */
 const IMAGES = [
   "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779811488/5_qnibol_475a40.png",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779811479/10_d22yqx_475a40.png",
@@ -65,12 +65,40 @@ const IMAGES = [
   "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779811044/58_goolgw_475a40.png",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779811035/37_x9r87u_475a40.png",
   "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779811026/61_qlxqeq_475a40.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808674/6_v23ewm_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808666/5_qnibol_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808656/10_d22yqx_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808647/8_wf9ymg_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808637/11_jnfcmt_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808628/13_aj4nsk_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808618/12_u3e61c_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808609/9_bxw8eq_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808601/14_qhrd6u_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808594/15_eekgho_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808587/16_fnpigv_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808578/7_qwhoh6_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808571/19_sbradd_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808563/21_lqqan2_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808555/18_bgmneg_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808546/17_dyifhr_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808538/22_h4fvov_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808529/23_lrnduc_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808520/20_rtaydw_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808511/24_tudzj5_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808503/27_ubttqr_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808495/29_y2r5gz_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808488/28_wgyeqo_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808482/30_xk5aea_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808474/25_ez9erz_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808463/31_dnjm2k_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808454/26_llyngy_8c3f0a.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1779808449/32_sju3ve_8c3f0a.png"
 ];
 
-/* Split images into 3 rows for the circular gallery (displaying all 57) */
-const ROW1 = IMAGES.slice(0, 19);
-const ROW2 = IMAGES.slice(19, 38);
-const ROW3 = IMAGES.slice(38, 57);
+/* Split images into 3 rows for the circular gallery (displaying all 85) */
+const ROW1 = IMAGES.slice(0, 28);
+const ROW2 = IMAGES.slice(28, 57);
+const ROW3 = IMAGES.slice(57, 85);
 
 export default function TechFlatPage() {
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
@@ -168,7 +196,7 @@ export default function TechFlatPage() {
             {/* Row 2 */}
             <div className="w-full h-[24vh] min-h-[170px] overflow-hidden text-[#D4C3B3]">
               <CircularGallery
-                items={ROW2.map((image, i) => ({ image, text: `Spec ${i + 20}` }))}
+                items={ROW2.map((image, i) => ({ image, text: `Spec ${i + 29}` }))}
                 bend={-4}
                 borderRadius={0.03}
                 scrollEase={0.035}
@@ -180,7 +208,7 @@ export default function TechFlatPage() {
             {/* Row 3 */}
             <div className="w-full h-[24vh] min-h-[170px] overflow-hidden text-[#D4C3B3]">
               <CircularGallery
-                items={ROW3.map((image, i) => ({ image, text: `Spec ${i + 39}` }))}
+                items={ROW3.map((image, i) => ({ image, text: `Spec ${i + 58}` }))}
                 bend={4}
                 borderRadius={0.03}
                 scrollEase={0.035}
