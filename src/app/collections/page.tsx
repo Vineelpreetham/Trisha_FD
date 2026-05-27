@@ -51,15 +51,16 @@ const collections = [
     textColor: "text-white",
     align: "bottom"
   },
-  {
-    altTitle: "Technical Flat",
-    subtitle: "Design through technical drawing:-",
-    description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
-    link: "/trail-tech",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779801461/copy_of_44_oqzbnp.png",
-    textColor: "text-white",
-    align: "bottom"
-  },
+  // ── Technical Flat (Trail Tech) — hidden for now, restore when ready ──
+  // {
+  //   altTitle: "Technical Flat",
+  //   subtitle: "Design through technical drawing:-",
+  //   description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
+  //   link: "/trail-tech",
+  //   image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779801461/copy_of_44_oqzbnp.png",
+  //   textColor: "text-white",
+  //   align: "bottom"
+  // },
   {
     altTitle: "Tech Flat",
     subtitle: "Design through technical drawing:-",
