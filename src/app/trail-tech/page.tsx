@@ -143,7 +143,7 @@ export default function TrailTechPage() {
       `}</style>
 
       <main
-        className="w-full min-h-screen overflow-hidden relative"
+        className="w-full min-h-screen overflow-x-hidden relative"
         style={{ background: "linear-gradient(to bottom, #B2A5A5 0%, #D4C4C4 35%, #EDE0DC 70%, #F5EAE8 100%)" }}
         data-lenis-prevent
       >
@@ -159,7 +159,7 @@ export default function TrailTechPage() {
         </nav>
 
         {/* Rows */}
-        <div className="flex flex-col justify-center h-screen overflow-hidden gap-6 pt-16">
+        <div className="flex flex-col justify-center min-h-screen overflow-x-hidden gap-6 py-24">
           <MarqueeRow {...ROWS[0]} />
 
           <div className="flex flex-col items-center gap-0.5 py-3 pointer-events-none select-none">
