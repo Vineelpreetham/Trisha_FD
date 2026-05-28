@@ -154,7 +154,7 @@ export default function TechFlatPage() {
               items={ROW2.map((image, i) => ({ image, text: `Design ${i + 20}` }))}
               bend={5}
               borderRadius={0.05}
-              scrollSpeed={5}
+              scrollSpeed={2.5}
               scrollEase={0.06}
               scrollDirection="right"
             />
@@ -164,7 +164,7 @@ export default function TechFlatPage() {
               items={ROW3.map((image, i) => ({ image, text: `Design ${i + 39}` }))}
               bend={5}
               borderRadius={0.05}
-              scrollSpeed={5}
+              scrollSpeed={2.5}
               scrollEase={0.06}
               scrollDirection="left"
             />
@@ -172,6 +172,21 @@ export default function TechFlatPage() {
           </div>{/* closes gallery wrapper */}
         </div>{/* closes outer flex wrapper */}
       </main>
+
+      {/* Vertical Scroll Indicator (Left Corner) */}
+      <div className="fixed top-[15%] left-4 md:left-8 z-50 flex flex-col items-center pointer-events-none">
+        <div className="w-[1px] h-24 md:h-32 bg-black/30 mb-6" />
+        <span 
+          className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-black/60"
+          style={{ 
+            writingMode: "vertical-rl", 
+            textOrientation: "upright",
+            letterSpacing: "0.5em"
+          }}
+        >
+          Scroll to explore
+        </span>
+      </div>
     </>
   );
 }

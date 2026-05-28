@@ -8,6 +8,8 @@ import {
   Renderer,
   Texture,
   Transform,
+  Raycast,
+  Vec2,
   type OGLRenderingContext,
 } from "ogl";
 import { useEffect, useRef } from "react";
@@ -267,11 +269,14 @@ class Media {
         uniform mat4 projectionMatrix;
         uniform float uTime;
         uniform float uSpeed;
+        uniform float uHover;
         varying vec2 vUv;
         void main() {
           vUv = uv;
           vec3 p = position;
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+          // Scale up slightly and push forward on hover to create a 'pop' effect
+          p.xy *= 1.0 + (uHover * 0.15);
+          p.z += uHover * 0.5;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -319,6 +324,7 @@ class Media {
         uSpeed: { value: 0 },
         uTime: { value: 100 * Math.random() },
         uBorderRadius: { value: this.borderRadius },
+        uHover: { value: 0 },
       },
       transparent: true,
     });
@@ -453,6 +459,9 @@ class App {
   gl!: OGLRenderingContext;
   camera!: Camera;
   scene!: Transform;
+  raycast!: Raycast;
+  mouse!: Vec2;
+  hitPlane: Mesh | null = null;
   planeGeometry!: Plane;
   mediasImages!: GalleryItem[];
   medias!: Media[];
@@ -496,6 +505,8 @@ class App {
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
 
     autoBind(this);
+    this.mouse = new Vec2(-1, -1);
+    
     this.createRenderer();
     this.createCamera();
     this.createScene();
@@ -525,6 +536,7 @@ class App {
 
   createScene() {
     this.scene = new Transform();
+    this.raycast = new Raycast(this.gl);
   }
 
   createGeometry() {
@@ -576,8 +588,20 @@ class App {
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
-    if (!this.isDown) return;
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const y = "touches" in e ? e.touches[0].clientY : e.clientY;
+    
+    // Normalize mouse coordinates for raycasting (-1 to +1)
+    if (this.screen && this.screen.width && this.screen.height) {
+      // Get the bounding rect of the canvas to adjust mouse coordinates precisely
+      const rect = this.container.getBoundingClientRect();
+      const localX = x - rect.left;
+      const localY = y - rect.top;
+      this.mouse.x = (localX / rect.width) * 2 - 1;
+      this.mouse.y = -(localY / rect.height) * 2 + 1;
+    }
+
+    if (!this.isDown) return;
     const rawDistance = (this.start - x) * (this.scrollSpeed * 0.025);
     // Invert drag for "right" row so it moves opposite to "left" row
     const distance = this.scrollDirection === "right" ? -rawDistance : rawDistance;
@@ -590,9 +614,7 @@ class App {
   }
 
   onWheel(e: WheelEvent) {
-    // Only capture horizontal scroll; let vertical scroll pass through for page scrolling
-    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
-    const delta = e.deltaX || e.deltaY || (e as any).wheelDelta || e.detail;
+    const delta = e.deltaY || e.deltaX || (e as any).wheelDelta || e.detail;
     const speed = (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
     this.scroll.target += this.scrollDirection === "right" ? -speed : speed;
     this.onCheckDebounce();
@@ -633,13 +655,30 @@ class App {
 
     // "left"  → target increases → current increases → position.x decreases → items drift LEFT  ✓
     // "right" → target decreases → current decreases → position.x increases → items drift RIGHT ✓
-    this.scroll.target += this.scrollDirection === "left" ? 0.05 : -0.05;
+    this.scroll.target += this.scrollDirection === "left" ? 0.025 : -0.025;
 
     const direction =
       this.scroll.current > this.scroll.last ? "right" : "left";
 
     if (this.medias) {
-      this.medias.forEach((media) => media.update(this.scroll, direction));
+      // Raycast for hover detection
+      this.raycast.castMouse(this.camera, this.mouse);
+      const planes = this.medias.map(m => m.plane);
+      const hits = this.raycast.intersectBounds(planes);
+      // hits[0] is the closest intersected object, we need its `.hit` property (the Mesh)
+      this.hitPlane = hits.length > 0 ? (hits[0] as any).hit : null;
+
+      this.medias.forEach((media) => {
+        media.update(this.scroll, direction);
+        
+        // Smoothly interpolate the hover state
+        const targetHover = this.hitPlane === media.plane ? 1 : 0;
+        media.program.uniforms.uHover.value = lerp(
+          media.program.uniforms.uHover.value,
+          targetHover,
+          0.1
+        );
+      });
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
@@ -654,7 +693,7 @@ class App {
     this.boundOnTouchUp = this.onTouchUp;
 
     window.addEventListener("resize", this.boundOnResize);
-    this.container.addEventListener("wheel", this.boundOnWheel as any, { passive: true });
+    window.addEventListener("wheel", this.boundOnWheel as any, { passive: true });
     this.container.addEventListener("mousedown", this.boundOnTouchDown);
     window.addEventListener("mousemove", this.boundOnTouchMove);
     window.addEventListener("mouseup", this.boundOnTouchUp);
@@ -666,7 +705,7 @@ class App {
   destroy() {
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener("resize", this.boundOnResize);
-    this.container.removeEventListener("wheel", this.boundOnWheel as any);
+    window.removeEventListener("wheel", this.boundOnWheel as any);
     this.container.removeEventListener("mousedown", this.boundOnTouchDown);
     window.removeEventListener("mousemove", this.boundOnTouchMove);
     window.removeEventListener("mouseup", this.boundOnTouchUp);

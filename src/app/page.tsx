@@ -3,6 +3,25 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import MobileNav from "@/components/MobileNav";
 import CinematicHero from "@/components/CinematicHero";
+import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero";
+
+const roundGalleryImages = [
+  { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957813/1_Background_Removed_ydesuu.png", alt: "Garment 1", rotation: -12 },
+  { id: "2", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957813/2_Background_Removed_dyzd7q.png", alt: "Garment 2", rotation: 8 },
+  { id: "3", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957813/3_Background_Removed_pf1yif.png", alt: "Garment 3", rotation: -5 },
+  { id: "4", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957814/4_Background_Removed_fw74tn.png", alt: "Garment 4", rotation: 15 },
+  { id: "5", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957814/5_Background_Removed_trtj4w.png", alt: "Garment 5", rotation: -10 },
+  { id: "6", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957816/6_Background_Removed_vyofyy.png", alt: "Garment 6", rotation: 5 },
+  { id: "7", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957816/7_Background_Removed_ppbqce.png", alt: "Garment 7", rotation: -15 },
+  { id: "8", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957817/8_Background_Removed_dncmrr.png", alt: "Garment 8", rotation: 10 },
+  { id: "9", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957818/9_Background_Removed_iyowuh.png", alt: "Garment 9", rotation: -8 },
+  { id: "10", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957821/10_Background_Removed_xbvemy.png", alt: "Garment 10", rotation: 12 },
+  { id: "11", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957821/11_Background_Removed_ymuqjm.png", alt: "Garment 11", rotation: -5 },
+  { id: "12", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957822/12_Background_Removed_rqtmvt.png", alt: "Garment 12", rotation: 14 },
+  { id: "13", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957823/13_Background_Removed_gjnna8.png", alt: "Garment 13", rotation: -12 },
+  { id: "14", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957824/14_Background_Removed_zhxsdb.png", alt: "Garment 14", rotation: 7 },
+  { id: "15", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957825/15_Background_Removed_xv0vr0.png", alt: "Garment 15", rotation: -9 },
+];
 
 // Dynamically import Work (Three.js/R3F moodboard) — prevents ~200KB of 3D code from blocking initial load
 const Work = dynamic(() => import("@/components/Work"), {
@@ -186,6 +205,15 @@ export default function Home() {
 
       {/* ── TOP PICKS SECTION ── */}
       <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
+          
+          {/* ── ROUND PICTURE GALLERY ── */}
+          <div className="mb-12 mt-4">
+            <ImageCarouselHero
+              title="Clo Library"
+              images={roundGalleryImages}
+            />
+          </div>
+
           <h3 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80" style={{ marginBottom: "4rem" }}>Top Picks.</h3>
           
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
