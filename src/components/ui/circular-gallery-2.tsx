@@ -536,7 +536,7 @@ class App {
 
   createScene() {
     this.scene = new Transform();
-    this.raycast = new Raycast(this.gl);
+    this.raycast = new Raycast();
   }
 
   createGeometry() {
