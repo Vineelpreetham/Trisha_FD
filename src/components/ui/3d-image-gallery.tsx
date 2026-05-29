@@ -11,7 +11,7 @@ import {
   Plane,
   Sphere,
 } from "@react-three/drei"
-import { Download, Heart, X } from "lucide-react"
+import { Download, Heart, X, ChevronLeft, ChevronRight } from "lucide-react"
 
 /**
  * Single-file Stellar Card Gallery
@@ -274,8 +274,8 @@ function CardModal() {
   const [isFavorited, setIsFavorited] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const toggleFavorite = () => setIsFavorited((v) => !v)
-  const handleClose = () => setSelectedCard(null)
+  const toggleFavorite = () => setIsFavorited((v) => !v);
+  const handleClose = () => setSelectedCard(null);
   const handleBackdropClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target === e.currentTarget) handleClose()
   }
@@ -311,11 +311,13 @@ function CardModal() {
                 }}
               >
                 <div className="relative w-full mb-4" style={{ aspectRatio: "16 / 9" }}>
+                  {/* High‑resolution image using Cloudinary transformations */}
                   <img
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full rounded-[16px] bg-black object-contain p-2"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full rounded-[16px] bg-black object-cover"
                     alt={selectedCard.alt}
-                    src={selectedCard.imageUrl || "/placeholder.svg"}
+                    src={selectedCard.imageUrl ? selectedCard.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_800/') : "/placeholder.svg"}
                     style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px", opacity: 1 }}
                   />
                 </div>
@@ -334,7 +336,7 @@ function CardModal() {
    Card Galaxy (inlined)
    ========================= */
 
-function CardGalaxy() {
+function CardGalaxy({ activeIndex, controlsRef }: { activeIndex: number; controlsRef: React.RefObject<any> }) {
   const { cards } = useCard()
 
   const cardPositions = useMemo(() => {
@@ -369,6 +371,15 @@ function CardGalaxy() {
     return positions
   }, [cards.length])
 
+  // Update camera target when activeIndex changes
+  React.useEffect(() => {
+    if (controlsRef.current && cardPositions[activeIndex]) {
+      const pos = cardPositions[activeIndex];
+      controlsRef.current.target.set(pos.x, pos.y, pos.z);
+      controlsRef.current.update();
+    }
+  }, [activeIndex, controlsRef, cardPositions]);
+
   return (
     <>
 
@@ -385,9 +396,31 @@ function CardGalaxy() {
    ========================= */
 
 export default function StellarCardGallerySingle() {
+  const controlsRef = React.useRef<any>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const { cards } = useCard();
   return (
     <CardProvider>
       <div className="w-full h-screen relative overflow-hidden">
+        {/* Navigation Buttons */}
+        <button
+          onClick={() => setActiveIndex((i) => (i - 1 + cards.length) % cards.length)}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={() => setActiveIndex((i) => (i + 1) % cards.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={() => setActiveIndex(0)}
+          className="absolute left-1/2 top-4 -translate-x-1/2 z-20 px-3 py-1 bg-black/50 rounded-full hover:bg-black/70 transition-colors text-sm text-white"
+        >
+          First
+        </button>
         <Canvas
           camera={{ position: [0, 0, 15], fov: 60 }}
           className="absolute inset-0 z-10"
@@ -400,21 +433,22 @@ export default function StellarCardGallerySingle() {
             <ambientLight intensity={0.4} />
             <pointLight position={[10, 10, 10]} intensity={0.6} />
             <pointLight position={[-10, -10, -10]} intensity={0.3} />
-            <CardGalaxy />
+            <CardGalaxy activeIndex={activeIndex} controlsRef={controlsRef} />
             <OrbitControls
-              enablePan
-              enableZoom
-              enableRotate
-              enableDamping={true}
-              dampingFactor={0.05}
-              minDistance={5}
-              maxDistance={40}
-              autoRotate={false}
-              rotateSpeed={0.5}
-              zoomSpeed={1.2}
-              panSpeed={0.8}
-              target={[0, 0, 0]}
-            />
+            ref={controlsRef}
+            enablePan
+            enableZoom
+            enableRotate
+            enableDamping={true}
+            dampingFactor={0.05}
+            minDistance={5}
+            maxDistance={40}
+            autoRotate={false}
+            rotateSpeed={0.5}
+            zoomSpeed={1.2}
+            panSpeed={0.8}
+            target={[0, 0, 0]}
+          />
           </Suspense>
         </Canvas>
 

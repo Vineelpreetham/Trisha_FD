@@ -1,9 +1,16 @@
 "use client";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import MobileNav from "@/components/MobileNav";
 import CinematicHero from "@/components/CinematicHero";
-import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselNavigation,
+  CarouselIndicator,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const roundGalleryImages = [
   { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_400/v1779957813/1_Background_Removed_ydesuu.png", alt: "Garment 1", rotation: -12 },
@@ -31,6 +38,7 @@ const Work = dynamic(() => import("@/components/Work"), {
 
 
 export default function Home() {
+  const [cloIndex, setCloIndex] = useState(0);
   return (
     <main style={{ fontFamily: "Inter,sans-serif", margin: 0, padding: 0 }}>
       <style dangerouslySetInnerHTML={{ __html: `
@@ -206,12 +214,51 @@ export default function Home() {
       {/* ── TOP PICKS SECTION ── */}
       <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
           
-          {/* ── ROUND PICTURE GALLERY ── */}
-          <div className="mb-12 mt-4">
-            <ImageCarouselHero
-              title="Clo Library"
-              images={roundGalleryImages}
-            />
+          {/* ── CLO LIBRARY CAROUSEL ── */}
+          <div className="mb-16 mt-4 px-[3%]">
+            <h2 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80 mb-10">Clo Library</h2>
+            <div className="relative w-full max-w-7xl mx-auto">
+              <Carousel onIndexChange={(i) => setCloIndex(i)}>
+                <CarouselContent className="gap-2">
+                  {roundGalleryImages.map((image, i) => {
+                    const isCenter = i === cloIndex + 1;
+                    return (
+                      <CarouselItem key={image.id} className="basis-1/2 md:basis-1/3 pl-2">
+                        <div
+                          className="relative w-full group cursor-pointer overflow-hidden"
+                          style={{
+                            aspectRatio: "3/5",
+                            transform: isCenter ? "scale(1.5)" : "scale(0.85)",
+                            opacity: isCenter ? 1 : 0.55,
+                            zIndex: isCenter ? 10 : 1,
+                            transition: "transform 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease",
+                          }}
+                        >
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-full object-contain scale-125 transition-all duration-500 ease-out group-hover:scale-[1.4]"
+                            style={{
+                              filter: isCenter
+                                ? "drop-shadow(0 20px 40px rgba(0,0,0,0.35))"
+                                : "drop-shadow(0 8px 16px rgba(0,0,0,0.15))",
+                            }}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      </CarouselItem>
+                    );
+                  })}
+                </CarouselContent>
+                <CarouselNavigation
+                  className="absolute left-[-3%] top-1/2 w-[106%] -translate-y-1/2"
+                  classNameButton="bg-white/90 shadow-lg backdrop-blur-sm border border-black/5 hover:bg-white"
+                  alwaysShow
+                />
+                <CarouselIndicator className="-bottom-8" />
+              </Carousel>
+            </div>
           </div>
 
           <h3 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80" style={{ marginBottom: "4rem" }}>Top Picks.</h3>
