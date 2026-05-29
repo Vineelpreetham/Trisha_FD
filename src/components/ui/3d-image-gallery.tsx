@@ -395,46 +395,45 @@ function CardGalaxy({ activeIndex, controlsRef }: { activeIndex: number; control
    Page/Component Export
    ========================= */
 
-export default function StellarCardGallerySingle() {
+function StellarCardGalleryInner() {
   const controlsRef = React.useRef<any>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const { cards } = useCard();
   return (
-    <CardProvider>
-      <div className="w-full h-screen relative overflow-hidden">
-        {/* Navigation Buttons */}
-        <button
-          onClick={() => setActiveIndex((i) => (i - 1 + cards.length) % cards.length)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-        >
-          <ChevronLeft className="w-6 h-6 text-white" />
-        </button>
-        <button
-          onClick={() => setActiveIndex((i) => (i + 1) % cards.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-        >
-          <ChevronRight className="w-6 h-6 text-white" />
-        </button>
-        <button
-          onClick={() => setActiveIndex(0)}
-          className="absolute left-1/2 top-4 -translate-x-1/2 z-20 px-3 py-1 bg-black/50 rounded-full hover:bg-black/70 transition-colors text-sm text-white"
-        >
-          First
-        </button>
-        <Canvas
-          camera={{ position: [0, 0, 15], fov: 60 }}
-          className="absolute inset-0 z-10"
-          onCreated={({ gl }) => {
-            gl.domElement.style.pointerEvents = "auto"
-          }}
-        >
-          <Suspense fallback={null}>
-            <Environment preset="night" />
-            <ambientLight intensity={0.4} />
-            <pointLight position={[10, 10, 10]} intensity={0.6} />
-            <pointLight position={[-10, -10, -10]} intensity={0.3} />
-            <CardGalaxy activeIndex={activeIndex} controlsRef={controlsRef} />
-            <OrbitControls
+    <div className="w-full h-screen relative overflow-hidden">
+      {/* Navigation Buttons */}
+      <button
+        onClick={() => setActiveIndex((i) => (i - 1 + cards.length) % cards.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+      >
+        <ChevronLeft className="w-6 h-6 text-white" />
+      </button>
+      <button
+        onClick={() => setActiveIndex((i) => (i + 1) % cards.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+      >
+        <ChevronRight className="w-6 h-6 text-white" />
+      </button>
+      <button
+        onClick={() => setActiveIndex(0)}
+        className="absolute left-1/2 top-4 -translate-x-1/2 z-20 px-3 py-1 bg-black/50 rounded-full hover:bg-black/70 transition-colors text-sm text-white"
+      >
+        First
+      </button>
+      <Canvas
+        camera={{ position: [0, 0, 15], fov: 60 }}
+        className="absolute inset-0 z-10"
+        onCreated={({ gl }) => {
+          gl.domElement.style.pointerEvents = "auto"
+        }}
+      >
+        <Suspense fallback={null}>
+          <Environment preset="night" />
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={0.6} />
+          <pointLight position={[-10, -10, -10]} intensity={0.3} />
+          <CardGalaxy activeIndex={activeIndex} controlsRef={controlsRef} />
+          <OrbitControls
             ref={controlsRef}
             enablePan
             enableZoom
@@ -449,11 +448,18 @@ export default function StellarCardGallerySingle() {
             panSpeed={0.8}
             target={[0, 0, 0]}
           />
-          </Suspense>
-        </Canvas>
+        </Suspense>
+      </Canvas>
 
-        <CardModal />
-      </div>
+      <CardModal />
+    </div>
+  );
+}
+
+export default function StellarCardGallerySingle() {
+  return (
+    <CardProvider>
+      <StellarCardGalleryInner />
     </CardProvider>
-  )
+  );
 }
