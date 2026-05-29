@@ -18,6 +18,7 @@ export type CarouselContextType = {
   itemsCount: number;
   setItemsCount: (newItemsCount: number) => void;
   disableDrag: boolean;
+  loop: boolean;
 };
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -37,6 +38,7 @@ export type CarouselProviderProps = {
   initialIndex?: number;
   onIndexChange?: (newIndex: number) => void;
   disableDrag?: boolean;
+  loop?: boolean;
 };
 
 function CarouselProvider({
@@ -44,6 +46,7 @@ function CarouselProvider({
   initialIndex = 0,
   onIndexChange,
   disableDrag = false,
+  loop = false,
 }: CarouselProviderProps) {
   const [index, setIndex] = useState<number>(initialIndex);
   const [itemsCount, setItemsCount] = useState<number>(0);
@@ -65,6 +68,7 @@ function CarouselProvider({
         itemsCount,
         setItemsCount,
         disableDrag,
+        loop,
       }}
     >
       {children}
@@ -79,6 +83,7 @@ export type CarouselProps = {
   index?: number;
   onIndexChange?: (newIndex: number) => void;
   disableDrag?: boolean;
+  loop?: boolean;
 };
 
 function Carousel({
@@ -88,6 +93,7 @@ function Carousel({
   index: externalIndex,
   onIndexChange,
   disableDrag = false,
+  loop = false,
 }: CarouselProps) {
   const [internalIndex, setInternalIndex] = useState<number>(initialIndex);
   const isControlled = externalIndex !== undefined;
@@ -105,9 +111,10 @@ function Carousel({
       initialIndex={currentIndex}
       onIndexChange={handleIndexChange}
       disableDrag={disableDrag}
+      loop={loop}
     >
       <div className={cn('group/hover relative', className)}>
-        <div className='overflow-hidden'>{children}</div>
+        <div style={{ overflowX: 'clip', overflowY: 'visible' }}>{children}</div>
       </div>
     </CarouselProvider>
   );
@@ -124,7 +131,7 @@ function CarouselNavigation({
   classNameButton,
   alwaysShow,
 }: CarouselNavigationProps) {
-  const { index, setIndex, itemsCount } = useCarousel();
+  const { index, setIndex, itemsCount, loop } = useCarousel();
 
   return (
     <div
@@ -137,7 +144,7 @@ function CarouselNavigation({
         type='button'
         aria-label='Previous slide'
         className={cn(
-          'pointer-events-auto h-fit w-fit rounded-full bg-zinc-50 p-2 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -146,22 +153,24 @@ function CarouselNavigation({
             : 'group-hover/hover:disabled:opacity-40',
           classNameButton
         )}
-        disabled={index === 0}
+        disabled={!loop && index === 0}
         onClick={() => {
           if (index > 0) {
             setIndex(index - 1);
+          } else if (loop) {
+            setIndex(itemsCount - 1);
           }
         }}
       >
         <ChevronLeft
           className='stroke-zinc-600 dark:stroke-zinc-50'
-          size={16}
+          size={24}
         />
       </button>
       <button
         type='button'
         className={cn(
-          'pointer-events-auto h-fit w-fit rounded-full bg-zinc-50 p-2 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -171,16 +180,18 @@ function CarouselNavigation({
           classNameButton
         )}
         aria-label='Next slide'
-        disabled={index + 1 === itemsCount}
+        disabled={!loop && index + 1 === itemsCount}
         onClick={() => {
           if (index < itemsCount - 1) {
             setIndex(index + 1);
+          } else if (loop) {
+            setIndex(0);
           }
         }}
       >
         <ChevronRight
           className='stroke-zinc-600 dark:stroke-zinc-50'
-          size={16}
+          size={24}
         />
       </button>
     </div>
@@ -237,34 +248,29 @@ function CarouselContent({
   className,
   transition,
 }: CarouselContentProps) {
-  const { index, setIndex, setItemsCount, disableDrag } = useCarousel();
-  const [visibleItemsCount, setVisibleItemsCount] = useState(1);
+  const { index, setIndex, setItemsCount, disableDrag, loop } = useCarousel();
+  const [visibleItemsCount, setVisibleItemsCount] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768 ? 2 : 3;
+    }
+    return 3;
+  });
   const dragX = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const itemsLength = Children.count(children);
 
   useEffect(() => {
-    if (!containerRef.current) {
-      return;
-    }
+    if (typeof window === 'undefined') return;
 
-    const options = {
-      root: containerRef.current,
-      threshold: 0.5,
+    const handleResize = () => {
+      setVisibleItemsCount(window.innerWidth < 768 ? 2 : 3);
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      const visibleCount = entries.filter(
-        (entry) => entry.isIntersecting
-      ).length;
-      setVisibleItemsCount(visibleCount);
-    }, options);
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
-    const childNodes = containerRef.current.children;
-    Array.from(childNodes).forEach((child) => observer.observe(child));
-
-    return () => observer.disconnect();
-  }, [children, setItemsCount]);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (!itemsLength) {
@@ -277,10 +283,18 @@ function CarouselContent({
   const onDragEnd = () => {
     const x = dragX.get();
 
-    if (x <= -10 && index < itemsLength - 1) {
-      setIndex(index + 1);
-    } else if (x >= 10 && index > 0) {
-      setIndex(index - 1);
+    if (x <= -10) {
+      if (index < itemsLength - 1) {
+        setIndex(index + 1);
+      } else if (loop) {
+        setIndex(0);
+      }
+    } else if (x >= 10) {
+      if (index > 0) {
+        setIndex(index - 1);
+      } else if (loop) {
+        setIndex(itemsLength - 1);
+      }
     }
   };
 
