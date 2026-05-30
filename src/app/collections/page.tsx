@@ -57,7 +57,7 @@ const collections = [
   //   subtitle: "Design through technical drawing:-",
   //   description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
   //   link: "/trail-tech",
-  //   image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779801461/copy_of_44_oqzbnp.png",
+  //   image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779903033/44_tl737s_d7d440.png",
   //   textColor: "text-white",
   //   align: "bottom"
   // },
@@ -66,7 +66,7 @@ const collections = [
     subtitle: "Design through technical drawing:-",
     description: "Precision meets creativity — a deep dive into technical flat drawing, spec sheets and construction details that transform ideas into production-ready garments.",
     link: "/tech-flat",
-    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779801461/copy_of_44_oqzbnp.png",
+    image: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/v1779903033/44_tl737s_d7d440.png",
     textColor: "text-white",
     align: "bottom"
   }

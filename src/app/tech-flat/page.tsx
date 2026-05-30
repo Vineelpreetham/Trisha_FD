@@ -129,7 +129,7 @@ export default function TechFlatPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full flex flex-col items-center text-center pointer-events-none z-10"
+            className="w-full flex flex-col items-center text-center pointer-events-none z-10 pt-24 md:pt-0"
             style={{ paddingTop: "clamp(3rem, 5vh, 5rem)", paddingBottom: "clamp(0.5rem, 1vh, 1rem)" }}
           >
             <h1
@@ -149,7 +149,7 @@ export default function TechFlatPage() {
 
           {/* ── 2 Circular Gallery Rows ── */}
           <div className="relative z-10 w-full flex flex-col gap-0">
-          <div className="w-full h-[40vh] min-h-[280px] overflow-hidden">
+          <div className="w-full h-[32vh] md:h-[40vh] min-h-[220px] md:min-h-[280px] overflow-hidden">
             <CircularGallery
               items={ROW2.map((image, i) => ({ image, text: `Design ${i + 20}` }))}
               bend={5}
@@ -159,7 +159,7 @@ export default function TechFlatPage() {
               scrollDirection="right"
             />
           </div>
-          <div className="w-full h-[40vh] min-h-[280px] overflow-hidden">
+          <div className="w-full h-[32vh] md:h-[40vh] min-h-[220px] md:min-h-[280px] overflow-hidden">
             <CircularGallery
               items={ROW3.map((image, i) => ({ image, text: `Design ${i + 39}` }))}
               bend={5}

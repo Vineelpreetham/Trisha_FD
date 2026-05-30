@@ -222,20 +222,20 @@ export default function Home() {
       <section style={{ background: "#FAFAFA", padding: "2rem 0 8rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
           
           {/* ── CLO LIBRARY CAROUSEL ── */}
-          <div className="mb-16 mt-4 px-[3%]">
-            <h2 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80 mb-10">Clo Library</h2>
-            <div className="relative w-full max-w-7xl mx-auto py-16">
+          <div className="mb-8 md:mb-16 mt-4 px-[3%] overflow-hidden">
+            <h2 className="font-serif text-4xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80 mb-6 md:mb-10">Clo Library</h2>
+            <div className="relative w-full max-w-7xl mx-auto py-8 md:py-16">
               <Carousel loop={false} initialIndex={initialCarouselIndex} onIndexChange={(i) => setCloIndex(i)}>
                 <CarouselContent>
                   {infiniteGalleryImages.map((image, i) => {
                     const isCenter = i === cloIndex + 1;
                     return (
-                      <CarouselItem key={image.uniqueId} className="basis-1/2 md:basis-1/3 pl-2 overflow-visible">
+                      <CarouselItem key={image.uniqueId} className="basis-1/3 pl-0 md:pl-2 overflow-visible">
                         <div
                           className="relative w-full group cursor-pointer"
                           style={{
                             aspectRatio: "3/5",
-                            transform: isCenter ? "scale(1.4)" : "scale(0.85)",
+                            transform: isCenter ? "scale(1.3)" : "scale(0.85)",
                             opacity: isCenter ? 1 : 0.55,
                             zIndex: isCenter ? 10 : 1,
                             transition: "transform 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease",

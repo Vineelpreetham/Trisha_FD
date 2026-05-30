@@ -433,11 +433,16 @@ class Media {
       }
     }
     // Smaller scale base (1500 vs 800) = tighter, portrait-friendly planes
+    const isMobile = this.screen.width < 768;
     this.scale = this.screen.height / 1500;
+    
+    const baseScaleY = isMobile ? 600 : 900;
+    const baseScaleX = isMobile ? 400 : 700;
+
     this.plane.scale.y =
-      (this.viewport.height * (900 * this.scale)) / this.screen.height;
+      (this.viewport.height * (baseScaleY * this.scale)) / this.screen.height;
     this.plane.scale.x =
-      (this.viewport.width * (700 * this.scale)) / this.screen.width;
+      (this.viewport.width * (baseScaleX * this.scale)) / this.screen.width;
     this.program.uniforms.uPlaneSizes.value = [
       this.plane.scale.x,
       this.plane.scale.y,

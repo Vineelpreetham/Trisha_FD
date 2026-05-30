@@ -144,7 +144,7 @@ function CarouselNavigation({
         type='button'
         aria-label='Previous slide'
         className={cn(
-          'pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto flex h-8 w-8 md:h-12 md:w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -170,7 +170,7 @@ function CarouselNavigation({
       <button
         type='button'
         className={cn(
-          'pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
+          'pointer-events-auto flex h-8 w-8 md:h-12 md:w-12 items-center justify-center rounded-full bg-zinc-50 transition-opacity duration-300 dark:bg-zinc-950',
           alwaysShow
             ? 'opacity-100'
             : 'opacity-0 group-hover/hover:opacity-100',
@@ -250,9 +250,6 @@ function CarouselContent({
 }: CarouselContentProps) {
   const { index, setIndex, setItemsCount, disableDrag, loop } = useCarousel();
   const [visibleItemsCount, setVisibleItemsCount] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 768 ? 2 : 3;
-    }
     return 3;
   });
   const dragX = useMotionValue(0);
@@ -263,7 +260,7 @@ function CarouselContent({
     if (typeof window === 'undefined') return;
 
     const handleResize = () => {
-      setVisibleItemsCount(window.innerWidth < 768 ? 2 : 3);
+      setVisibleItemsCount(3);
     };
 
     window.addEventListener('resize', handleResize);
