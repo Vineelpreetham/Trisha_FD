@@ -739,6 +739,7 @@ const CircularGallery = ({
   ...props
 }: CircularGalleryProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const appRef = useRef<any>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -761,22 +762,58 @@ const CircularGallery = ({
       scrollDirection,
     });
 
+    appRef.current = app;
+
     return () => {
       app.destroy();
     };
   }, [items, bend, borderRadius, scrollSpeed, scrollEase, scrollDirection, fontClassName]);
 
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!appRef.current || !appRef.current.medias?.[0]) return;
+    const step = appRef.current.medias[0].width || 3;
+    appRef.current.scroll.target -= step * 1.2;
+    appRef.current.onCheckDebounce();
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!appRef.current || !appRef.current.medias?.[0]) return;
+    const step = appRef.current.medias[0].width || 3;
+    appRef.current.scroll.target += step * 1.2;
+    appRef.current.onCheckDebounce();
+  };
+
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        "w-full h-full overflow-hidden cursor-grab active:cursor-grabbing",
-        "text-foreground font-bold text-[30px]",
-        fontClassName,
-        className,
-      )}
-      {...props}
-    />
+    <div className="relative w-full h-full group/gallery overflow-visible">
+      <div
+        ref={containerRef}
+        className={cn(
+          "w-full h-full overflow-hidden cursor-grab active:cursor-grabbing",
+          "text-foreground font-bold text-[30px]",
+          fontClassName,
+          className,
+        )}
+        {...props}
+      />
+      
+      {/* Navigation Buttons — always visible on mobile, hover-revealed on desktop */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm border border-black/5 hover:bg-white text-black transition-all hover:scale-105 active:scale-95 cursor-pointer opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 focus:opacity-100"
+        aria-label="Scroll left"
+      >
+        <span className="text-lg md:text-xl font-medium">←</span>
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm border border-black/5 hover:bg-white text-black transition-all hover:scale-105 active:scale-95 cursor-pointer opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 focus:opacity-100"
+        aria-label="Scroll right"
+      >
+        <span className="text-lg md:text-xl font-medium">→</span>
+      </button>
+    </div>
   );
 };
 

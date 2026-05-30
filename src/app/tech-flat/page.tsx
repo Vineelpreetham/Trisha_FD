@@ -173,20 +173,32 @@ export default function TechFlatPage() {
         </div>{/* closes outer flex wrapper */}
       </main>
 
-      {/* Vertical Scroll Indicator (Left Corner) */}
-      <div className="fixed top-[15%] left-4 md:left-8 z-50 flex flex-col items-center pointer-events-none">
-        <div className="w-[1px] h-24 md:h-32 bg-black/30 mb-6" />
-        <span 
-          className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-black/60"
-          style={{ 
-            writingMode: "vertical-rl", 
-            textOrientation: "upright",
-            letterSpacing: "0.5em"
-          }}
+      {/* Floating Interaction Guide */}
+      <motion.div
+        initial={{ opacity: 0, y: 30, x: "-50%" }}
+        animate={{ opacity: 1, y: 0, x: "-50%" }}
+        transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+        className="fixed bottom-8 left-1/2 z-50 flex items-center gap-3 bg-black/95 backdrop-blur-md px-6 py-3.5 rounded-full border border-white/10 shadow-2xl pointer-events-none"
+      >
+        <motion.span
+          animate={{ x: [-4, 0, -4] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          className="text-white/80 text-xs font-semibold"
         >
-          Scroll to explore
-        </span>
-      </div>
+          ←
+        </motion.span>
+        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+        <p className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.25em] text-white/95 font-medium">
+          Drag or Scroll to rotate
+        </p>
+        <motion.span
+          animate={{ x: [4, 0, 4] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          className="text-white/80 text-xs font-semibold"
+        >
+          →
+        </motion.span>
+      </motion.div>
     </>
   );
 }
