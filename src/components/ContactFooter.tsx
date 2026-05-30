@@ -51,7 +51,7 @@ export default function ContactFooter() {
   let isLight = true;
 
   if (pathname === "/") {
-    bgStyle = "linear-gradient(180deg, #994C3C 0%, #341315 100%)"; // Home gradient
+    bgStyle = "linear-gradient(180deg, #904336 0%, #4A1B1C 100%)"; // Home gradient
     isLight = false;
   }
 

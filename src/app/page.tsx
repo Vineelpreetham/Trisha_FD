@@ -13,21 +13,20 @@ import {
 } from "@/components/ui/carousel";
 
 const roundGalleryImages = [
-  { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957813/1_Background_Removed_ydesuu.png", alt: "Garment 1", rotation: -12 },
-  { id: "2", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957813/2_Background_Removed_dyzd7q.png", alt: "Garment 2", rotation: 8 },
-  { id: "3", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957813/3_Background_Removed_pf1yif.png", alt: "Garment 3", rotation: -5 },
-  { id: "4", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957814/4_Background_Removed_fw74tn.png", alt: "Garment 4", rotation: 15 },
-  { id: "5", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957814/5_Background_Removed_trtj4w.png", alt: "Garment 5", rotation: -10 },
-  { id: "6", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957816/6_Background_Removed_vyofyy.png", alt: "Garment 6", rotation: 5 },
-  { id: "7", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957816/7_Background_Removed_ppbqce.png", alt: "Garment 7", rotation: -15 },
-  { id: "8", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957817/8_Background_Removed_dncmrr.png", alt: "Garment 8", rotation: 10 },
-  { id: "9", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957818/9_Background_Removed_iyowuh.png", alt: "Garment 9", rotation: -8 },
-  { id: "10", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957821/10_Background_Removed_xbvemy.png", alt: "Garment 10", rotation: 12 },
-  { id: "11", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957821/11_Background_Removed_ymuqjm.png", alt: "Garment 11", rotation: -5 },
-  { id: "12", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957822/12_Background_Removed_rqtmvt.png", alt: "Garment 12", rotation: 14 },
-  { id: "13", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957823/13_Background_Removed_gjnna8.png", alt: "Garment 13", rotation: -12 },
-  { id: "14", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957824/14_Background_Removed_zhxsdb.png", alt: "Garment 14", rotation: 7 },
-  { id: "15", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1779957825/15_Background_Removed_xv0vr0.png", alt: "Garment 15", rotation: -9 },
+  { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076844/1_sqqlsc.png", alt: "Garment 1", rotation: -12 },
+  { id: "2", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076844/2_qvcc0d.png", alt: "Garment 2", rotation: 8 },
+  { id: "3", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076845/3_f7aqcm.png", alt: "Garment 3", rotation: -5 },
+  { id: "4", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076846/4_dtxfyc.png", alt: "Garment 4", rotation: 15 },
+  { id: "5", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076847/5_efgsjs.png", alt: "Garment 5", rotation: -10 },
+  { id: "6", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076848/6_u9yn37.png", alt: "Garment 6", rotation: 5 },
+  { id: "7", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076849/7_nysfn3.png", alt: "Garment 7", rotation: -15 },
+  { id: "8", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076852/9_o2m6nf.png", alt: "Garment 8", rotation: 10 },
+  { id: "9", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076853/10_yga3lk.png", alt: "Garment 9", rotation: -8 },
+  { id: "10", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076856/11_jdq9ji.png", alt: "Garment 10", rotation: 12 },
+  { id: "11", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076856/12_c0wm7l.png", alt: "Garment 11", rotation: -5 },
+  { id: "12", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076857/13_p1zpd8.png", alt: "Garment 12", rotation: 14 },
+  { id: "13", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076858/14_vie4lz.png", alt: "Garment 13", rotation: -12 },
+  { id: "14", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076860/15_gimiat.png", alt: "Garment 14", rotation: 7 },
 ];
 
 // Dynamically import Work (Three.js/R3F moodboard) — prevents ~200KB of 3D code from blocking initial load
@@ -127,16 +126,15 @@ export default function Home() {
         position: "relative", 
         zIndex: 40, 
         marginTop: "-15vh", 
-        background: "#F8F6F2", 
+        background: "#FFFFFF", 
       }}>
         <Work />
       </div>
 
       {/* Seamless arch curve into Design Philosophy (Pulled up closer to Work) */}
-      <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "transparent", position: "relative", zIndex: 50 }}>
-        <div className="absolute inset-0 bg-[#F8F6F2] -z-10 -top-[2px] md:mt-32"></div>
+      <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FFFFFF", position: "relative", zIndex: 50 }}>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(120px, 18vw, 280px)" }}>
-           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#994C3C" />
+           <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#904336" />
         </svg>
       </div>
 
@@ -144,7 +142,7 @@ export default function Home() {
       <section 
         className="flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24"
         style={{ 
-          background: "linear-gradient(180deg, #994C3C 0%, #341315 100%)",
+          background: "linear-gradient(180deg, #904336 0%, #4A1B1C 100%)",
           padding: "2rem 8% 4rem 8%", 
           color: "#FDF8F7", 
           position: "relative", 
@@ -190,18 +188,16 @@ export default function Home() {
          </div>
       </section>
 
-      {/* Arch into Top Picks */}
+      {/* Arch into Clo Library */}
       <div style={{
         width: "100%",
-        overflow: "hidden",
+        overflow: "visible",
         lineHeight: 0,
-        background: "#341315",
+        background: "#4A1B1C",
         position: "relative",
-        zIndex: 30,
+        zIndex: 32,
         marginTop: "-2px",
         marginBottom: "-2px",
-        transform: "translateZ(0)",
-        WebkitTransform: "translateZ(0)",
       }}>
         <svg
           viewBox="0 0 1440 322"
@@ -210,21 +206,36 @@ export default function Home() {
             display: "block",
             width: "100%",
             height: "clamp(100px, 15vw, 220px)",
-            transform: "translateZ(0)",
-            WebkitTransform: "translateZ(0)",
           }}
         >
            <path d="M0,322 Q720,-320 1440,322 L1440,322 L0,322 Z" fill="#FAFAFA" />
         </svg>
+        
+        {/* Integrated Heading on the Curve */}
+        <div style={{
+          position: "absolute",
+          top: "45%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "100%",
+          textAlign: "center",
+          zIndex: 40,
+        }}>
+          <h2 className="font-serif text-5xl md:text-8xl text-[#1A1A1A] leading-[0.9] text-center opacity-90 tracking-tight" 
+              style={{
+                textShadow: "0 4px 30px rgba(255,255,255,0.6)"
+              }}>
+            Clo Library
+          </h2>
+        </div>
       </div>
 
-      {/* ── TOP PICKS SECTION ── */}
-      <section style={{ background: "#FAFAFA", padding: "1rem 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
+      {/* ── CLO LIBRARY & TOP PICKS SECTION ── */}
+      <section style={{ background: "#FAFAFA", padding: "0 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
           
           {/* ── CLO LIBRARY CAROUSEL ── */}
-          <div className="mb-2 md:mb-4 mt-2 px-[3%] overflow-hidden">
-  <h2 className="font-serif text-4xl md:text-7xl text-[#1A1A1A] leading-[0.9] text-center opacity-80 mb-2 md:mb-4">Clo Library</h2>
-  <div className="relative w-full max-w-7xl mx-auto pt-0 pb-0 md:pt-0 md:pb-0 -mt-8 md:-mt-12">
+          <div className="mb-2 md:mb-4 px-[3%] overflow-visible">
+  <div className="relative w-full max-w-7xl mx-auto pt-4 md:pt-6 pb-0 md:pb-0 -mt-2 md:-mt-4">
     <Carousel loop={false} initialIndex={initialCarouselIndex} onIndexChange={(i) => setCloIndex(i)}>
       <CarouselContent>
         {infiniteGalleryImages.map((image, i) => {
@@ -236,7 +247,7 @@ export default function Home() {
                 style={{
                   aspectRatio: "2/3",
                   maxWidth: "520px",
-                  transform: isCenter ? "scale(1.4)" : "scale(0.9)",
+                  transform: isCenter ? "scale(2.35)" : "scale(0.9)",
                   opacity: isCenter ? 1 : 0.5,
                   zIndex: isCenter ? 10 : 1,
                   transition: "transform 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease",
@@ -266,26 +277,21 @@ export default function Home() {
                   classNameButton="bg-white/90 shadow-lg backdrop-blur-sm border border-black/5 hover:bg-white"
                   alwaysShow
                 />
-                <CarouselIndicator className="-bottom-8" />
               </Carousel>
             </div>
           </div>
 
-          {/* ── WAVE DIVIDER ── */}
-          <div style={{ position: "relative", width: "100%", marginTop: "-5rem", marginBottom: "-3rem" }}>
-            {/* Back layer — wider, softer */}
-            <svg viewBox="0 0 1440 160" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "120px" }}>
-              <path
-                d="M0,100 C240,160 480,30 720,100 C960,170 1200,40 1440,100 L1440,160 L0,160 Z"
-                fill="rgba(255,111,97,0.08)"
-              />
-            </svg>
-            {/* Front layer — tighter curve, more opaque */}
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "80px", marginTop: "-60px" }}>
-              <path
-                d="M0,80 C360,0 1080,140 1440,60 L1440,120 L0,120 Z"
-                fill="rgba(255,111,97,0.13)"
-              />
+          {/* ── GRADIENT LENS DIVIDER ── */}
+          <div style={{ position: "relative", width: "100%", marginTop: "2rem", marginBottom: "3rem", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <svg viewBox="0 0 1440 40" style={{ width: "85%", height: "40px", opacity: 0.85, overflow: "visible" }}>
+              <defs>
+                <linearGradient id="lensGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#904336" stopOpacity="0.2" />
+                  <stop offset="50%" stopColor="#904336" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#4A1B1C" stopOpacity="0.2" />
+                </linearGradient>
+              </defs>
+              <path d="M0,20 Q720,40 1440,20 Q720,0 0,20 Z" fill="url(#lensGradient)" />
             </svg>
           </div>
 

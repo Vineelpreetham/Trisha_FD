@@ -180,7 +180,7 @@ function DesktopWork() {
   const ctaY = useTransform(smoothProgress, [0.65, 0.75], [30, 0]);
 
   return (
-    <section ref={containerRef} id="work" className="relative w-full h-[400vh] bg-[#F8F6F2]">
+    <section ref={containerRef} id="work" className="relative w-full h-[400vh] bg-white">
       <div className="sticky top-0 w-full h-screen overflow-hidden">
         
         {/* 3D WebGL Canvas for Desktop */}
@@ -241,7 +241,7 @@ function MobileWork() {
     <section
       ref={sectionRef}
       id="work-mobile"
-      className="relative w-full bg-[#F8F6F2]"
+      className="relative w-full bg-white"
       style={{ padding: "3rem 1.25rem 4rem" }}
     >
       {/* Section title */}

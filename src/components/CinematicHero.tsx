@@ -428,10 +428,35 @@ export default function CinematicHero() {
             pointerEvents: "none",
             whiteSpace: "nowrap",
           }}>
-            <div className={`hero-cta-wrapper ${loaded ? "triggered" : ""}`} style={{ pointerEvents: "auto" }}>
+            <div className={`hero-cta-wrapper ${loaded ? "triggered" : ""}`} style={{ pointerEvents: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem" }}>
               <Link href="/about" className="hero-cta-btn">
                 <span>Discover the story</span>
               </Link>
+              <button 
+                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  color: "rgba(255,255,255,0.6)",
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.2em",
+                  fontFamily: "Inter, sans-serif",
+                  padding: "0.5rem"
+                }}
+                className="hover:text-white transition-colors duration-500 animate-bounce opacity-80 hover:opacity-100"
+                aria-label="Scroll down to explore"
+              >
+                <span>Scroll to explore</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 4v16M18 13l-6 7-6-7" />
+                </svg>
+              </button>
             </div>
           </div>
 
