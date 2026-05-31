@@ -208,13 +208,13 @@ export default function Home() {
             height: "clamp(100px, 15vw, 220px)",
           }}
         >
-           <path d="M0,322 Q720,-320 1440,322 L1440,322 L0,322 Z" fill="#FAFAFA" />
+           <path d="M0,322 Q720,-320 1440,322 L1440,322 L0,322 Z" fill="#FFFFFF" />
         </svg>
         
         {/* Integrated Heading on the Curve */}
         <div style={{
           position: "absolute",
-          top: "45%",
+          top: "80%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "100%",
@@ -231,7 +231,7 @@ export default function Home() {
       </div>
 
       {/* ── CLO LIBRARY & TOP PICKS SECTION ── */}
-      <section style={{ background: "#FAFAFA", padding: "0 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
+      <section style={{ background: "#FFFFFF", padding: "0 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
           
           {/* ── CLO LIBRARY CAROUSEL ── */}
           <div className="mb-2 md:mb-4 px-[3%] overflow-visible">
@@ -282,7 +282,7 @@ export default function Home() {
           </div>
 
           {/* ── GRADIENT LENS DIVIDER ── */}
-          <div style={{ position: "relative", width: "100%", marginTop: "2rem", marginBottom: "3rem", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div style={{ position: "relative", width: "100%", marginTop: "-4.5rem", marginBottom: "3rem", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <svg viewBox="0 0 1440 40" style={{ width: "85%", height: "40px", opacity: 0.85, overflow: "visible" }}>
               <defs>
                 <linearGradient id="lensGradient" x1="0%" y1="0%" x2="100%" y2="0%">
