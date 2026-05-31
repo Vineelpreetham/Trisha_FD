@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trisha Vanam — Portfolio Development Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+  :root {
+    --ink: #1a1614;
+    --paper: #faf8f5;
+    --cream: #f2ede6;
+    --accent: #8b6f52;
+    --gold: #c4973a;
+    --muted: #7a6a5a;
+    --rule: #d4c9bc;
+    --highlight: #3d2b1f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 72px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(196,151,58,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(139,111,82,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    padding-top: 4px;
+  }
+
+  .cover-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  .cover-mid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.0;
+    margin-bottom: 10px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: rgba(250,248,245,0.6);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(250,248,245,0.55);
+    margin-top: 16px;
+    margin-bottom: 48px;
+  }
+
+  .cover-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .cover-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(250,248,245,0.45);
+    max-width: 420px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+  }
+
+  .cover-footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  .cover-footer-right {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── CONTENT PAGES ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 80px;
+    page-break-after: always;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 20px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    min-width: 28px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ── PAGE TITLE (for multi-section pages) ── */
+  .page-intro {
+    margin-bottom: 52px;
+  }
+
+  .page-intro .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .page-intro h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .page-intro h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .page-intro .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 14px;
+    max-width: 560px;
+    line-height: 1.65;
+  }
+
+  /* ── FEATURE LIST ── */
+  .feature-group {
+    margin-bottom: 36px;
+  }
+
+  .feature-group h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--highlight);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .feature-group h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feature-list li {
+    font-size: 13.5px;
+    color: #3d3530;
+    line-height: 1.65;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .feature-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .feature-list li strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ── TECH STACK GRID ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .tech-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+
+  .tech-card .tech-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .tech-card .tech-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PAGE CARDS ── */
+  .page-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .page-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: rgba(196,151,58,0.15);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .page-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--highlight);
+    margin-bottom: 10px;
+  }
+
+  .page-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    line-height: 1.6;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+  }
+
+  /* ── PERF STATS ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .stat-box {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .stat-box .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .stat-box .stat-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(250,248,245,0.55);
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  /* ── PRICING PAGE ── */
+  .pricing-cover {
+    background: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 80px;
+    position: relative;
+    overflow: hidden;
+    page-break-before: always;
+    page-break-after: always;
+  }
+
+  .pricing-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 90% 50%, rgba(196,151,58,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 35% 40% at 10% 20%, rgba(139,111,82,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .pricing-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .pricing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .pricing-headline em {
+    font-style: italic;
+    color: rgba(250,248,245,0.45);
+  }
+
+  .pricing-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(250,248,245,0.4);
+    margin-bottom: 56px;
+    font-weight: 300;
+  }
+
+  .price-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .price-card {
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 6px;
+    padding: 32px 30px;
+    background: rgba(255,255,255,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card.featured {
+    background: rgba(196,151,58,0.08);
+    border-color: rgba(196,151,58,0.35);
+  }
+
+  .price-card .card-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .price-card .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .price-card .card-desc {
+    font-size: 12px;
+    color: rgba(250,248,245,0.4);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .price-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .price-amount .currency {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gold);
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .price-amount .amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1;
+  }
+
+  .price-amount .per {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(250,248,245,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: rgba(250,248,245,0.3);
+    margin-top: 2px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+  }
+
+  .price-card .card-rule {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 20px 0;
+  }
+
+  .price-card .card-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price-card .card-includes li {
+    font-size: 12px;
+    color: rgba(250,248,245,0.55);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .price-card .card-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  /* ── FUTURE PRICING ── */
+  .future-price-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+  }
+
+  .future-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.25);
+    margin-bottom: 14px;
+  }
+
+  .future-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+
+  .future-card {
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 20px 18px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .future-card .f-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(196,151,58,0.7);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .future-card .f-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .future-card .f-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .future-card .f-note {
+    font-size: 10px;
+    color: rgba(250,248,245,0.3);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+  }
+
+  .pricing-disclaimer {
+    margin-top: 28px;
+    padding: 18px 22px;
+    border: 1px solid rgba(196,151,58,0.2);
+    border-radius: 4px;
+    background: rgba(196,151,58,0.04);
+    position: relative;
+    z-index: 1;
+  }
+
+  .pricing-disclaimer p {
+    font-size: 12px;
+    color: rgba(250,248,245,0.4);
+    line-height: 1.7;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .pricing-disclaimer strong {
+    color: rgba(196,151,58,0.8);
+    font-weight: 500;
+  }
+
+  /* ── CLOSER PAGE ── */
+  .closer {
+    background: var(--cream);
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 72px 80px;
+    text-align: center;
+    page-break-before: always;
+  }
+
+  .closer-rule {
+    width: 1px;
+    height: 48px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+
+  .closer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .closer p {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.8;
+  }
+
+  .closer-footer {
+    margin-top: 48px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(26,22,20,0.25);
+  }
+
+  /* ── PAGE NUMBERS ── */
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 52px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .page-footer span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--rule);
+  }
+
+  /* ── PRINT / PDF ── */
+  @media print {
+    @page {
+      margin: 0;
+      size: A4;
+    }
+
+    body { background: white; }
+
+    .cover, .pricing-cover {
+      min-height: 100vh;
+      height: 297mm;
+    }
+
+    .page {
+      page-break-inside: avoid;
+    }
+
+    .tech-grid, .stats-row, .price-main-grid, .future-grid {
+      page-break-inside: avoid;
+    }
+
+    .page-card {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-label">Confidential — Prepared Exclusively For</div>
+    <div class="cover-year">2026</div>
+  </div>
+
+  <div class="cover-mid">
+    <div class="cover-eyebrow">Digital Portfolio · Development Proposal</div>
+    <h1 class="cover-title">Trisha<br><em>Vanam</em></h1>
+    <p class="cover-subtitle">Portfolio — Development Summary & Investment Overview</p>
+    <div class="cover-rule"></div>
+    <p class="cover-desc">
+      A comprehensive overview of the premium digital craftsmanship, bespoke technical architecture, and editorial aesthetics delivered for the Trisha Vanam fashion design portfolio.
+    </p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-footer-left">Engineered with precision &amp; purpose</div>
+    <div class="cover-footer-right">Confidential Document</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 2 — ENTERPRISE INFRASTRUCTURE
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-intro">
+    <div class="eyebrow">Infrastructure &amp; Architecture</div>
+    <h1>Enterprise-Grade <em>Hosting</em></h1>
+    <p class="intro-text">Built on the same infrastructure stack trusted by the world's leading digital publications and fashion houses.</p>
+  </div>
+
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Hosting &amp; Media Architecture</h2>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-name">Vercel Edge Network</div>
+      <div class="tech-desc">Global edge deployment with zero-downtime releases, automatic SSL, enterprise-grade CDN caching, and serverless high-availability. Lightning-fast globally regardless of visitor location.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-name">Cloudinary Global CDN</div>
+      <div class="tech-desc">Automated AI-powered media logistics. All high-resolution imagery served dynamically in next-gen formats (WebP/AVIF) via intelligent transformation parameters — zero visual quality loss.</div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top: 44px;">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Core Technology Stack</h2>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-name">Next.js &amp; React 19</div>
+      <div class="tech-desc">Robust, SEO-optimised framework enabling lightning-fast static and dynamic rendering across all devices.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-name">Three.js &amp; React Three Fiber</div>
+      <div class="tech-desc">Advanced WebGL 3D rendering engine powering the interactive desktop portfolio galaxy scene with true Z-axis depth.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-name">Framer Motion &amp; GSAP</div>
+      <div class="tech-desc">Cinema-quality, hardware-accelerated animations and scroll-triggered reveals throughout the entire experience.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-name">Lenis &amp; Tailwind CSS</div>
+      <div class="tech-desc">Fluid 60-FPS smooth scrolling architecture paired with pixel-perfect responsive utility-first styling.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Trisha Vanam — Development Proposal</span>
+    <span>02</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 3 — GLOBAL EFFECTS & PAGES
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Global Design Effects</h2>
+  </div>
+
+  <div class="feature-group">
+    <ul class="feature-list">
+      <li><strong>Magnetic Custom Cursor</strong> — Bespoke cursor that dynamically responds to all interactive elements with fluid magnetic attraction.</li>
+      <li><strong>Film Grain &amp; Ambient Lighting</strong> — Custom CSS overlays delivering an editorial "analog film" texture sitewide.</li>
+      <li><strong>Responsive Typography</strong> — Fluid font scaling across Google Fonts (Inter, Playfair Display, Caveat) from ultra-wide desktop to mobile.</li>
+    </ul>
+  </div>
+
+  <div class="section-header" style="margin-top: 44px;">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Page-by-Page Breakdown</h2>
+  </div>
+
+  <div class="page-card" data-num="4.1">
+    <h3>Home Page</h3>
+    <p>An immersive, ultra-premium gateway engineered to immediately capture and hold attention.</p>
+    <ul class="feature-list">
+      <li><strong>Marquee Typography</strong>, 200vh sticky scrolling timeline, curated fragments showcase, curved SVG masking transitions.</li>
+      <li>Dynamic WebGL "Spooky Smoke" canvas background, Mix-Blend-Mode headers, and 3D hover-scale card interactions.</li>
+    </ul>
+  </div>
+
+  <div class="page-card" data-num="4.2">
+    <h3>Immersive Work / Portfolio</h3>
+    <p>A responsive architectural marvel — entirely different experiences per device type.</p>
+    <ul class="feature-list">
+      <li><strong>Desktop:</strong> Full WebGL 3D scatter arrangement with true Z-axis depth — a parallax galaxy of images.</li>
+      <li><strong>Mobile:</strong> Optimised "Editorial Button" interface — prioritising touch UX and mobile performance.</li>
+    </ul>
+  </div>
+
+  <div class="page-card" data-num="4.3">
+    <h3>Design Diary / Collections</h3>
+    <p>Digital index for the designer's core philosophies and narrative stories.</p>
+    <ul class="feature-list">
+      <li>5 narrative categories in an asymmetrical 2-2-1 editorial grid. Sequential stagger animations and interactive GlowCard spotlight hover effects.</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>Trisha Vanam — Development Proposal</span>
+    <span>03</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 4 — MORE PAGES & PERFORMANCE
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Page Breakdown <em style="font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic; font-size:18px; color:var(--muted);">(continued)</em></h2>
+  </div>
+
+  <div class="page-card" data-num="4.4">
+    <h3>Editorial Fragment Pages</h3>
+    <p>Romantiques · In Bloom · Regalia — crafted to mirror high-end fashion magazine spreads.</p>
+    <ul class="feature-list">
+      <li>Segmented editorial layouts: Hero Images, Mood Boards, Silhouette Boards, Range Boards, and pure CSS interactive Pantone Swatch Chips.</li>
+      <li>GSAP ScrollReveal: animations reverse on desktop scroll-up, trigger-once on mobile to prevent scroll jank.</li>
+    </ul>
+  </div>
+
+  <div class="page-card" data-num="4.5">
+    <h3>About Page</h3>
+    <p>An intimate narrative of the designer's background and creative ethos.</p>
+    <ul class="feature-list">
+      <li>"Meet the designer" editorial layout with custom portrait and dynamic "View Projects" footer navigation.</li>
+      <li>Multi-stop gradient transitioning from stark white to dark mahogany; advanced SVG-masked smoke vignette bleeding into the footer.</li>
+    </ul>
+  </div>
+
+  <div class="page-card" data-num="4.6">
+    <h3>Contact Page</h3>
+    <p>A streamlined, high-conversion inquiry interface for direct studio correspondence.</p>
+    <ul class="feature-list">
+      <li>Advanced "peer-focus" CSS floating labels — placeholder text elegantly rises above the input line when engaged.</li>
+      <li>Instantaneous slide-up confirmation interaction on submission — no page reload required.</li>
+    </ul>
+  </div>
+
+  <div class="section-header" style="margin-top: 44px;">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Performance Summary</h2>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <span class="stat-value">100%</span>
+      <span class="stat-label">Custom Mobile<br>Execution</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">60 FPS</span>
+      <span class="stat-label">Hardware-Accelerated<br>Animations</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">A+</span>
+      <span class="stat-label">Time-to-Interactive<br>Score</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Trisha Vanam — Development Proposal</span>
+    <span>04</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PRICING PAGE — DARK FULL-BLEED
+══════════════════════════════════════════════ -->
+<div class="pricing-cover">
+  <div class="pricing-eyebrow">Investment Overview</div>
+  <h2 class="pricing-headline">Transparent<br><em>Pricing</em></h2>
+  <p class="pricing-sub">Crafted to reflect the precision and care put into every pixel.</p>
+
+  <div class="price-main-grid">
+    <!-- Development -->
+    <div class="price-card featured">
+      <span class="card-tag">One-Time · Project Delivery</span>
+      <div class="card-title">Full Portfolio Development</div>
+      <div class="card-desc">Complete design, build, and deployment of your bespoke editorial portfolio — end to end.</div>
+      <div class="price-amount">
+        <span class="currency">₹</span>
+        <span class="amount">45,000</span>
+      </div>
+      <div class="price-note">One-time investment · Full handover</div>
+      <div class="card-rule"></div>
+      <ul class="card-includes">
+        <li>Custom 3D WebGL portfolio experience</li>
+        <li>Full responsive mobile architecture</li>
+        <li>Vercel deployment + Cloudinary CDN setup</li>
+        <li>6 fully crafted editorial pages</li>
+        <li>All animations, effects &amp; interactions</li>
+        <li>Custom domain &amp; SSL configuration</li>
+      </ul>
+    </div>
+
+    <!-- Maintenance -->
+    <div class="price-card">
+      <span class="card-tag">Monthly · Ongoing Support</span>
+      <div class="card-title">Website Maintenance</div>
+      <div class="card-desc">Continuous monitoring, content updates, performance checks, and priority bug resolution.</div>
+      <div class="price-amount">
+        <span class="currency">₹</span>
+        <span class="amount">3,000</span>
+        <span class="per">/ month</span>
+      </div>
+      <div class="price-note">Flexible · Cancel anytime</div>
+      <div class="card-rule"></div>
+      <ul class="card-includes">
+        <li>Content &amp; image updates</li>
+        <li>Performance monitoring</li>
+        <li>Security &amp; dependency patches</li>
+        <li>Priority bug fixes</li>
+        <li>Monthly health report</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Future Updates -->
+  <div class="future-price-section">
+    <div class="future-label">Future Updates &amp; Enhancements</div>
+    <div class="future-grid">
+      <div class="future-card">
+        <span class="f-label">Hero Page Redesign</span>
+        <div class="f-title">Full Homepage Overhaul</div>
+        <div class="f-price">₹10,000+</div>
+        <div class="f-note">Starting from</div>
+      </div>
+      <div class="future-card">
+        <span class="f-label">Page Update / New Page</span>
+        <div class="f-title">Existing Page Rework or Addition</div>
+        <div class="f-price">₹4,000+</div>
+        <div class="f-note">Starting from</div>
+      </div>
+      <div class="future-card">
+        <span class="f-label">Note</span>
+        <div class="f-title">Complexity-Based Pricing</div>
+        <div class="f-price" style="font-size:15px; margin-bottom:6px; color:rgba(196,151,58,0.7);">Variable</div>
+        <div class="f-note">All prices may vary based on the scope, design complexity, and custom interactions required.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-disclaimer">
+    <p>
+      <strong>Note on Pricing:</strong> All quoted prices are starting points. Final investment is determined after a detailed brief, accounting for design complexity, number of animations, third-party integrations, and custom feature requirements. A formal quote will be provided before any work commences.
+    </p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     CLOSING PAGE
+══════════════════════════════════════════════ -->
+<div class="closer">
+  <div class="closer-rule"></div>
+  <h2>Let's build something remarkable.</h2>
+  <p>This portfolio is a living digital studio — designed to evolve alongside your creative identity. We're here for every chapter.</p>
+  <div class="closer-footer">Trisha Vanam · Digital Portfolio · 2026</div>
+</div>
+
+</body>
+</html>

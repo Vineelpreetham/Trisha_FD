@@ -23,9 +23,9 @@ const IMAGES = [
   getCldUploadUrl("IMG_6425_yv9x9s.jpg", { width: 600 }),
   getCldUploadUrl("IMG_6416_ewj0o2.jpg", { width: 600 }),
   // ── 3 NEW IMAGES ADDED TO FILL GAPS ──
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638002/in_bloom_6_asc7dq.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638003/in_bloom_7_ji0kbd.png",
-  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774638082/romantiques_4_wbjszd.jpg",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1774638002/in_bloom_6_asc7dq.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1774638003/in_bloom_7_ji0kbd.png",
+  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1774638082/romantiques_4_wbjszd.jpg",
 ];
 
 const PRNG = (seed: number) => {

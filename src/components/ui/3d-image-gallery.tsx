@@ -317,7 +317,7 @@ function CardModal() {
                     decoding="async"
                     className="absolute inset-0 h-full w-full rounded-[16px] bg-black object-cover"
                     alt={selectedCard.alt}
-                    src={selectedCard.imageUrl ? selectedCard.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_800/') : "/placeholder.svg"}
+                    src={selectedCard.imageUrl ? selectedCard.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_1600/') : "/placeholder.svg"}
                     style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px", opacity: 1 }}
                   />
                 </div>

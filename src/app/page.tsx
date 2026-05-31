@@ -98,7 +98,7 @@ export default function Home() {
       <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 200, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "clamp(0.9rem,2vw,1.6rem) clamp(1.5rem,5vw,4rem)", mixBlendMode: "difference", color: "#fff", transform: "translateZ(0)" }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img 
-            src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_200/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
+            src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1600/v1777072569/trisha_vanam_brand_identity_cemr1y.png" 
             alt="Trisha Vanam" 
             style={{ 
               height: "clamp(3.5rem, 6vw, 5rem)", 
@@ -132,10 +132,12 @@ export default function Home() {
       </div>
 
       {/* Seamless arch curve into Design Philosophy (Pulled up closer to Work) */}
-      <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "hidden", lineHeight: 0, background: "#FFFFFF", position: "relative", zIndex: 50 }}>
+      <div className="md:-mt-24 lg:-mt-32 outline-none" style={{ width: "100%", overflow: "visible", lineHeight: 0, background: "#FFFFFF", position: "relative", zIndex: 50 }}>
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "clamp(120px, 18vw, 280px)" }}>
            <path d="M0,320 Q720,-50 1440,320 L1440,320 L0,320 Z" fill="#904336" />
         </svg>
+        {/* Anti-alias gap filler to prevent background bleeding */}
+        <div style={{ position: "absolute", bottom: "-1px", left: 0, width: "100%", height: "3px", background: "#904336", zIndex: 10 }}></div>
       </div>
 
       {/* ── CREATIVE VISION SECTION (Dark Theme) ── */}
@@ -156,7 +158,7 @@ export default function Home() {
              <div className="absolute inset-0 bg-white/5 border border-white/20 translate-x-4 translate-y-4 rounded-lg pointer-events-none transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6 hidden md:block max-w-[520px] ml-auto"></div>
              
              <img 
-                src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_800/v1775372625/WhatsApp_Image_2026-04-05_at_9.45.11_AM_1_srnwmd.jpg" 
+                src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1600/v1775372625/WhatsApp_Image_2026-04-05_at_9.45.11_AM_1_srnwmd.jpg" 
                 alt="Trisha Vanam creative vision portrait" 
                 loading="lazy"
                 decoding="async"
@@ -210,6 +212,8 @@ export default function Home() {
         >
            <path d="M0,322 Q720,-320 1440,322 L1440,322 L0,322 Z" fill="#FFFFFF" />
         </svg>
+        {/* Anti-alias gap filler to prevent background bleeding */}
+        <div style={{ position: "absolute", bottom: "-1px", left: 0, width: "100%", height: "3px", background: "#FFFFFF", zIndex: 10 }}></div>
         
         {/* Integrated Heading on the Curve */}
         <div style={{
@@ -300,21 +304,21 @@ export default function Home() {
           <div className="flex md:flex-wrap md:justify-center items-center gap-6 md:gap-[2%] overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar w-full px-[8%] pb-8 md:pb-0">
              {/* Card 1: Romantiques */}
              <Link href="/romantiques?from=home" className="collection-card aspect-4-5 hover-scale snap-center">
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774523650/IMG_4940_wbkaih.jpg" alt="Romantiques fashion collection" loading="lazy" decoding="async" width={600} height={750} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1774523650/IMG_4940_wbkaih.jpg" alt="Romantiques fashion collection" loading="lazy" decoding="async" width={600} height={750} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 2: Regalia */}
              <Link href="/regalia?from=home" className="collection-card card-regalia aspect-16-10 hover-scale snap-center">
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_700/v1774523651/IMG_4938_2_pjueyo.png" alt="Regalia couture collection" loading="lazy" decoding="async" width={700} height={438} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1400/v1774523651/IMG_4938_2_pjueyo.png" alt="Regalia couture collection" loading="lazy" decoding="async" width={700} height={438} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
              </Link>
              {/* Card 3: In Bloom */}
              <Link href="/bloom?from=home" className="collection-card aspect-4-5 hover-scale snap-center">
-                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_600/v1774523650/IMG_4939_ldibj2.jpg" alt="In Bloom floral fashion collection" loading="lazy" decoding="async" width={600} height={750} />
+                <img src="https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto,w_1200/v1774523650/IMG_4939_ldibj2.jpg" alt="In Bloom floral fashion collection" loading="lazy" decoding="async" width={600} height={750} />
                 <div className="view-btn-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", transition: "background 0.3s ease" }}>
                    <span style={{ padding: "0.8rem 1.6rem", border: "1px solid #fff", color: "#fff", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "0.2em", background: "rgba(0,0,0,0.3)", opacity: 0, transition: "opacity 0.3s ease" }}>View Design</span>
                 </div>
