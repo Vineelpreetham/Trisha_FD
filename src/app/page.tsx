@@ -37,8 +37,8 @@ const Work = dynamic(() => import("@/components/Work"), {
 
 
 export default function Home() {
-  const LOOP_COUNT = 40; 
-  const INITIAL_START_SET = 20; 
+  const LOOP_COUNT = 8; 
+  const INITIAL_START_SET = 4; 
   const infiniteGalleryImages = Array.from({ length: LOOP_COUNT }).flatMap((_, loopIdx) =>
     roundGalleryImages.map((img) => ({ ...img, uniqueId: `${img.id}-${loopIdx}` }))
   );
