@@ -13,20 +13,20 @@ import {
 } from "@/components/ui/carousel";
 
 const roundGalleryImages = [
-  { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076844/1_sqqlsc.png", alt: "Garment 1", rotation: -12 },
-  { id: "2", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076844/2_qvcc0d.png", alt: "Garment 2", rotation: 8 },
-  { id: "3", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076845/3_f7aqcm.png", alt: "Garment 3", rotation: -5 },
-  { id: "4", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076846/4_dtxfyc.png", alt: "Garment 4", rotation: 15 },
-  { id: "5", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076847/5_efgsjs.png", alt: "Garment 5", rotation: -10 },
-  { id: "6", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076848/6_u9yn37.png", alt: "Garment 6", rotation: 5 },
-  { id: "7", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076849/7_nysfn3.png", alt: "Garment 7", rotation: -15 },
-  { id: "8", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076852/9_o2m6nf.png", alt: "Garment 8", rotation: 10 },
-  { id: "9", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076853/10_yga3lk.png", alt: "Garment 9", rotation: -8 },
-  { id: "10", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076856/11_jdq9ji.png", alt: "Garment 10", rotation: 12 },
-  { id: "11", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076856/12_c0wm7l.png", alt: "Garment 11", rotation: -5 },
-  { id: "12", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076857/13_p1zpd8.png", alt: "Garment 12", rotation: 14 },
-  { id: "13", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076858/14_vie4lz.png", alt: "Garment 13", rotation: -12 },
-  { id: "14", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_2400/v1780076860/15_gimiat.png", alt: "Garment 14", rotation: 7 },
+  { id: "1", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076844/1_sqqlsc.png", alt: "Garment 1", rotation: -12 },
+  { id: "2", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076844/2_qvcc0d.png", alt: "Garment 2", rotation: 8 },
+  { id: "3", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076845/3_f7aqcm.png", alt: "Garment 3", rotation: -5 },
+  { id: "4", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076846/4_dtxfyc.png", alt: "Garment 4", rotation: 15 },
+  { id: "5", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076847/5_efgsjs.png", alt: "Garment 5", rotation: -10 },
+  { id: "6", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076848/6_u9yn37.png", alt: "Garment 6", rotation: 5 },
+  { id: "7", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076849/7_nysfn3.png", alt: "Garment 7", rotation: -15 },
+  { id: "8", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076852/9_o2m6nf.png", alt: "Garment 8", rotation: 10 },
+  { id: "9", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076853/10_yga3lk.png", alt: "Garment 9", rotation: -8 },
+  { id: "10", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076856/11_jdq9ji.png", alt: "Garment 10", rotation: 12 },
+  { id: "11", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076856/12_c0wm7l.png", alt: "Garment 11", rotation: -5 },
+  { id: "12", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076857/13_p1zpd8.png", alt: "Garment 12", rotation: 14 },
+  { id: "13", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076858/14_vie4lz.png", alt: "Garment 13", rotation: -12 },
+  { id: "14", src: "https://res.cloudinary.com/dbeh0eisn/image/upload/e_make_transparent:10,f_auto,q_auto,w_1600/v1780076860/15_gimiat.png", alt: "Garment 14", rotation: 7 },
 ];
 
 // Dynamically import Work (Three.js/R3F moodboard) — prevents ~200KB of 3D code from blocking initial load
@@ -255,23 +255,23 @@ export default function Home() {
                   opacity: isCenter ? 1 : 0.5,
                   zIndex: isCenter ? 10 : 1,
                   transition: "transform 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease",
-                  willChange: "transform",
                 }}
-                        >
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-full h-full object-contain transition-opacity duration-500 ease-out"
-                            style={{
-                              maxWidth: "520px",
-                              filter: isCenter
-                                ? "drop-shadow(0 20px 40px rgba(0,0,0,0.35))"
-                                : "drop-shadow(0 8px 16px rgba(0,0,0,0.15))",
-                            }}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-contain"
+                  style={{
+                    maxWidth: "520px",
+                    filter: isCenter
+                      ? "drop-shadow(0 20px 40px rgba(0,0,0,0.35))"
+                      : "none",
+                    transition: "filter 0.5s ease",
+                  }}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
                       </CarouselItem>
                     );
                   })}
