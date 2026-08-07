@@ -199,7 +199,6 @@ export default function Home() {
         lineHeight: 0,
         background: "#4A1B1C",
         position: "relative",
-        zIndex: 32,
         marginTop: "-2px",
         marginBottom: "-2px",
       }}>
