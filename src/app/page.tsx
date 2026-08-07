@@ -8,7 +8,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselNavigation,
-  CarouselIndicator,
   CarouselItem,
 } from "@/components/ui/carousel";
 
@@ -277,7 +276,7 @@ export default function Home() {
                   })}
                 </CarouselContent>
                 <CarouselNavigation
-                  className="absolute left-[-2%] top-1/2 w-[104%] -translate-y-1/2"
+                  className="absolute left-0 md:left-[-2%] top-1/2 w-full md:w-[104%] -translate-y-1/2 px-2 md:px-0"
                   classNameButton="bg-white/90 shadow-lg backdrop-blur-sm border border-black/5 hover:bg-white"
                   alwaysShow
                 />

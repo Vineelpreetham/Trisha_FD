@@ -125,7 +125,7 @@ export default function RegaliaPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
-      setBackUrl("/");
+      setTimeout(() => setBackUrl("/"), 0);
     }
   }, []);
 
@@ -207,7 +207,7 @@ export default function RegaliaPage() {
       {/* Collection Quote */}
       <section style={{ padding: isMobile ? "2.5rem 8% 2rem" : "10rem 10%", display: "flex", justifyContent: "center", textAlign: "center" }}>
         <p style={{ fontFamily: "Georgia, serif", fontSize: isMobile ? "1.05rem" : "clamp(1.5rem, 3vw, 2.5rem)", lineHeight: 1.6, maxWidth: "34ch", fontWeight: 300, fontStyle: "italic", color: "#D4C7BE" }}>
-           "baroque grandeur and opera glamour reborn. A modern tribute to the timeless power and poise of royal femininity."
+           &quot;baroque grandeur and opera glamour reborn. A modern tribute to the timeless power and poise of royal femininity.&quot;
         </p>
       </section>
 

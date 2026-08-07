@@ -39,7 +39,7 @@ async function fetchAll() {
 
   // Generate the IMAGES array for tech-flat/page.tsx
   const lines = d7Images.map(
-    (r, i) =>
+    (r) =>
       `  "https://res.cloudinary.com/dbeh0eisn/image/upload/f_auto,q_auto/${r.public_id}",`
   );
 

@@ -13,7 +13,7 @@ export default function RomantiquesPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
-      setBackUrl("/");
+      setTimeout(() => setBackUrl("/"), 0);
     }
   }, []);
 
@@ -28,8 +28,8 @@ export default function RomantiquesPage() {
     gsap.registerPlugin(ScrollTrigger);
     
     // Reveal animation for all sections
-    const items = gsap.utils.toArray('.reveal-section');
-    items.forEach((item: any) => {
+    const items = gsap.utils.toArray<HTMLElement>('.reveal-section');
+    items.forEach((item: HTMLElement) => {
       gsap.fromTo(
         item,
         { opacity: 0, y: isMobile ? 40 : 80 },
@@ -108,7 +108,7 @@ export default function RomantiquesPage() {
               Romantiques
             </h1>
             <p className={isMobile ? "mt-6 font-serif italic text-gray-400 text-lg text-center max-w-2xl px-4" : "mt-8 font-serif italic text-gray-400 text-xl md:text-3xl text-center max-w-2xl px-4"}>
-              "Faded threads speaking in timeless silhouettes."
+              &quot;Faded threads speaking in timeless silhouettes.&quot;
             </p>
           </div>
 

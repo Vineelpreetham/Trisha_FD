@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ExoApePage() {
   const containerRef = useRef(null);
-  const heroRef = useRef(null);
   const videoRef = useRef(null);
   const headlineRef = useRef(null);
   const infoRef = useRef(null);
@@ -106,7 +105,7 @@ export default function ExoApePage() {
       {/* 4. MASSIVE FOOTER */}
       <footer className="relative w-full h-screen bg-[#3B010B] text-[#F2E5C6] flex flex-col items-center justify-center">
          <h1 className="text-[16vw] font-bold tracking-tighter leading-[0.8] uppercase text-center group cursor-pointer hover:scale-105 transition-transform duration-700 text-[#F2D9A0]">
-           Let's<br/>Talk.
+           Let&apos;s<br/>Talk.
          </h1>
          <div className="mt-20 group cursor-pointer border-b-2 border-[#F2D9A0] pb-2 flex items-center gap-4 hover:opacity-70 transition-opacity text-[#F2E5C6]">
             <span className="text-2xl uppercase tracking-widest font-bold">Start a Project</span>

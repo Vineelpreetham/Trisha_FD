@@ -26,7 +26,7 @@ export default function BloomPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
-      setBackUrl("/");
+      setTimeout(() => setBackUrl("/"), 0);
     }
   }, []);
 
