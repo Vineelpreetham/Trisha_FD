@@ -287,7 +287,7 @@ export default function Home() {
           </div>
 
           {/* ── GRADIENT LENS DIVIDER ── */}
-          <div style={{ position: "relative", width: "100%", marginTop: "-4.5rem", marginBottom: "3rem", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div className="relative w-full mt-4 md:-mt-[4.5rem] mb-8 md:mb-12 flex justify-center items-center">
             <svg viewBox="0 0 1440 40" style={{ width: "85%", height: "40px", opacity: 0.85, overflow: "visible" }}>
               <defs>
                 <linearGradient id="lensGradient" x1="0%" y1="0%" x2="100%" y2="0%">
