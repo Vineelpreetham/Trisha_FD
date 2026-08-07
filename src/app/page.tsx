@@ -91,6 +91,9 @@ export default function Home() {
             object-fit: cover;
           }
         }
+        @media (max-width: 768px) {
+          .clo-model-center { transform: scale(1.75) !important; }
+        }
       ` }} />
 
       {/* NAV */}
@@ -234,11 +237,11 @@ export default function Home() {
       </div>
 
       {/* ── CLO LIBRARY & TOP PICKS SECTION ── */}
-      <section style={{ background: "#FFFFFF", padding: "0 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 31, marginTop: "-2px" }}>
+      <section style={{ background: "#FFFFFF", padding: "0 0 4rem 0", fontFamily: "Inter, sans-serif", position: "relative", zIndex: 33, marginTop: "-2px" }}>
           
           {/* ── CLO LIBRARY CAROUSEL ── */}
           <div className="mb-2 md:mb-4 px-[3%] overflow-visible">
-  <div className="relative w-full max-w-7xl mx-auto pt-4 md:pt-6 pb-0 md:pb-0 -mt-2 md:-mt-4">
+  <div className="relative w-full max-w-7xl mx-auto pt-24 md:pt-6 pb-0 md:pb-0 mt-4 md:-mt-4">
     <Carousel loop={false} initialIndex={initialCarouselIndex} onIndexChange={(i) => setCloIndex(i)}>
       <CarouselContent>
         {infiniteGalleryImages.map((image, i) => {
@@ -246,7 +249,7 @@ export default function Home() {
           return (
             <CarouselItem key={image.uniqueId} className="basis-1/3 pl-0 md:pl-2 overflow-visible">
               <div
-                className="relative w-full group cursor-pointer"
+                className={`relative w-full group cursor-pointer ${isCenter ? 'clo-model-center' : ''}`}
                 style={{
                   aspectRatio: "2/3",
                   maxWidth: "520px",
