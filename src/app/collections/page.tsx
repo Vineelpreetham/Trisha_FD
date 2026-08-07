@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { GlowCard } from "@/components/ui/spotlight-card";
+
 
 const collections = [
   {
@@ -84,19 +84,15 @@ const CollectionCard = ({ data, index }: { data: any, index: number }) => (
     <Link href={data.link} className="block w-full relative group cursor-pointer transition-all duration-500 hover:-translate-y-2">
       
       {/* Background/Image Card */}
-      <GlowCard 
-        customSize={true} 
-        glowColor="blue"
-        className="relative w-full aspect-[3/4] md:aspect-[4/5] rounded-[40px] overflow-hidden shadow-xl group-hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] bg-transparent !p-0 z-10"
-      >
+      <div className="relative w-full aspect-[3/4] md:aspect-[4/5] rounded-[40px] overflow-hidden shadow-xl group-hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] z-10">
         <img 
           src={data.image} 
           alt={data.altTitle} 
           loading="lazy"
           decoding="async"
-          className="relative w-full h-full object-cover block transition-transform duration-1000 group-hover:scale-105 z-0" 
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
         />
-      </GlowCard>
+      </div>
 
       {/* Category title — safe positioning to prevent mobile overflow */}
       <div className="absolute top-16 left-[4%] md:left-[-20%] lg:left-[-25%] z-30 pointer-events-none mix-blend-difference text-white">
