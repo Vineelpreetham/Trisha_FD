@@ -69,7 +69,7 @@ export default function ContactFooter() {
         {/* Statement */}
         <div className="footer-reveal w-full flex justify-center mb-6 text-center">
            <p className={`font-serif italic text-xl md:text-2xl max-w-lg leading-snug ${textColor}`}>
-             "Design grows through connection — let’s connect"
+             &quot;Design grows through connection — let&apos;s connect&quot;
            </p>
         </div>
 

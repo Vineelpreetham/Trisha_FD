@@ -49,16 +49,18 @@ function CarouselProvider({
   loop = false,
 }: CarouselProviderProps) {
   const [index, setIndex] = useState<number>(initialIndex);
+  const [prevInitialIndex, setPrevInitialIndex] = useState<number>(initialIndex);
   const [itemsCount, setItemsCount] = useState<number>(0);
+
+  if (prevInitialIndex !== initialIndex) {
+    setPrevInitialIndex(initialIndex);
+    setIndex(initialIndex);
+  }
 
   const handleSetIndex = (newIndex: number) => {
     setIndex(newIndex);
     onIndexChange?.(newIndex);
   };
-
-  useEffect(() => {
-    setIndex(initialIndex);
-  }, [initialIndex]);
 
   return (
     <CarouselContext.Provider

@@ -51,19 +51,6 @@ export default function FlipGallery() {
   const uniteRef = useRef<HTMLElement[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // initialise first image once
-  useEffect(() => {
-    if (!containerRef.current) return;
-    uniteRef.current = Array.from(containerRef.current.querySelectorAll('.unite'));
-    defineFirstImg();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const defineFirstImg = () => {
-    uniteRef.current.forEach(setActiveImage);
-    setImageTitle();
-  };
-
   const setActiveImage = (el: HTMLElement) => {
     el.style.backgroundImage = `url('${images[currentIndex].url}')`;
   };
@@ -75,6 +62,19 @@ export default function FlipGallery() {
     gallery.style.setProperty('--title-y', '0');
     gallery.style.setProperty('--title-opacity', '1');
   };
+
+  const defineFirstImg = () => {
+    uniteRef.current.forEach(setActiveImage);
+    setImageTitle();
+  };
+
+  // initialise first image once
+  useEffect(() => {
+    if (!containerRef.current) return;
+    uniteRef.current = Array.from(containerRef.current.querySelectorAll('.unite'));
+    defineFirstImg();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const updateGallery = (nextIndex: number, isReverse = false) => {
     const gallery = containerRef.current;

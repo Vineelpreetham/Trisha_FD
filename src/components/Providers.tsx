@@ -1,8 +1,12 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useSyncExternalStore } from "react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import { usePathname } from "next/navigation";
+
+const emptySubscribe = () => () => {};
+const getClientSafari = () => typeof navigator !== "undefined" && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const getServerSafari = () => false;
 
 // Reset scroll on page navigation — used inside Lenis context
 function LenisScrollReset() {
@@ -31,12 +35,7 @@ export default function Providers({ children }: { children: ReactNode }) {
   // Safari's own scroll physics engine — even with smoothWheel:false.
   // The only reliable fix is to skip the entire Lenis wrapper on Safari
   // and let it scroll 100% natively. Chrome/Firefox keep Lenis as before.
-  const [isSafari, setIsSafari] = useState(false);
-
-  useEffect(() => {
-    const safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    setIsSafari(safari);
-  }, []);
+  const isSafari = useSyncExternalStore(emptySubscribe, getClientSafari, getServerSafari);
 
   // Safari: pure native scroll — no Lenis at all
   if (isSafari) {

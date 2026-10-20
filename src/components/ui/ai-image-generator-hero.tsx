@@ -39,9 +39,10 @@ export function ImageCarouselHero({
   const rotationRef = useRef(0)
 
   // Memoize base angles so they don't get recalculated every frame
+  const imageCount = images.length
   const baseAngles = useMemo(
-    () => images.map((_, i) => i * (360 / images.length)),
-    [images.length]
+    () => Array.from({ length: imageCount }, (_, i) => i * (360 / imageCount)),
+    [imageCount]
   )
 
   // Handle responsive radius — fit within BOTH width and height
